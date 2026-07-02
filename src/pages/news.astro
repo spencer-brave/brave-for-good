@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const posts = [
+  {
+    date: 'June 2025',
+    title: '2025 See You at the Library Registration Now Open',
+    excerpt: 'Libraries and community hosts across the country can now register to participate in the nationwide August 16 story hour event.',
+    slug: '#',
+  },
+  {
+    date: 'March 2025',
+    title: 'Brave for Good Announces Library of Congress Partnership',
+    excerpt: 'The 2025 flagship event will be held at the Library of Congress in partnership with the U.S. Department of Education Center for Faith.',
+    slug: '#',
+  },
+  {
+    date: 'December 2024',
+    title: '2024 Impact: 10,000 Families, 300 Story Hours, 46 States',
+    excerpt: 'We are proud to share our 2024 annual impact — the strongest year yet for the See You at the Library movement.',
+    slug: '#',
+  },
+];
+---
+
+<Layout
+  title="News"
+  description="The latest news, updates, and press releases from Brave for Good."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">News & Updates</h1>
+      <p class="mt-4 text-lg text-gray-300">The latest from Brave for Good.</p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map(post => (
+          <article class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="h-48 bg-gradient-to-br from-brand-light to-brand-cream flex items-center justify-center">
+              <svg class="w-16 h-16 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+              </svg>
+            </div>
+            <div class="p-6">
+              <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">{post.date}</p>
+              <h2 class="mt-2 text-xl font-serif font-bold text-brand-navy leading-snug">{post.title}</h2>
+              <p class="mt-3 text-gray-600 text-sm leading-relaxed">{post.excerpt}</p>
+              <a href={post.slug} class="mt-4 inline-block text-brand-rust text-sm font-semibold hover:underline">Read more →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Newsletter CTA -->
+      <div class="mt-14 bg-brand-cream rounded-2xl p-8 md:p-10 text-center">
+        <h2 class="text-2xl font-serif font-bold text-brand-navy">Never Miss an Update</h2>
+        <p class="mt-3 text-gray-600">Subscribe to our newsletter for story hour announcements, impact stories, and program updates.</p>
+        <form class="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="https://formspree.io/f/xbdvpgqw" method="POST">
+          <input type="hidden" name="_subject" value="Newsletter Signup — Brave for Good" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            class="flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-rust"
+          />
+          <button type="submit" class="btn-primary whitespace-nowrap">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</Layout>

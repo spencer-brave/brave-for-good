@@ -1,0 +1,165 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Brave for Good equips families with stories and community experiences grounded in faith and timeless values.' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const navLinks = [
+  { href: '/mission',  label: 'Our Mission' },
+  { href: '/programs', label: 'Programs' },
+  { href: '/about',    label: 'About' },
+  { href: '/host',     label: 'Host an Event' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | Brave for Good</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Brave for Good`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+  </head>
+
+  <body class="flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="/">
+            <img src="/images/logo.webp" alt="Brave for Good" class="h-10 w-auto" />
+          </a>
+
+          <!-- Right side: nav + CTA -->
+          <div class="flex items-center gap-6">
+            <nav class="hidden lg:flex items-center gap-6">
+              {navLinks.map(link => (
+                <a
+                  href={link.href}
+                  class="text-sm font-medium text-gray-700 hover:text-brand-rust transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <a href="/support" class="btn-primary text-sm py-2 px-4 hidden md:inline-block">
+              Donate
+            </a>
+
+            <!-- Mobile menu button -->
+            <button
+              id="mobile-menu-btn"
+              class="lg:hidden p-2 rounded-md text-gray-600 hover:text-brand-navy"
+              aria-label="Open menu"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile nav -->
+      <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
+        {navLinks.map(link => (
+          <a href={link.href} class="block text-base font-medium text-gray-700 hover:text-brand-rust py-1">
+            {link.label}
+          </a>
+        ))}
+        <div class="pt-3 border-t border-gray-200">
+          <a href="/support" class="btn-primary text-center block">Donate</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-navy text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Brand column -->
+          <div class="md:col-span-1">
+            <img src="/images/logo.webp" alt="Brave for Good" class="h-8 w-auto brightness-0 invert" />
+            <p class="mt-3 text-sm text-gray-300 leading-relaxed">
+              Empowering families with stories and experiences that nurture imagination and strengthen timeless values.
+            </p>
+          </div>
+
+          <!-- Quick links -->
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Organization</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li><a href="/mission" class="hover:text-white">Our Mission</a></li>
+              <li><a href="/about" class="hover:text-white">Leadership & Board</a></li>
+              <li><a href="/impact" class="hover:text-white">Impact</a></li>
+              <li><a href="/grants" class="hover:text-white">For Funders</a></li>
+            </ul>
+          </div>
+
+          <!-- Programs -->
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Programs</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li><a href="/programs/library" class="hover:text-white">See You at the Library</a></li>
+              <li><a href="/host" class="hover:text-white">Host a Story Hour</a></li>
+            </ul>
+          </div>
+
+          <!-- Get involved -->
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Get Involved</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li><a href="/support" class="hover:text-white">Donate</a></li>
+              <li><a href="/host" class="hover:text-white">Host an Event</a></li>
+              <li><a href="/contact" class="hover:text-white">Contact Us</a></li>
+            </ul>
+            <div class="mt-5">
+              <a href="/support" class="btn-primary text-sm py-2 px-4 inline-block">Donate Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="mt-10 pt-6 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-gray-400">
+          <div>
+            <span>© 2025 Brave for Good. All rights reserved.</span>
+            <span class="mx-2">·</span>
+            <span>501(c)(3) nonprofit · EIN: <span class="font-mono">39-2416029</span></span>
+          </div>
+          <div class="flex gap-4">
+            <a href="/privacy" class="hover:text-white">Privacy Policy</a>
+            <a href="/terms" class="hover:text-white">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+    </script>
+  </body>
+</html>

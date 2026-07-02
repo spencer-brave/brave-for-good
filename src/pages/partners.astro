@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Partners & Press"
+  description="Brave for Good's national partners, media coverage, and organizational endorsements."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Partners & Press</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        Brave for Good is proud to work alongside outstanding organizations and individuals committed to strengthening families and communities.
+      </p>
+    </div>
+  </section>
+
+  <!-- Institutional partners -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Institutional Partners</h2>
+      <p class="section-subheading mt-3">Organizations supporting or participating in the See You at the Library initiative.</p>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { name: 'Library of Congress', desc: 'Host of the 2025 flagship event in Washington, D.C.', type: 'Event Host' },
+          { name: 'U.S. Dept. of Education\nCenter for Faith', desc: 'Co-sponsor of the 2025 event at the Library of Congress.', type: 'Government Partner' },
+          { name: 'BRAVE Books', desc: 'Publisher of the faith-centered children\'s books featured at story hours nationwide.', type: 'Content Partner' },
+          { name: 'Freedom Center', desc: 'Organizational partner supporting the expansion of See You at the Library.', type: 'Organizational Partner' },
+          { name: '[Your Partner Name]', desc: 'Partner description coming soon.', type: 'Partner' },
+        ].map(org => (
+          <div class="bg-brand-cream rounded-2xl p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-lg font-serif font-bold text-brand-navy leading-tight whitespace-pre-line">{org.name}</h3>
+              <span class="text-xs bg-white border border-gray-200 text-brand-rust font-semibold px-2 py-1 rounded-full shrink-0 ml-2">{org.type}</span>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed">{org.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Media coverage -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Media Coverage</h2>
+      <p class="section-subheading mt-3">Recent news and press coverage of See You at the Library and Brave for Good.</p>
+
+      <div class="mt-8 space-y-4">
+        <!-- Media clip placeholder — replace with real clips -->
+        {[
+          { outlet: '[News Outlet]', headline: 'Headline about See You at the Library or Kirk Cameron', date: 'Month 2025', href: '#' },
+          { outlet: '[News Outlet]', headline: 'Another coverage headline here', date: 'Month 2025', href: '#' },
+          { outlet: '[News Outlet]', headline: 'Coverage headline', date: 'Month 2024', href: '#' },
+        ].map(clip => (
+          <a href={clip.href} target="_blank" class="flex items-start gap-4 bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="w-16 h-16 bg-brand-light rounded-lg flex items-center justify-center shrink-0 text-xs font-bold text-brand-blue text-center leading-tight p-2">
+              {clip.outlet}
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold text-brand-navy group-hover:underline">{clip.headline}</p>
+              <p class="text-sm text-gray-400 mt-1">{clip.date}</p>
+            </div>
+            <svg class="w-5 h-5 text-gray-300 group-hover:text-brand-rust shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+
+      <p class="mt-6 text-sm text-gray-500">
+        For media inquiries, contact <a href="mailto:media@braveforgood.org" class="text-brand-rust hover:underline">media@braveforgood.org</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Become a partner CTA -->
+  <section class="py-16 bg-brand-navy text-white text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-3xl font-serif font-bold">Become a Partner</h2>
+      <p class="mt-4 text-gray-300">We welcome partnerships with organizations, businesses, and media that share our mission to strengthen families and communities.</p>
+      <a href="/contact" class="mt-8 inline-block btn-primary">Get in Touch →</a>
+    </div>
+  </section>
+
+</Layout>

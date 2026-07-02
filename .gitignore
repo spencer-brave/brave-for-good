@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro cache
+.astro/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+# Large video files (too large for GitHub, serve from CDN or public/)
+assets/*.mov
+assets/*.mp4
+assets/*.webm
+public/videos/
+
+# Logs
+*.log

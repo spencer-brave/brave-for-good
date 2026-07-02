@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="For Funders"
+  description="Grant and funding information for institutional funders interested in supporting Brave for Good's faith-centered family literacy programs."
+>
+
+  <!-- Header -->
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">For Institutional Funders</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        Thank you for considering Brave for Good. This page provides the documentation, credentials, and contact information you need to evaluate a grant partnership.
+      </p>
+    </div>
+  </section>
+
+  <!-- Org credentials -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="section-heading">Organizational Credentials</h2>
+          <dl class="mt-8 space-y-5">
+            {[
+              { label: 'Legal Name',            value: 'Brave for Good, Inc.' },
+              { label: 'EIN',                   value: '39-2416029' },
+              { label: 'IRS Status',            value: '501(c)(3) Public Charity' },
+              { label: 'Year Founded',          value: '2025' },
+              { label: 'State of Incorporation', value: 'Texas' },
+              { label: 'Fiscal Year',           value: 'January 1 – December 31' },
+            ].map(item => (
+              <div class="flex">
+                <dt class="w-44 shrink-0 text-sm font-semibold text-gray-500">{item.label}</dt>
+                <dd class="text-brand-navy font-medium">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div>
+          <h2 class="section-heading">Financial Documents</h2>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            As a recently incorporated organization, formal financial documents are not yet available. We are happy to provide updated materials as they become available. Please reach out directly with any questions.
+          </p>
+          <div class="mt-6">
+            <a href="mailto:grants@braveforgood.org" class="btn-secondary text-sm py-2 px-5 inline-block">
+              Request Documents
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program summary -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Program Overview</h2>
+      <p class="section-subheading mt-3">Brave for Good's primary program is <strong>See You at the Library</strong> — a nationwide initiative hosting faith-centered story hours in public libraries.</p>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">Target Population</h3>
+            <p class="mt-2 text-gray-600">Families with children ages 2–12 who seek community programming aligned with faith-based and traditional American values. Events are free and open to the public.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">Theory of Change</h3>
+            <p class="mt-2 text-gray-600">By providing faith-rooted story resources and convening families in welcoming public spaces, we build social trust, strengthen parental roles in moral formation, and create community ties that persist beyond any single event.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">Geographic Scope</h3>
+            <p class="mt-2 text-gray-600">Nationwide. In 2024 we operated in 46 states. The 2025 goal is all 50 states and 1,000+ library locations.</p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">Outcomes Measured</h3>
+            <ul class="mt-2 space-y-2 text-gray-600">
+              <li class="flex gap-2"><span class="text-brand-rust">→</span> Number of events hosted and families attended</li>
+              <li class="flex gap-2"><span class="text-brand-rust">→</span> Geographic reach (states, library systems)</li>
+              <li class="flex gap-2"><span class="text-brand-rust">→</span> Host retention and repeat events</li>
+              <li class="flex gap-2"><span class="text-brand-rust">→</span> Attendee satisfaction and likelihood to return</li>
+              <li class="flex gap-2"><span class="text-brand-rust">→</span> Community connection scores (post-event survey)</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">Evaluation Method</h3>
+            <p class="mt-2 text-gray-600">Post-event surveys distributed to hosts and attendees; aggregate data reported semi-annually. We can provide custom reporting for grant-funded programs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner contact form -->
+  <section class="py-16 bg-brand-navy text-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold mb-3">Ready to Partner With Us?</h2>
+      <p class="text-gray-300 mb-10">
+        We welcome letters of inquiry and are happy to provide additional materials, schedule a site visit, or arrange a call with our development team.
+      </p>
+
+      <form
+        name="funder-inquiry"
+        method="POST"
+        action="https://formspree.io/f/xbdvpgqw"
+        class="space-y-5"
+      >
+        <input type="hidden" name="_subject" value="Funder Inquiry — Brave for Good" />
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="funder-name" class="block text-sm font-semibold text-gray-300 mb-1">Name</label>
+            <input
+              id="funder-name"
+              type="text"
+              name="name"
+              required
+              class="w-full rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold"
+              placeholder="Your full name"
+            />
+          </div>
+          <div>
+            <label for="funder-org" class="block text-sm font-semibold text-gray-300 mb-1">Organization</label>
+            <input
+              id="funder-org"
+              type="text"
+              name="organization"
+              class="w-full rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold"
+              placeholder="Foundation or company name"
+            />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="funder-email" class="block text-sm font-semibold text-gray-300 mb-1">Email</label>
+            <input
+              id="funder-email"
+              type="email"
+              name="email"
+              required
+              class="w-full rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold"
+              placeholder="you@organization.org"
+            />
+          </div>
+          <div>
+            <label for="funder-phone" class="block text-sm font-semibold text-gray-300 mb-1">Phone <span class="text-gray-500 font-normal">(optional)</span></label>
+            <input
+              id="funder-phone"
+              type="tel"
+              name="phone"
+              class="w-full rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold"
+              placeholder="(000) 000-0000"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="funder-type" class="block text-sm font-semibold text-gray-300 mb-1">Type of Inquiry</label>
+          <select
+            id="funder-type"
+            name="inquiry_type"
+            class="w-full rounded-lg bg-white/10 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold"
+          >
+            <option value="" class="text-gray-900">Select one</option>
+            <option value="letter-of-inquiry" class="text-gray-900">Letter of Inquiry</option>
+            <option value="grant-application" class="text-gray-900">Grant Application</option>
+            <option value="site-visit" class="text-gray-900">Site Visit / Call Request</option>
+            <option value="documents" class="text-gray-900">Request Financial Documents</option>
+            <option value="other" class="text-gray-900">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="funder-message" class="block text-sm font-semibold text-gray-300 mb-1">Message</label>
+          <textarea
+            id="funder-message"
+            name="message"
+            rows="5"
+            class="w-full rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold resize-none"
+            placeholder="Tell us about your foundation and the nature of your inquiry..."
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="bg-brand-gold text-brand-navy font-bold px-8 py-3 rounded-lg hover:bg-yellow-400 transition-colors"
+        >
+          Send Inquiry
+        </button>
+
+        <p class="text-xs text-gray-500 pt-1">
+          You can also reach us directly at <a href="mailto:grants@braveforgood.org" class="underline hover:text-white">grants@braveforgood.org</a>
+        </p>
+      </form>
+    </div>
+  </section>
+
+</Layout>

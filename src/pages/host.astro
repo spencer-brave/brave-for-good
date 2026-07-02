@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Host a Story Hour"
+  description="Bring a Brave for Good story hour to your local library. Learn what's involved, what you receive, and how to sign up."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Host a Story Hour</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        You don't need to be a librarian or a public speaker. If you love your community and believe great stories matter, you're ready to host.
+      </p>
+      <a href="#register" class="mt-6 inline-block btn-primary">Register to Host →</a>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">How It Works</h2>
+      <p class="section-subheading mt-3">Three simple steps to bring a story hour to your library.</p>
+      <div class="mt-10 grid md:grid-cols-3 gap-8">
+        {[
+          {
+            step: '1',
+            title: 'Register & Connect',
+            body: 'Fill out the host registration form. Our team will connect you with your local library and provide all the materials you need.',
+          },
+          {
+            step: '2',
+            title: 'Host the Event',
+            body: 'Read a BRAVE Book to families at your library. We provide a script, discussion questions, and activity guides. Most events run 45–60 minutes.',
+          },
+          {
+            step: '3',
+            title: 'Report & Celebrate',
+            body: 'After your event, submit a quick report so we can count your impact. Share photos and help us grow the movement.',
+          },
+        ].map(item => (
+          <div class="relative bg-brand-cream rounded-2xl p-8">
+            <div class="absolute -top-4 -left-2 w-10 h-10 bg-brand-rust rounded-full flex items-center justify-center text-white font-bold">
+              {item.step}
+            </div>
+            <h3 class="text-xl font-serif font-bold text-brand-navy mt-2">{item.title}</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">What Hosts Receive</h2>
+      <p class="section-subheading mt-3">We set you up for success. Every registered host receives:</p>
+      <div class="mt-8 grid md:grid-cols-2 gap-4">
+        {[
+          'BRAVE Book(s) for your event',
+          'Step-by-step host guide',
+          'Discussion questions for families',
+          'Printable activity sheets for kids',
+          'Event promotion materials',
+          'Personalized support from the BFG team',
+          'Post-event certificate of participation',
+          'Recognition on our website & social media',
+        ].map(item => (
+          <div class="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+            <svg class="w-5 h-5 text-brand-rust shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-700">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="section-heading">Requirements</h2>
+        <p class="mt-4 text-gray-600 leading-relaxed">
+          To host a story hour, you'll need to:
+        </p>
+        <ul class="mt-4 space-y-3">
+          {[
+            'Secure a date and time with a public library',
+            'Be 18 or older (or have adult co-host)',
+            'Agree to our host code of conduct',
+            'Submit your event via the registration form',
+            'Complete a brief host orientation (30 min, online)',
+          ].map(req => (
+            <li class="flex items-start gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-brand-rust shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              {req}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="py-14 bg-brand-navy text-white">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <svg class="w-10 h-10 text-brand-gold mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+      <blockquote class="text-xl font-serif leading-relaxed">
+        "I was nervous to host my first event, but Brave for Good gave me everything I needed. We had 60 families show up. I'm already planning my next one."
+      </blockquote>
+      <cite class="mt-5 block text-gray-400 not-italic text-sm">— Event Host, Charlotte, NC</cite>
+    </div>
+  </section>
+
+  <!-- Registration form embed -->
+  <section id="register" class="py-16 bg-brand-cream">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading text-center">Register to Host</h2>
+      <p class="text-center text-gray-600 mt-3 mb-8">Complete the form below to get started. Our team will be in touch within 2 business days.</p>
+      <!-- Replace the div below with your Feathery JS embed snippet from the Feathery dashboard (Share → Embed) -->
+      <div class="text-center bg-white rounded-xl border border-gray-200 p-10">
+        <p class="text-gray-600 mb-6">Click below to open the host registration form.</p>
+        <a
+          href="https://form.feathery.app/to/CttLVd"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary text-base py-3 px-8 inline-block"
+        >
+          Open Registration Form →
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

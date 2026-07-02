@@ -1,0 +1,113 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="See You at the Library"
+  description="See You at the Library is Brave for Good's nationwide story hour program — bringing faith-centered, character-building stories to public libraries across America."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-brand-gold text-sm font-semibold uppercase tracking-widest mb-3">Flagship Program</p>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">See You at the Library</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        Faith-centered story hours in public libraries — bringing families together around stories that inspire courage, honor, and community.
+      </p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-4">
+        <a href="/programs/library/2025" class="btn-primary">View 2025 Event →</a>
+        <a href="/host" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy">Host a Story Hour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What it is -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="section-heading">What Happens at a Story Hour</h2>
+          <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              Each event is a 45–60 minute community gathering hosted in a local public library. A trained host reads one or more BRAVE Books — beautifully illustrated children's books featuring American heroes, biblical values, and timeless character traits.
+            </p>
+            <p>
+              After the reading, families enjoy discussion activities, crafts, and time to connect with neighbors. Events are free, open to the public, and welcoming to families of all backgrounds.
+            </p>
+          </div>
+          <ul class="mt-6 space-y-2">
+            {[
+              'Free for all attendees',
+              'Welcoming to all families',
+              'Hosted in public libraries',
+              'Faith-centered, character-building content',
+              'Activities for children ages 2–12',
+            ].map(item => (
+              <li class="flex items-center gap-2 text-gray-700">
+                <svg class="w-5 h-5 text-brand-rust shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-brand-cream rounded-2xl aspect-video flex items-center justify-center text-gray-400">
+          <div class="text-center p-8">
+            <svg class="w-16 h-16 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+            </svg>
+            <p class="text-sm">Event photo gallery</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Books featured -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Books Featured</h2>
+      <p class="section-subheading mt-3">Story hours feature titles from BRAVE Books — a series of faith-centered children's books celebrating American heroes and biblical values.</p>
+      <div class="mt-8 bg-white rounded-2xl border border-gray-200 p-8 text-center text-gray-400">
+        <p class="italic">Book titles and covers coming soon.</p>
+        <a href="https://bravebooks.us" target="_blank" class="block mt-3 text-brand-rust text-sm hover:underline">Visit BRAVE Books →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program history -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Program History</h2>
+      <div class="mt-8 space-y-6">
+        {[
+          { year: '2022', event: 'Kirk Cameron attempts library story hours featuring BRAVE Books; several libraries decline. National conversation begins.' },
+          { year: '2023', event: 'Brave for Good launches as a 501(c)(3) to formalize and expand the library story hour movement. 50+ events in 18 states.' },
+          { year: '2024', event: '300+ story hours across 46 states. Over 10,000 families reached. Movement gains national attention.' },
+          { year: '2025', event: 'Goal: 1,000+ libraries, all 50 states. Flagship event at Library of Congress with Dept. of Education.' },
+        ].map(item => (
+          <div class="flex gap-6">
+            <div class="shrink-0 w-16 text-brand-rust font-serif font-bold text-lg pt-1">{item.year}</div>
+            <div class="flex-1 pb-6 border-b border-gray-200 last:border-0">
+              <p class="text-gray-700 leading-relaxed">{item.event}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-14 bg-brand-navy text-white text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-3xl font-serif font-bold">Join the Movement</h2>
+      <p class="mt-4 text-gray-300">Whether you attend, host, or support financially — every family and every dollar moves us closer to 1,000 libraries in 2025.</p>
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/programs/library/2025" class="btn-primary">Find a 2025 Event</a>
+        <a href="/support" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy">Donate</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

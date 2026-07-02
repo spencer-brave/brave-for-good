@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact"
+  description="Get in touch with Brave for Good — for general inquiries, media requests, partnership opportunities, or grant information."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Contact Us</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-xl">
+        We'd love to hear from you. Our team responds to all inquiries within 2 business days.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12">
+
+        <!-- Contact form -->
+        <div>
+          <h2 class="text-2xl font-serif font-bold text-brand-navy mb-6">Send a Message</h2>
+          <form class="space-y-4" action="https://formspree.io/f/xbdvpgqw" method="POST">
+            <input type="hidden" name="_subject" value="Contact Form Submission — Brave for Good" />
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input type="text" id="first-name" name="first-name" required
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-rust" />
+              </div>
+              <div>
+                <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input type="text" id="last-name" name="last-name" required
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-rust" />
+              </div>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" id="email" name="email" required
+                class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-rust" />
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <select id="subject" name="subject"
+                class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-rust bg-white">
+                <option value="">Select a topic...</option>
+                <option>General Inquiry</option>
+                <option>Host Registration</option>
+                <option>Donation / Support</option>
+                <option>Grant / Partnership</option>
+                <option>Media / Press</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+              <textarea id="message" name="message" rows={5} required
+                class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-rust"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full text-center py-3">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact details -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-2xl font-serif font-bold text-brand-navy mb-6">Contact Information</h2>
+            <dl class="space-y-4">
+              <div class="flex gap-3">
+                <dt class="w-20 shrink-0 text-sm font-semibold text-gray-500 pt-0.5">Email</dt>
+                <dd>
+                  <a href="mailto:info@braveforgood.org" class="text-brand-navy hover:text-brand-rust transition-colors">info@braveforgood.org</a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy mb-3">Quick Links</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/host" class="text-brand-rust hover:underline">Register to host a story hour →</a></li>
+              <li><a href="/grants" class="text-brand-rust hover:underline">Information for grant funders →</a></li>
+              <li><a href="/support" class="text-brand-rust hover:underline">Donate to Brave for Good →</a></li>
+            </ul>
+          </div>
+
+          <div class="bg-brand-cream rounded-xl p-5">
+            <p class="text-sm text-gray-500">
+              <strong class="text-brand-navy">Response time:</strong> Our team responds to all inquiries within 2 business days.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

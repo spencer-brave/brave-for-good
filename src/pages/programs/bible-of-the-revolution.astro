@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Bible Revival"
+  description="Bible Revival is Brave for Good's program dedicated to returning Scripture to American schools and public life, beginning with the Bible of the Revolution."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-4">Brave for Good Programs</p>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Bible Revival</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        A movement to restore Scripture to its rightful place in American education and public life — beginning with the book that started it all.
+      </p>
+    </div>
+  </section>
+
+  <!-- Video section -->
+  <section class="py-16 bg-brand-sand border-b border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="video-container" role="button" aria-label="Play video about Bible of the Revolution" tabindex="0">
+        <img
+          src="/images/bible-video-thumbnail.webp"
+          alt="Bible of the Revolution — click to watch"
+          class="w-full block"
+        />
+        <div class="overlay"></div>
+        <div class="play-btn">
+          <svg width="36" height="36" fill="black" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About the program -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-brand-navy">What is Bible Revival?</h2>
+          <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              Bible Revival is Brave for Good's program to restore the Bible to its historical and cultural place in American education. Not as a religious mandate, but as a recognition of the profound role Scripture has played in shaping American law, literature, and moral reasoning for over two centuries.
+            </p>
+            <p>
+              A student cannot fully understand American history, the founding documents, or the literature that shaped this nation without some familiarity with the text that undergirded all of it. Bible Revival exists to change that — through community events, educational resources, and strategic partnerships.
+            </p>
+            <p>
+              At the center of the program is a specific piece of history: the <strong>Bible of the Revolution</strong> — the Aitken Bible of 1782, the first Bible printed in America, endorsed by the Continental Congress, and carried by soldiers fighting for independence.
+            </p>
+          </div>
+          <div class="mt-8">
+            <a href="/programs/bible-revival/donate" class="btn-primary">Get Your Copy of the Bible of the Revolution →</a>
+          </div>
+        </div>
+
+        <div>
+          <img
+            src="/images/bible-of-the-revolution.webp"
+            alt="Bible of the Revolution — the Aitkin Bible of 1782"
+            class="w-full rounded-sm"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Key points -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-brand-navy mb-10">Why It Matters</h2>
+      <div class="grid md:grid-cols-3 gap-12">
+        {[
+          {
+            num: '01',
+            title: 'Historically grounded',
+            body: 'The Aitken Bible was approved by the Continental Congress in 1782 and intended for use in American schools — a fact that has been largely forgotten.',
+          },
+          {
+            num: '02',
+            title: 'Culturally essential',
+            body: 'A student cannot fully understand American literature, law, or history without familiarity with the Scripture that shaped them.',
+          },
+          {
+            num: '03',
+            title: 'Community led',
+            body: 'Brave for Good works alongside families, educators, and local communities to restore what was once considered foundational knowledge.',
+          },
+        ].map(item => (
+          <div>
+            <div class="text-4xl font-serif font-bold text-gray-200 leading-none mb-3 select-none">{item.num}</div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">{item.title}</h3>
+            <p class="mt-2 text-sm text-gray-600 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTR feature -->
+  <section class="py-16 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-4">Featured Piece</p>
+          <h2 class="text-2xl md:text-3xl font-serif font-bold">The Bible of the Revolution</h2>
+          <div class="mt-5 w-14 h-0.5 bg-brand-gold"></div>
+          <p class="mt-6 text-gray-300 leading-relaxed">
+            In 1782, Robert Aitken printed the first English Bible on American soil. Congress unanimously endorsed it and recommended it "to the inhabitants of the United States." Small enough to fit in a Continental soldier's coat pocket, it was printed five years before the Constitution. Of the ten thousand copies made, fewer than fifty survive today.
+          </p>
+          <p class="mt-4 text-gray-300 leading-relaxed">
+            Brave for Good is making this historic Bible available again — with a preface written by Kirk Cameron. Donate $100 or give $17.76 a month to receive your copy.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="/programs/bible-revival/donate" class="btn-primary">Get Your Copy</a>
+            <a href="/programs/bible-revival/donate" class="inline-block border border-white/40 text-white font-semibold px-7 py-3 rounded-lg hover:border-white hover:bg-white/10 transition-colors text-center">
+              Learn More →
+            </a>
+          </div>
+          <p class="mt-4 text-xs text-gray-500">Books begin shipping late September 2026.</p>
+        </div>
+        <div>
+          <img
+            src="/images/bible-of-the-revolution.webp"
+            alt="Bible of the Revolution"
+            class="w-full rounded-sm"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support CTA -->
+  <section class="py-14 bg-brand-cream border-t border-gray-200">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-serif font-bold text-brand-navy">Support Bible Revival</h2>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        Help Brave for Good bring Scripture back to American schools and communities.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/support" class="btn-primary">Donate</a>
+        <a href="/contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  #video-container {
+    position: relative;
+    cursor: pointer;
+    display: block;
+  }
+  #video-container .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    transition: background 0.2s ease;
+  }
+  #video-container:hover .overlay {
+    background: rgba(0, 0, 0, 0.45);
+  }
+  #video-container .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  #video-container .play-btn svg {
+    margin-left: 4px;
+  }
+  #video-container:hover .play-btn {
+    background: rgba(255, 255, 255, 1);
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+</style>
+
+<script>
+  const container = document.getElementById('video-container');
+
+  function loadVideo() {
+    const video = document.createElement('video');
+    video.src = '/videos/bible-of-the-revolution.mov';
+    video.controls = true;
+    video.autoplay = true;
+    video.className = 'w-full';
+    video.setAttribute('playsinline', '');
+
+    container!.replaceChildren(video);
+    container!.style.cursor = 'default';
+  }
+
+  container?.addEventListener('click', loadVideo);
+  container?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      loadVideo();
+    }
+  });
+</script>

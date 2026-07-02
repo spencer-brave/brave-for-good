@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About"
+  description="Meet the team behind Brave for Good, the nonprofit supporting faith-centered family storytelling across America."
+>
+
+  <!-- Page header -->
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">About Brave for Good</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        We are a team of parents, educators, and advocates united by a belief that the stories we tell children shape the world they will build.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our story -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="section-heading">Our Story</h2>
+        <div class="mt-6 space-y-4 text-gray-700 leading-relaxed text-lg">
+          <p>
+            Brave for Good was born from a simple conviction: families deserve community spaces where faith, imagination, and shared values can flourish. When public libraries began hosting programming that many parents found at odds with their values, a grassroots movement emerged.
+          </p>
+          <p>
+            What started as a series of library story hours organized around BRAVE Books — faith-centered children's books featuring timeless American and biblical values — quickly grew into a nationwide network. In 2024 alone, more than 300 story hours took place across 46 states, reaching over 10,000 families.
+          </p>
+          <p>
+            Today, Brave for Good operates as a 501(c)(3) nonprofit dedicated to sustaining and expanding that movement — providing resources to hosts, building partnerships with libraries, and creating memorable events that bring communities together.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership team -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Leadership Team</h2>
+      <p class="section-subheading mt-3">The people driving our mission forward.</p>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl">
+        {[
+          {
+            name: 'Trent Talbot',
+            title: 'President',
+          },
+          {
+            name: 'Nathan Daniels',
+            title: 'Director of Development and Partnerships',
+          },
+          {
+            name: 'Kirk Cameron',
+            title: 'Spokesperson',
+          },
+        ].map(person => (
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="text-lg font-serif font-bold text-brand-navy">{person.name}</h3>
+            <p class="text-brand-rust text-sm font-semibold mt-1">{person.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mb-10">Our Core Values</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'Biblical Truth', body: 'We hold to a moral foundation grounded in Scripture and the timeless wisdom it provides for raising courageous children.' },
+          { title: 'Imagination', body: 'We believe great stories open minds to wonder without exploiting or distorting a child\'s developing worldview.' },
+          { title: 'Courage', body: 'We cultivate the bravery to advocate for what is right, even when it is difficult or unpopular.' },
+          { title: 'Community', body: 'We build spaces of hospitality and shared purpose where families can connect across generations and neighborhoods.' },
+        ].map(val => (
+          <div class="bg-white/10 rounded-xl p-6">
+            <h3 class="text-xl font-serif font-bold text-brand-gold">{val.title}</h3>
+            <p class="mt-2 text-gray-200 leading-relaxed">{val.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Financial transparency -->
+  <section class="py-12 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <h2 class="text-2xl font-serif font-bold text-brand-navy">Financial Transparency</h2>
+          <p class="mt-2 text-gray-600 max-w-xl">
+            Brave for Good is committed to the highest standards of financial accountability.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a href="/grants" class="btn-primary text-sm py-2 px-5 text-center">
+            Funder Information
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

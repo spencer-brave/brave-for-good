@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Home"
+  description="Brave for Good equips families with stories and community experiences grounded in faith and timeless values. Join us at the library."
+>
+
+  <!-- Hero — 2-column: text left, real event photo right -->
+  <section class="bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div class="grid min-[800px]:grid-cols-[1fr_0.6fr] min-[800px]:gap-16 items-center">
+        <div>
+          <p class="text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] mb-6">
+            501(c)(3) Nonprofit &nbsp;·&nbsp; Est. 2022
+          </p>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.05] tracking-tight text-white">
+            Empowering Families. <em class="not-italic text-brand-gold">Inspiring</em> Brave Hearts.
+          </h1>
+          <div class="mt-8 w-16 h-0.5 bg-brand-gold"></div>
+          <p class="mt-6 text-base md:text-lg text-gray-300 leading-relaxed max-w-lg">
+            We equip families with stories and community gatherings that nurture imagination, strengthen timeless values, and raise a generation grounded in truth, courage, and character.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="/programs/library/2025" class="btn-primary text-base py-3 px-7 text-center">
+              Join Us — August 16
+            </a>
+            <a href="/host" class="inline-block border border-white/40 text-white font-semibold px-7 py-3 rounded-lg hover:border-white hover:bg-white/10 transition-colors text-center text-base">
+              Host a Story Hour
+            </a>
+          </div>
+        </div>
+        <div class="mt-12 min-[800px]:mt-0">
+          <img
+            src="/images/kirk-scarsdale-reading.avif"
+            alt="Kirk Cameron reading to families at a Brave Story Hour in Scarsdale, NY"
+            class="w-full"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2024 Impact — editorial typographic layout, not a dashboard metric grid -->
+  <section class="bg-brand-sand border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust mb-8">2024 Annual Results</p>
+      <div class="flex flex-col sm:flex-row sm:divide-x divide-gray-300 gap-8 sm:gap-0">
+        <div class="sm:pr-12">
+          <div class="text-4xl md:text-5xl font-serif font-bold text-brand-navy leading-none">10,000+</div>
+          <div class="mt-2 text-sm font-medium text-gray-600 uppercase tracking-widest">Families reached</div>
+        </div>
+        <div class="sm:px-12">
+          <div class="text-4xl md:text-5xl font-serif font-bold text-brand-navy leading-none">300+</div>
+          <div class="mt-2 text-sm font-medium text-gray-600 uppercase tracking-widest">Story hours hosted</div>
+        </div>
+        <div class="sm:px-12">
+          <div class="text-4xl md:text-5xl font-serif font-bold text-brand-navy leading-none">46</div>
+          <div class="mt-2 text-sm font-medium text-gray-600 uppercase tracking-widest">States participated</div>
+        </div>
+        <div class="sm:pl-12 flex flex-col justify-end">
+          <a href="/impact" class="text-brand-rust text-sm font-semibold hover:underline underline-offset-4">
+            Full impact report →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why we exist — numbered editorial list, not an icon+card grid -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-brand-navy leading-tight">
+          Stories shape who children become.
+        </h2>
+        <p class="mt-4 text-base text-gray-600 leading-relaxed">
+          In a world full of noise, families deserve meaningful stories and welcoming spaces where faith, imagination, and community can thrive.
+        </p>
+      </div>
+      <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-14">
+        {[
+          {
+            num: '01',
+            title: 'Imagination awakened',
+            body: 'Great stories ignite curiosity and open young minds to a world of wonder grounded in truth. Children who read widely, dream widely.',
+          },
+          {
+            num: '02',
+            title: 'Character formed',
+            body: 'When children encounter courage, honor, and kindness in stories, those values take root. Literature is moral formation that doesn\'t feel like a lesson.',
+          },
+          {
+            num: '03',
+            title: 'Communities strengthened',
+            body: 'Our gatherings bring neighbors together in public spaces families already call home. Shared stories create social bonds that last.',
+          },
+        ].map(item => (
+          <div>
+            <div class="text-4xl font-serif font-bold text-gray-200 leading-none mb-3 select-none">{item.num}</div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">{item.title}</h3>
+            <p class="mt-2 text-sm text-gray-600 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo strip — 3 real event photos -->
+  <section class="bg-brand-sand border-t border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div class="grid grid-cols-3 gap-2 md:gap-3">
+        <img
+          src="/images/story-hour-hendersonville.avif"
+          alt="Brave Story Hour event in Hendersonville — families gathered at the library"
+          class="w-full h-44 md:h-64 object-cover"
+          loading="lazy"
+        />
+        <img
+          src="/images/story-hour-springfield.avif"
+          alt="Brave Story Hour in Springfield — children and parents listening to stories"
+          class="w-full h-44 md:h-64 object-cover"
+          loading="lazy"
+        />
+        <img
+          src="/images/story-hour-taylor-tx.avif"
+          alt="See You at the Library 2023 pledge event in Taylor, TX"
+          class="w-full h-44 md:h-64 object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 2025 Event CTA — strong, flat, proclamation-style -->
+  <section class="bg-brand-rust text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div class="grid lg:grid-cols-2 lg:gap-16 items-center">
+        <div class="max-w-xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-red-200 mb-5">August 16, 2025</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold leading-tight">
+            See You<br />at the Library.
+          </h2>
+          <div class="mt-5 w-14 h-0.5 bg-red-300"></div>
+          <p class="mt-6 text-base text-red-100 leading-relaxed">
+            A nationwide movement of 1,000+ simultaneous story hours in public libraries, including a flagship event at the Library of Congress with the U.S. Department of Education.
+          </p>
+          <p class="mt-2 text-sm text-red-200">
+            Featuring Kirk Cameron, Riley Gaines, and Kevin Sorbo.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="/programs/library/2025" class="inline-block bg-white text-brand-rust font-bold py-3 px-7 rounded-lg hover:bg-red-50 transition-colors text-center">
+              Find an Event
+            </a>
+            <a href="/host" class="inline-block border border-white/40 text-white font-semibold py-3 px-7 rounded-lg hover:border-white hover:bg-white/10 transition-colors text-center">
+              Host at Your Library
+            </a>
+          </div>
+        </div>
+        <div class="mt-10 lg:mt-0">
+          <img
+            src="/images/trent-talbot.avif"
+            alt="See You at the Library event"
+            class="w-full"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <svg class="w-7 h-7 text-brand-gold mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+      <blockquote class="text-xl md:text-2xl font-serif text-brand-navy leading-relaxed">
+        "Our library's story hour brought over 80 families together on a Saturday morning. Parents told me afterward they hadn't felt that sense of community in years."
+      </blockquote>
+      <cite class="mt-6 block text-xs text-gray-400 not-italic uppercase tracking-widest">
+        Library Host, Columbus, Ohio
+      </cite>
+    </div>
+  </section>
+
+
+</Layout>

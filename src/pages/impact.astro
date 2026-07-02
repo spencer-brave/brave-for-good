@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Impact"
+  description="See how Brave for Good is changing communities — 10,000+ families reached, 300+ story hours, and 46 states in 2024."
+>
+
+  <!-- Header -->
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Our Impact</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        Real families. Real communities. Real change. Here's what Brave for Good has accomplished — and where we're headed.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2024 headline numbers -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand-rust mb-8">2024 Annual Results</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { stat: '10,000+', label: 'Families Reached',       detail: 'Parents, children, and grandparents who attended a story hour event' },
+          { stat: '300+',    label: 'Story Hours Hosted',     detail: 'Individual events organized by volunteers across the country' },
+          { stat: '46',      label: 'States Participated',    detail: 'Coast-to-coast reach in our second year of programming' },
+          { stat: '93%',     label: 'Would Attend Again',     detail: 'Of surveyed attendees who said they\'d return to a future event' },
+        ].map(item => (
+          <div class="bg-white rounded-2xl shadow-sm p-6 text-center">
+            <div class="text-3xl md:text-4xl font-serif font-bold text-brand-navy">{item.stat}</div>
+            <div class="mt-2 text-sm font-semibold text-brand-rust">{item.label}</div>
+            <div class="mt-2 text-xs text-gray-500 leading-snug">{item.detail}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Year-over-year growth -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="section-heading">Growing Year Over Year</h2>
+        <p class="section-subheading mt-3">From a handful of library events to a coast-to-coast movement.</p>
+      </div>
+
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-brand-navy">
+              <th class="py-3 pr-6 text-sm font-semibold uppercase tracking-wider text-gray-500">Year</th>
+              <th class="py-3 pr-6 text-sm font-semibold uppercase tracking-wider text-gray-500">Story Hours</th>
+              <th class="py-3 pr-6 text-sm font-semibold uppercase tracking-wider text-gray-500">Families Reached</th>
+              <th class="py-3 pr-6 text-sm font-semibold uppercase tracking-wider text-gray-500">States</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="py-4 pr-6 font-serif font-bold text-brand-navy">2023</td>
+              <td class="py-4 pr-6">50+</td>
+              <td class="py-4 pr-6">2,000+</td>
+              <td class="py-4 pr-6">18</td>
+            </tr>
+            <tr class="bg-brand-cream">
+              <td class="py-4 pr-6 font-serif font-bold text-brand-navy">2024</td>
+              <td class="py-4 pr-6 font-bold">300+</td>
+              <td class="py-4 pr-6 font-bold">10,000+</td>
+              <td class="py-4 pr-6 font-bold">46</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-6 font-serif font-bold text-brand-rust">2025 Goal</td>
+              <td class="py-4 pr-6 text-brand-rust">1,000+</td>
+              <td class="py-4 pr-6 text-brand-rust">40,000+</td>
+              <td class="py-4 pr-6 text-brand-rust">50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 46-state map placeholder -->
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Reach Across America</h2>
+      <p class="section-subheading mt-3">In 2024, story hours took place in 46 of 50 states — from Alaska to Florida, Maine to Hawaii.</p>
+      <div class="mt-8 bg-white rounded-2xl border border-gray-200 h-80 flex items-center justify-center text-gray-400">
+        <div class="text-center">
+          <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+          </svg>
+          <p class="text-sm">Interactive map — 46 states reached in 2024</p>
+          <p class="text-xs mt-1">(Embed your map here)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family stories -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Families Changed</h2>
+      <p class="section-subheading mt-3">Behind every number is a real family. Here are a few of their stories.</p>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-8">
+        {[
+          {
+            quote: "We drove 45 minutes to find a story hour that reflected our values. The kids still ask when the next one is.",
+            name: "Sarah M.",
+            location: "Nashville, TN",
+          },
+          {
+            quote: "As a librarian, I was moved by how many families showed up. Our branch hasn't seen that kind of turnout in years.",
+            name: "James R.",
+            location: "Tucson, AZ",
+          },
+          {
+            quote: "My 6-year-old checked out three books after the event. She hasn't put them down. That's the whole point, isn't it?",
+            name: "Michelle K.",
+            location: "Columbus, OH",
+          },
+        ].map(story => (
+          <div class="bg-brand-cream rounded-2xl p-8">
+            <svg class="w-8 h-8 text-brand-gold mb-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="text-gray-700 leading-relaxed italic">"{story.quote}"</p>
+            <div class="mt-4">
+              <p class="font-semibold text-brand-navy">{story.name}</p>
+              <p class="text-sm text-gray-500">{story.location}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How funds are used -->
+  <section class="py-16 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-serif font-bold text-white mb-3">How Funds Are Used</h2>
+      <p class="text-gray-300 max-w-2xl mb-10">Every dollar donated to Brave for Good goes toward building the infrastructure that makes community story hours possible.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          { pct: '78%', label: 'Programs & Events',   desc: 'Story hour kits, host support, event materials, and community gatherings' },
+          { pct: '13%', label: 'Fundraising',         desc: 'Donor relations, grant writing, and development activities' },
+          { pct: '9%',  label: 'Administration',      desc: 'Compliance, accounting, legal, and organizational overhead' },
+        ].map(item => (
+          <div class="bg-white/10 rounded-xl p-6">
+            <div class="text-4xl font-serif font-bold text-brand-gold">{item.pct}</div>
+            <div class="text-white font-semibold mt-1">{item.label}</div>
+            <div class="text-gray-300 text-sm mt-2 leading-relaxed">{item.desc}</div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs text-gray-400">* Percentages based on FY2024 actuals. Audited financials available on request.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-14 bg-brand-cream text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-serif font-bold text-brand-navy">Help Us Reach Every State in 2025</h2>
+      <p class="mt-3 text-gray-600">Your support directly funds story hours in communities that need them most.</p>
+      <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/support" class="btn-primary">Donate Now</a>
+        <a href="/host" class="btn-secondary">Host a Story Hour</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

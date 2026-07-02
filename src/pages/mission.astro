@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Our Mission"
+  description="Brave for Good exists to equip families with stories and community experiences that nurture imagination and strengthen timeless values."
+>
+
+  <section class="bg-brand-navy text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-serif font-bold max-w-3xl leading-tight">
+        Raising a Generation Grounded in Truth, Courage, and Character
+      </h1>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand-rust mb-4">Our Mission</p>
+        <p class="text-2xl md:text-3xl font-serif text-brand-navy leading-relaxed">
+          "Equip families with stories, experiences, and community gatherings that nurture imagination, strengthen biblical values, and help raise a generation grounded in truth, courage, and character."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="section-heading">Why We Exist</h2>
+          <div class="mt-6 space-y-4 text-gray-700 leading-relaxed text-lg">
+            <p>
+              The stories a child grows up with shape who they become. For generations, families trusted public spaces to offer programming that reflected their values — faith, character, and love of country. Today, many families feel that trust has eroded.
+            </p>
+            <p>
+              Brave for Good exists to fill that gap. We believe every family deserves access to community experiences that celebrate truth, honor imagination, and build the kind of character that makes societies flourish.
+            </p>
+            <p>
+              We are not a political organization. We are parents, educators, librarians, and neighbors who believe the next generation deserves better than the shallow, divisive content that dominates so much of public life today.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h2 class="section-heading">Our Vision</h2>
+          <div class="mt-6 space-y-4 text-gray-700 leading-relaxed text-lg">
+            <p>
+              A nation where every family — regardless of zip code or income — has access to community spaces that celebrate faith, cultivate imagination, and build character.
+            </p>
+            <p>
+              A generation of children who grow up knowing who they are, what they believe, and what they are willing to stand for.
+            </p>
+            <p>
+              Communities bound together by shared stories and the shared conviction that the next generation is worth fighting for.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Our Core Values</h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-10">
+        {[
+          {
+            num: '01',
+            title: 'Biblical Truth',
+            body: 'We hold to a moral foundation grounded in Scripture and the timeless wisdom it provides for raising courageous, compassionate children.',
+          },
+          {
+            num: '02',
+            title: 'Imagination',
+            body: 'Great stories open minds to wonder without exploiting or distorting a child\'s developing worldview. We celebrate books that spark curiosity and delight.',
+          },
+          {
+            num: '03',
+            title: 'Courage',
+            body: 'We cultivate the bravery to stand for what is right, even when it is difficult or unpopular. Brave children become brave adults.',
+          },
+          {
+            num: '04',
+            title: 'Community',
+            body: 'We build spaces of hospitality and shared purpose where families connect across generations and neighborhoods. We are stronger together.',
+          },
+        ].map(val => (
+          <div>
+            <div class="text-4xl font-serif font-bold text-gray-200 leading-none mb-3 select-none">{val.num}</div>
+            <h3 class="text-xl font-serif font-bold text-brand-navy">{val.title}</h3>
+            <p class="mt-2 text-gray-600 leading-relaxed">{val.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 bg-brand-rust text-white text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-3xl font-serif font-bold">Join the Movement</h2>
+      <p class="mt-4 text-red-100">There are three ways to stand with us: attend, host, or give.</p>
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/programs/library/2025" class="inline-block bg-white text-brand-rust font-bold py-3 px-6 rounded-lg hover:bg-red-50 transition-colors">
+          Find an Event
+        </a>
+        <a href="/host" class="inline-block border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-brand-rust transition-colors">
+          Host a Story Hour
+        </a>
+        <a href="/support" class="inline-block bg-brand-gold text-brand-navy font-bold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors">
+          Donate
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

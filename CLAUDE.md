@@ -39,7 +39,7 @@ The site was rebuilt from Wix to a static Astro site in 2025. All edits happen v
 
 ## Hosting & Deployment
 
-The repo lives at `https://github.com/spencer-brave/brave-for-good`. The site is **not yet connected to a live hosting provider**. Recommended next step: connect the repo to Netlify or Vercel for automatic deploys on push to `main`.
+The repo lives at `https://github.com/spencer-brave/brave-for-good` and is connected to **Render** for automatic deploys. Pushing to `main` triggers a new deploy.
 
 The 115MB Bible of the Revolution video (`BibleOfTheRevolution-Website.mov`) is too large for GitHub. It is hosted on YouTube (unlisted) at `https://youtu.be/LJZrKP-aZ1w` and embedded on the Bible Revival page.
 

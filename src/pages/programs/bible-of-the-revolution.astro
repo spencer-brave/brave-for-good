@@ -197,14 +197,14 @@ import Layout from '../../layouts/Layout.astro';
   const container = document.getElementById('video-container');
 
   function loadVideo() {
-    const video = document.createElement('video');
-    video.src = '/videos/bible-of-the-revolution.mov';
-    video.controls = true;
-    video.autoplay = true;
-    video.className = 'w-full';
-    video.setAttribute('playsinline', '');
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/LJZrKP-aZ1w?autoplay=1';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.className = 'w-full aspect-video block';
+    iframe.style.border = 'none';
 
-    container!.replaceChildren(video);
+    container!.replaceChildren(iframe);
     container!.style.cursor = 'default';
   }
 

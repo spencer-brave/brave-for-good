@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   title="Bible Revival"
-  description="Bible Revival is Brave for Good's program dedicated to returning Scripture to American schools and public life, beginning with the Bible of the Revolution."
+  description="Bible Revival is Brave for Good's program to get Bibles and biblical education back into American schools, with free assemblies for schools and groups and free literature for families."
 >
 
   <section class="bg-brand-navy text-white py-16">
@@ -12,8 +12,14 @@ import Layout from '../../layouts/Layout.astro';
       <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-4">Brave for Good Programs</p>
       <h1 class="text-3xl md:text-4xl font-serif font-bold">Bible Revival</h1>
       <p class="mt-4 text-lg text-gray-300 max-w-2xl">
-        A movement to restore Scripture to its rightful place in American education and public life — beginning with the book that started it all.
+        Getting Bibles and biblical education back into our schools, in time for America's 250th anniversary.
       </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4">
+        <a href="/contact" class="btn-primary text-center">Request a Free Assembly</a>
+        <a href="/contact" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
+          Get the Free Literature
+        </a>
+      </div>
     </div>
   </section>
 
@@ -45,24 +51,25 @@ import Layout from '../../layouts/Layout.astro';
           <h2 class="text-2xl md:text-3xl font-serif font-bold text-brand-navy">What is Bible Revival?</h2>
           <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
             <p>
-              Bible Revival is Brave for Good's program to restore the Bible to its historical and cultural place in American education. Not as a religious mandate, but as a recognition of the profound role Scripture has played in shaping American law, literature, and moral reasoning for over two centuries.
+              The Bible was instrumental in the founding of America, and children today are not being taught its significance in how it influenced America's first leaders. The Bible inspired their philosophy, morals, and values, and provided a framework for justice, economics, labor, and more.
             </p>
             <p>
-              A student cannot fully understand American history, the founding documents, or the literature that shaped this nation without some familiarity with the text that undergirded all of it. Bible Revival exists to change that — through community events, educational resources, and strategic partnerships.
+              In 1782, the Continental Congress passed a resolution endorsing the Aitken Bible, the first complete Bible to be printed on American soil.
             </p>
             <p>
-              At the center of the program is a specific piece of history: the <strong>Bible of the Revolution</strong> — the Aitken Bible of 1782, the first Bible printed in America, endorsed by the Continental Congress, and carried by soldiers fighting for independence.
+              Inspired by America's 250th anniversary, Brave for Good and Kirk Cameron are working to get Bibles and biblical education back into our schools. We are offering free assemblies to schools and groups, and providing free literature to equip families on how to engage their local schools with biblical materials.
             </p>
           </div>
-          <div class="mt-8">
-            <a href="/programs/bible-revival/donate" class="btn-primary">Get Your Copy of the Bible of the Revolution →</a>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="/contact" class="btn-primary">Request a Free Assembly</a>
+            <a href="/contact" class="btn-secondary">Get the Free Literature</a>
           </div>
         </div>
 
         <div>
           <img
             src="/images/bible-of-the-revolution.webp"
-            alt="Bible of the Revolution — the Aitkin Bible of 1782"
+            alt="The Bible of the Revolution, a reprint of the Aitken Bible of 1782"
             class="w-full rounded-sm"
             loading="lazy"
           />
@@ -75,23 +82,23 @@ import Layout from '../../layouts/Layout.astro';
   <!-- Key points -->
   <section class="py-16 bg-brand-cream">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl md:text-3xl font-serif font-bold text-brand-navy mb-10">Why It Matters</h2>
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-brand-navy mb-10">How the Program Works</h2>
       <div class="grid md:grid-cols-3 gap-12">
         {[
           {
             num: '01',
-            title: 'Historically grounded',
-            body: 'The Aitken Bible was approved by the Continental Congress in 1782 and intended for use in American schools — a fact that has been largely forgotten.',
+            title: 'Free assemblies',
+            body: 'We bring the story of the Bible\'s role in America\'s founding directly to schools and groups, at no cost to the host.',
           },
           {
             num: '02',
-            title: 'Culturally essential',
-            body: 'A student cannot fully understand American literature, law, or history without familiarity with the Scripture that shaped them.',
+            title: 'Free literature',
+            body: 'We equip families with the materials they need to engage their local schools about biblical materials, and to do it well.',
           },
           {
             num: '03',
-            title: 'Community led',
-            body: 'Brave for Good works alongside families, educators, and local communities to restore what was once considered foundational knowledge.',
+            title: 'The 250th anniversary',
+            body: 'America turns 250 in 2026. It is the right moment to teach a generation where the country\'s founding ideas actually came from.',
           },
         ].map(item => (
           <div>
@@ -113,10 +120,10 @@ import Layout from '../../layouts/Layout.astro';
           <h2 class="text-2xl md:text-3xl font-serif font-bold">The Bible of the Revolution</h2>
           <div class="mt-5 w-14 h-0.5 bg-brand-gold"></div>
           <p class="mt-6 text-gray-300 leading-relaxed">
-            In 1782, Robert Aitken printed the first English Bible on American soil. Congress unanimously endorsed it and recommended it "to the inhabitants of the United States." Small enough to fit in a Continental soldier's coat pocket, it was printed five years before the Constitution. Of the ten thousand copies made, fewer than fifty survive today.
+            In 1782, Robert Aitken printed the first complete Bible on American soil, and the Continental Congress passed a resolution endorsing it. Small enough to fit in a Continental soldier's coat pocket, it was printed five years before the Constitution.
           </p>
           <p class="mt-4 text-gray-300 leading-relaxed">
-            Brave for Good is making this historic Bible available again — with a preface written by Kirk Cameron. Donate $100 or give $17.76 a month to receive your copy.
+            Brave for Good is making this historic Bible available again, with a preface written by Kirk Cameron. Donate $100 or give $17.76 a month to receive your copy, and your gift funds the free assemblies and literature.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row gap-4">
             <a href="/programs/bible-revival/donate" class="btn-primary">Get Your Copy</a>
@@ -143,7 +150,7 @@ import Layout from '../../layouts/Layout.astro';
     <div class="max-w-3xl mx-auto px-4 text-center">
       <h2 class="text-2xl font-serif font-bold text-brand-navy">Support Bible Revival</h2>
       <p class="mt-4 text-gray-600 leading-relaxed">
-        Help Brave for Good bring Scripture back to American schools and communities.
+        The assemblies and the family literature are free because donors cover them. Help us reach the next school.
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
         <a href="/support" class="btn-primary">Donate</a>

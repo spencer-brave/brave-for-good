@@ -67,6 +67,24 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- Statement of faith pointer -->
+  <section class="py-14 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="max-w-xl">
+          <h2 class="text-2xl font-serif font-bold text-brand-navy">Statement of Faith</h2>
+          <p class="mt-2 text-gray-600 leading-relaxed">
+            Fourteen articles setting out the theological convictions that undergird every program we
+            offer, every gathering we host, and every family we serve.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <a href="/statement-of-faith" class="btn-primary">Read Our Statement of Faith</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Values -->
   <section class="py-16 bg-brand-navy text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,11 +112,21 @@ import Layout from '../layouts/Layout.astro';
         <div>
           <h2 class="text-2xl font-serif font-bold text-brand-navy">Financial Transparency</h2>
           <p class="mt-2 text-gray-600 max-w-xl">
-            Brave for Good is committed to the highest standards of financial accountability.
+            Brave for Good, Inc. is a 501(c)(3) public charity, EIN <span class="font-mono">39-2416029</span>,
+            exempt under IRC Section 501(c)(3) effective May 28, 2025. Contributions are tax-deductible
+            under Section 170.
           </p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 shrink-0">
-          <a href="/grants" class="btn-primary text-sm py-2 px-5 text-center">
+          <a
+            href="/documents/brave-for-good-501c3-determination-letter.pdf"
+            target="_blank"
+            rel="noopener"
+            class="btn-primary text-sm py-2 px-5 text-center"
+          >
+            IRS Determination Letter (PDF)
+          </a>
+          <a href="/grants" class="btn-secondary text-sm py-2 px-5 text-center">
             Funder Information
           </a>
         </div>

@@ -28,6 +28,8 @@ import Layout from '../layouts/Layout.astro';
               { label: 'Legal Name',            value: 'Brave for Good, Inc.' },
               { label: 'EIN',                   value: '39-2416029' },
               { label: 'IRS Status',            value: '501(c)(3) Public Charity' },
+              { label: 'Public Charity Status', value: '170(b)(1)(A)(vi)' },
+              { label: 'Exemption Effective',   value: 'May 28, 2025' },
               { label: 'Year Founded',          value: '2025' },
               { label: 'State of Incorporation', value: 'Texas' },
               { label: 'Fiscal Year',           value: 'January 1 – December 31' },
@@ -43,10 +45,18 @@ import Layout from '../layouts/Layout.astro';
         <div>
           <h2 class="section-heading">Financial Documents</h2>
           <p class="mt-4 text-gray-600 leading-relaxed">
-            As a recently incorporated organization, formal financial documents are not yet available. We are happy to provide updated materials as they become available. Please reach out directly with any questions.
+            Our IRS determination letter is available below. As a recently incorporated organization, our first Form 990 is not yet filed. We are happy to provide updated materials as they become available, so please reach out directly with any questions.
           </p>
-          <div class="mt-6">
-            <a href="mailto:grants@braveforgood.org" class="btn-secondary text-sm py-2 px-5 inline-block">
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a
+              href="/documents/brave-for-good-501c3-determination-letter.pdf"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary text-sm py-2 px-5 text-center"
+            >
+              Determination Letter (PDF)
+            </a>
+            <a href="mailto:grants@braveforgood.org" class="btn-secondary text-sm py-2 px-5 text-center">
               Request Documents
             </a>
           </div>

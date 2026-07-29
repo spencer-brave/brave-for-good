@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
+import sitemap from '@astrojs/sitemap';
+
 export default defineConfig({
-  integrations: [tailwind()],
+  integrations: [tailwind(), sitemap()],
   site: 'https://www.braveforgood.org',
 
   // Preserves inbound links and running ad destinations from the old Wix site,

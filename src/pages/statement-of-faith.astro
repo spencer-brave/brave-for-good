@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const articles = [
+  {
+    num: 'I',
+    title: 'The Holy Scriptures',
+    body: 'We believe the Bible, both Old and New Testaments, is the inspired, inerrant, and infallible Word of God, given by the Holy Spirit through human authors. Scripture is the supreme and sufficient authority for all matters of faith, life, and conduct. It is living, active, and fully trustworthy in every generation. As a ministry shaped by the power of story, we begin here: God is the first Storyteller, and His Word is the story by which all others are measured.',
+    refs: '2 Timothy 3:16–17 · 2 Peter 1:20–21 · Psalm 119:105',
+  },
+  {
+    num: 'II',
+    title: 'The Triune God',
+    body: 'We believe in one God, eternally existing in three distinct Persons: Father, Son, and Holy Spirit, equal in nature, distinct in personhood, and unified in will and purpose. God is holy, sovereign, omniscient, omnipotent, and ever-present. He is the Creator and Sustainer of all things, the source of all that is good and true and beautiful, and the Lord over every era of human history, including our own.',
+    refs: 'Deuteronomy 6:4 · Matthew 28:19 · 2 Corinthians 13:14 · Isaiah 45:5–7',
+  },
+  {
+    num: 'III',
+    title: 'God the Father',
+    body: 'We believe God the Father reigns over all creation in perfect wisdom and sovereign love. He is gracious, compassionate, and abounding in steadfast mercy. He is the Father of all who trust in Jesus Christ, and His fatherly care extends to every generation, the children of today, and to those not yet born. He governs all things according to His perfect will and works all things together for the good of those who love Him.',
+    refs: 'Romans 8:28 · Psalm 103:13–14 · Ephesians 1:3–6',
+  },
+  {
+    num: 'IV',
+    title: 'Jesus Christ, the Son',
+    body: 'We believe in the full deity and full humanity of Jesus Christ, the eternal Son of God, conceived by the Holy Spirit, born of the Virgin Mary. He lived a sinless life, performed miracles, and bore the sins of all humanity on the cross as the perfect and sufficient atoning sacrifice. We believe in His bodily resurrection on the third day, His ascension to the right hand of the Father, and His promised return in power and glory. He is Lord above every authority, every culture, and every age.',
+    refs: 'John 1:1–14 · Isaiah 53:4–6 · 1 Corinthians 15:3–4 · Acts 1:11',
+  },
+  {
+    num: 'V',
+    title: 'The Holy Spirit',
+    body: 'We believe the Holy Spirit is the third Person of the Trinity, fully God, co-equal with the Father and the Son. He convicts the world of sin, regenerates the hearts of those who believe, indwells and seals every believer at salvation, and empowers God\'s people for faithful living and courageous witness. He produces within us the fruit of love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self-control, the very character we seek to nurture in the next generation.',
+    refs: 'John 16:8–14 · Galatians 5:22–23 · Acts 1:8 · Ephesians 1:13–14',
+  },
+  {
+    num: 'VI',
+    title: 'Creation and Human Dignity',
+    body: 'We believe God created the heavens, the earth, and all living things, and that His creation reflects His glory, wisdom, and abundant goodness. Humanity is the crown of His creative work, male and female, made in the image of God (imago Dei). This means every person, every child, possesses inherent dignity, worth, and sacred value. It is this conviction that compels us to invest in the next generation with such intentionality and care.',
+    refs: 'Genesis 1:1, 26–28 · Psalm 8:3–6 · Colossians 1:16–17',
+  },
+  {
+    num: 'VII',
+    title: 'The Fall and Human Sin',
+    body: 'We believe that Adam and Eve, our first parents, chose disobedience, and through their fall sin and death entered into all of creation. Every person is born with a sinful nature, morally inclined toward self and away from God, and in need of redemption. We do not believe this disqualifies any soul from grace, but rather makes grace all the more urgent and glorious. This reality shapes the seriousness with which we approach the formation of children\'s hearts and minds.',
+    refs: 'Genesis 3 · Romans 3:23 · Romans 5:12 · Jeremiah 17:9',
+  },
+  {
+    num: 'VIII',
+    title: 'Salvation by Grace Through Faith',
+    body: 'We believe that salvation is entirely a gift of God\'s grace, freely offered to all and received through personal faith in Jesus Christ alone. It cannot be earned, inherited, or merited by good works or religious effort. God, in His great mercy, sent His Son to die in our place; through repentance and trust in Christ\'s finished work, we are forgiven, justified, adopted as children of God, and made new. This is the most courageous story ever told, and the one we most want children to know.',
+    refs: 'Ephesians 2:8–9 · John 3:16–17 · Romans 10:9–10 · Titus 3:5–7',
+  },
+  {
+    num: 'IX',
+    title: 'The Church and Christian Community',
+    body: 'We believe in the universal Church, the body of Christ, composed of all who have trusted in Him across every era, culture, and tradition. We also believe in the local church as a God-ordained community of believers gathered to worship, learn, serve, and bear witness to the gospel in the world. The church is the primary community in which faith is practiced and passed on. BRAVE For Good exists in partnership with, never in replacement of, the local church and its shepherds.',
+    refs: 'Ephesians 4:4–6 · Matthew 16:18 · Hebrews 10:24–25 · Acts 2:42–47',
+  },
+  {
+    num: 'X',
+    title: 'The Family',
+    body: 'We believe the family is God\'s first and most foundational human institution, established in creation for the flourishing of every person and every society. We believe marriage is the sacred covenant union between one man and one woman for life, and that the home is the primary place where faith is taught, character is formed, and values are passed from one generation to the next. Parents bear the primary God-given responsibility for the spiritual formation and moral instruction of their children, a calling that no institution, government, or organization may usurp.',
+    refs: 'Genesis 2:24 · Deuteronomy 6:6–7 · Ephesians 5:25–6:4 · Proverbs 22:6',
+  },
+  {
+    num: 'XI',
+    title: 'Children and the Next Generation',
+    body: 'We believe children, born and unborn, are a heritage and gift from the Lord. They are image-bearers full of God-given potential, deserving protection, truth, wonder, and abiding love. We believe every child has the right to be raised in an environment where faith can take root, imagination can flourish, and character can be formed in the light of God\'s Word. The investment of time, story, and community in a child\'s life is not merely a social good, it is an act of obedience and hope in a God who cares deeply for the young and the vulnerable.',
+    refs: 'Psalm 127:3 · Matthew 18:2–5 · Mark 10:13–16 · Proverbs 22:6',
+  },
+  {
+    num: 'XII',
+    title: 'Imagination, Story, and Culture',
+    body: 'We believe that God is the Author of all creativity, and that imagination, rightly ordered, is a gift that reflects His nature. Stories have shaped humanity since creation; they are the medium through which truth takes root in young hearts, virtues are modeled, and courage is kindled. We believe God-honoring stories are among the most powerful instruments for raising a generation grounded in what is true, good, and beautiful. We are therefore called to engage the broader culture, not with retreat or compromise, but with confident, gracious, creative faithfulness.',
+    refs: 'Philippians 4:8 · Colossians 3:17 · Psalm 78:4–7',
+  },
+  {
+    num: 'XIII',
+    title: 'Courage, Truth, and Conviction',
+    body: 'We believe that faithfulness in every generation demands courage and must have the willingness to stand for what is true and good, even when it is unpopular, inconvenient, or costly. We are called to speak truth in love, to contend earnestly for the faith once delivered to the saints, and to engage our families, communities, and culture with both boldness and humility. We do not seek conflict, but we will not flee from it when the souls of children and the integrity of families are at stake.',
+    refs: 'Jude 3 · Ephesians 4:15 · Joshua 1:9 · 1 Peter 3:15–16',
+  },
+  {
+    num: 'XIV',
+    title: 'Eternal Hope and the Return of Christ',
+    body: 'We believe in the bodily resurrection of all people, the redeemed to eternal life in the glorious presence of God, and the unredeemed to eternal separation from Him. We believe in the literal, personal, and glorious return of Jesus Christ, who will consummate all of history and reign forever. This hope is not an escape from the world, it is the reason we invest in it. Every story read to a child, every community gathered in faith, every family strengthened in truth is a seed planted in light of eternity. We serve the next generation because we believe they have one.',
+    refs: 'John 5:28–29 · 1 Corinthians 15:51–57 · Revelation 21:1–5 · Titus 2:13',
+  },
+];
+---
+
+<Layout
+  title="Statement of Faith"
+  description="The theological convictions that undergird every program Brave for Good offers, every gathering we host, and every family we serve."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-4">Who We Are</p>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Statement of Faith</h1>
+      <p class="mt-5 text-lg text-gray-300 leading-relaxed">
+        The beliefs that ground our mission.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-4 text-gray-700 leading-relaxed text-lg">
+        <p>
+          BRAVE For Good exists to equip the next generation with stories, experiences, and communities
+          grounded in biblical truth. The following articles express the theological convictions that
+          undergird every program we offer, every gathering we host, and every family we serve. We hold
+          these truths not as opinion, but as the sure foundation on which brave hearts are raised.
+        </p>
+      </div>
+
+      <div class="mt-14 space-y-12">
+        {articles.map(a => (
+          <article>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust">
+              Article {a.num}
+            </p>
+            <h2 class="mt-2 text-xl md:text-2xl font-serif font-bold text-brand-navy">{a.title}</h2>
+            <p class="mt-4 text-gray-700 leading-relaxed">{a.body}</p>
+            <p class="mt-3 text-sm text-gray-500 italic">{a.refs}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-16 pt-10 border-t border-gray-200">
+        <p class="font-serif text-lg text-brand-navy italic leading-relaxed">
+          Together, we are raising brave hearts: one story, one family, one community at a time. We do
+          not merely hope for a better future. We believe in the One who holds it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 bg-brand-cream border-t border-gray-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div>
+          <h2 class="text-xl font-serif font-bold text-brand-navy">Learn more about us</h2>
+          <p class="mt-2 text-gray-600">Our leadership, our mission, and how we are funded.</p>
+        </div>
+        <div class="shrink-0 flex flex-col sm:flex-row gap-3">
+          <a href="/about" class="btn-primary text-center">About Brave for Good</a>
+          <a href="/mission" class="btn-secondary text-center">Our Mission</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

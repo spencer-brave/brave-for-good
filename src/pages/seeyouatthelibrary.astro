@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const hostFormUrl = 'https://form.feathery.io/to/PdY3VK';
+
+const impact = [
+  { stat: '10,000+', label: 'People attended' },
+  { stat: '300+',    label: 'Story hours' },
+  { stat: '46',      label: 'States participated' },
+];
+
+const sponsors = [
+  { src: '/images/sponsor-hsp.webp',             alt: 'HSP' },
+  { src: '/images/sponsor-freedom-center.webp',  alt: 'Freedom Center' },
+];
+---
+
+<Layout
+  title="See You at the Library"
+  description="See You at the Library returns October 3, 2026 — a nationwide day of faith-centered story hours in public libraries. Host one in your community."
+>
+
+  <!-- Hero -->
+  <section class="bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <p class="text-brand-gold text-sm font-semibold uppercase tracking-[0.2em]">October 3, 2026</p>
+        <h1 class="mt-4 text-4xl md:text-5xl font-serif font-bold leading-tight">
+          See You at the Library
+        </h1>
+        <p class="mt-6 text-lg text-gray-300 leading-relaxed">
+          Families from coast to coast will gather in hundreds of libraries across the nation for a
+          celebration of imagination, inspiration, and timeless values. See You at the Library is a
+          nationwide story hour event designed to awaken hearts, ignite wonder, and plant seeds of
+          faith through stories that matter.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary text-center">
+            Host a Story Hour
+          </a>
+          <a href="/support" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
+            Donate
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paired hero images -->
+    <div class="grid grid-cols-1 sm:grid-cols-2">
+      <img
+        src="/images/syatl-kirk-stage.webp"
+        alt="Kirk Cameron reading to a packed auditorium of families in front of an American flag backdrop"
+        class="w-full h-64 md:h-80 object-cover"
+        loading="lazy"
+      />
+      <img
+        src="/images/syatl-kids-hands.webp"
+        alt="Children seated on the floor raising their hands during a story hour reading"
+        class="w-full h-64 md:h-80 object-cover"
+        loading="lazy"
+      />
+    </div>
+  </section>
+
+  <!-- How it started -->
+  <section class="py-16 md:py-20 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="section-heading">How It Started</h2>
+        <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            In 2023, over 50 public libraries initially denied Kirk Cameron the opportunity to read his
+            BRAVE book, <em>As You Grow</em>, a story centered on the Fruit of the Spirit. In response,
+            Kirk stood firm, writing to these libraries and challenging what many saw as a clear
+            disregard for free speech and religious freedom. After public pressure and thoughtful
+            engagement, the libraries reversed course, and the story hours were allowed to move forward.
+          </p>
+          <p>
+            As Kirk traveled across the country hosting readings, some libraries worked to silence these
+            pro-faith, pro-family events. The director of the American Library Association even
+            circulated strategies to help local libraries block these values-driven gatherings.
+          </p>
+          <p>
+            But the effort to shut us out sparked something greater: the birth of See You at the Library,
+            a grassroots movement where families across the country gather in their local libraries to
+            read wholesome, character-building stories to their children.
+          </p>
+          <p class="font-semibold text-brand-navy">
+            This year, See You at the Library is back on October 3rd, and it's bigger than ever. One day.
+            Thousands of families. A nation-changing moment.
+          </p>
+          <p>
+            Are you ready to take a stand for truth, imagination, and wonder? Join the movement. Let's
+            shape the next generation, one story hour at a time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2024 impact band -->
+  <section class="relative py-16 md:py-20 text-white overflow-hidden">
+    <img
+      src="/images/syatl-boy-flag.webp"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-brand-navy/75"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-center">Our 2024 Impact</h2>
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+        {impact.map(item => (
+          <div>
+            <div class="text-4xl md:text-5xl font-serif font-bold text-brand-gold">{item.stat}</div>
+            <div class="mt-2 text-sm uppercase tracking-widest text-gray-200">{item.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How can you make a difference -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="section-heading">How Can You Make a Difference?</h2>
+        <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            This year, we're inviting families across the country to join a growing movement: hosting
+            story hours at their local libraries that nurture imagination, character, and truth.
+          </p>
+          <p>
+            Because this isn't just about reading books. It's about investing in the next generation,
+            helping children grow in wisdom, kindness, and courage through the power of story.
+          </p>
+          <p>
+            With your help, we can spark a ripple effect of faith, hope, and lasting values.
+          </p>
+        </div>
+        <div class="mt-8">
+          <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary">
+            Host a Story Hour
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Register to host -->
+  <section class="py-16 md:py-20 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold">Register to Host a Story Hour</h2>
+        <p class="mt-5 text-gray-300 leading-relaxed">
+          Interested in being a host for this year's See You at the Library? Fill out the form to sign up.
+          Once you're a registered host, you will receive all the necessary resources for this exciting day:
+          books, activities, and everything you need to run your event.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary text-center">
+            Register to Host
+          </a>
+          <a href="/contact" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
+            Questions? Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors -->
+  <section class="py-14 bg-brand-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-rust">
+        A huge thank you to our See You at the Library sponsors
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6">
+        {sponsors.map(s => (
+          <div class="bg-white rounded-xl px-8 py-6 flex items-center justify-center min-w-[200px]">
+            <img src={s.src} alt={s.alt} class="h-14 md:h-16 w-auto object-contain" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

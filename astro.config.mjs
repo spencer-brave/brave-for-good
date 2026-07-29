@@ -4,4 +4,21 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://www.braveforgood.org',
+
+  // Preserves inbound links and running ad destinations from the old Wix site,
+  // plus the internal move of the library program page to its own short URL.
+  redirects: {
+    '/see-you-at-the-library-2026': '/seeyouatthelibrary',
+    '/see-you-at-the-library':      '/seeyouatthelibrary',
+    '/syatl-lander':                '/seeyouatthelibrary',
+    '/programs/library':            '/seeyouatthelibrary',
+    '/programs/library/2025':       '/seeyouatthelibrary',
+    '/our-mission':                 '/mission',
+    '/privacy-policy':              '/privacy',
+    '/blank-5':                     '/support',
+    '/blank-6':                     '/privacy',
+    '/blank-7':                     '/terms',
+    '/donate':                      '/support',
+    '/event-list':                  '/seeyouatthelibrary',
+  },
 });

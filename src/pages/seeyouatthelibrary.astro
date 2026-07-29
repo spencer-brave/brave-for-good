@@ -5,7 +5,7 @@ const hostFormUrl = 'https://form.feathery.io/to/PdY3VK';
 
 const impact = [
   { stat: '10,000+', label: 'People attended' },
-  { stat: '300+',    label: 'Story hours' },
+  { stat: '200',     label: 'Story hours' },
   { stat: '46',      label: 'States participated' },
 ];
 
@@ -109,7 +109,7 @@ const sponsors = [
     />
     <div class="absolute inset-0 bg-brand-navy/75"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl md:text-3xl font-serif font-bold text-center">Our 2024 Impact</h2>
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-center">Our 2025 Impact</h2>
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
         {impact.map(item => (
           <div>
@@ -151,21 +151,45 @@ const sponsors = [
   <!-- Register to host -->
   <section class="py-16 md:py-20 bg-brand-navy text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl">
-        <h2 class="text-2xl md:text-3xl font-serif font-bold">Register to Host a Story Hour</h2>
-        <p class="mt-5 text-gray-300 leading-relaxed">
-          Interested in being a host for this year's See You at the Library? Fill out the form to sign up.
-          Once you're a registered host, you will receive all the necessary resources for this exciting day:
-          books, activities, and everything you need to run your event.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary text-center">
-            Register to Host
-          </a>
-          <a href="/contact" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
-            Questions? Contact Us
-          </a>
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+        <div
+          id="video-container"
+          role="button"
+          aria-label="Play the See You at the Library video"
+          tabindex="0"
+          class="rounded-xl overflow-hidden"
+        >
+          <img
+            src="/images/syatl-video-thumbnail.webp"
+            alt="Kirk Cameron speaking about See You at the Library, click to watch"
+            class="w-full block"
+          />
+          <div class="overlay"></div>
+          <div class="play-btn">
+            <svg width="32" height="32" fill="black" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
         </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-serif font-bold">Register to Host a Story Hour</h2>
+          <p class="mt-5 text-gray-300 leading-relaxed">
+            Interested in being a host for this year's See You at the Library? Fill out the form to sign up.
+            Once you're a registered host, you will receive all the necessary resources for this exciting day:
+            books, activities, and everything you need to run your event.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary text-center">
+              Register to Host
+            </a>
+            <a href="/contact" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
+              Questions? Contact Us
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -187,3 +211,69 @@ const sponsors = [
   </section>
 
 </Layout>
+
+<style>
+  #video-container {
+    position: relative;
+    cursor: pointer;
+    display: block;
+  }
+  #video-container .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    transition: background 0.2s ease;
+  }
+  #video-container:hover .overlay {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  #video-container .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  #video-container .play-btn svg {
+    margin-left: 4px;
+  }
+  #video-container:hover .play-btn {
+    background: rgba(255, 255, 255, 1);
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+</style>
+
+<script>
+  const container = document.getElementById('video-container');
+
+  function loadVideo() {
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/KtZ6NsQbZU8?autoplay=1';
+    iframe.title = 'See You at the Library';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.className = 'w-full aspect-video block';
+    iframe.style.border = 'none';
+
+    container!.replaceChildren(iframe);
+    container!.style.cursor = 'default';
+    container!.removeAttribute('role');
+    container!.removeAttribute('tabindex');
+  }
+
+  container?.addEventListener('click', loadVideo);
+  container?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      loadVideo();
+    }
+  });
+</script>

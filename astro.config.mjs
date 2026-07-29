@@ -13,6 +13,8 @@ export default defineConfig({
     '/syatl-lander':                '/seeyouatthelibrary',
     '/programs/library':            '/seeyouatthelibrary',
     '/programs/library/2025':       '/seeyouatthelibrary',
+    '/iggy-and-kirk-lander':        '/programs/iggy-and-mr-kirk',
+    '/bible-revival-lander':        '/programs/bible-of-the-revolution',
     '/our-mission':                 '/mission',
     '/privacy-policy':              '/privacy',
     '/blank-5':                     '/support',

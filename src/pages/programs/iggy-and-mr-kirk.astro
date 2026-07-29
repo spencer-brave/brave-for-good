@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Iggy and Mr. Kirk"
+  description="Iggy and Mr. Kirk is a children's show starring Kirk Cameron, a modern-day Mr. Rogers' Neighborhood built on godly, character-building storytelling."
+>
+
+  <!-- Hero -->
+  <section class="bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <p class="text-brand-gold text-sm font-semibold uppercase tracking-[0.2em]">Our First Show</p>
+          <h1 class="mt-4 text-3xl md:text-4xl font-serif font-bold leading-tight">
+            Iggy and Mr. Kirk
+          </h1>
+          <div class="mt-5 w-14 h-0.5 bg-brand-gold"></div>
+          <p class="mt-6 text-lg text-gray-300 leading-relaxed">
+            At BRAVE For Good, we recognize the power of stories. We want to see a world where children
+            can be enveloped by godly, character-building content.
+          </p>
+          <p class="mt-4 text-gray-300 leading-relaxed">
+            Our first show is <em>Iggy and Mr. Kirk</em>, a modern-day Mr. Rogers' Neighborhood starring
+            Kirk Cameron. Now distributed on many different platforms, <em>Iggy and Mr. Kirk</em> has
+            quickly become a household favorite among children today, and it is making an impact.
+          </p>
+          <div class="mt-8">
+            <a href="/support" class="btn-primary">Support the Show</a>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/iggy-kirk-puppets.webp"
+            alt="Kirk Cameron and the Iggy and Mr. Kirk cast with their puppet characters on the treehouse set"
+            class="w-full block"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Make-A-Wish story -->
+  <section class="py-16 md:py-20 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust mb-3">
+          In Partnership with Make-A-Wish
+        </p>
+        <h2 class="section-heading">A Little Boy's Dream Come True</h2>
+        <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            In partnership with the Make-A-Wish Foundation, we made a little boy's dream come true with
+            his visit to the <em>Iggy and Mr. Kirk</em> treehouse.
+          </p>
+          <p>
+            He is facing a life-threatening illness, and <em>Iggy and Mr. Kirk</em> has helped lift his
+            spirit and endure the therapies needed to improve his quality of life.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 gap-6 items-start">
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/iggy-wish-arrival.webp"
+            alt="A young Make-A-Wish recipient arriving at the Iggy and Mr. Kirk treehouse to a red carpet and confetti with his family"
+            class="w-full block"
+            loading="lazy"
+          />
+        </div>
+        <div class="space-y-6">
+          <div class="rounded-xl overflow-hidden">
+            <img
+              src="/images/iggy-wish-group.webp"
+              alt="The Make-A-Wish family with Kirk Cameron and the Brave for Good team on the treehouse set"
+              class="w-full block"
+              loading="lazy"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden">
+            <img
+              src="/images/iggy-wish-hospital.webp"
+              alt="The Make-A-Wish recipient resting with his Iggy plush during treatment"
+              class="w-full block"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-14 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="max-w-xl">
+          <h2 class="text-2xl font-serif font-bold">Help Us Make More Stories Like This</h2>
+          <p class="mt-3 text-gray-300 leading-relaxed">
+            Every episode, every visit, and every plush in a hospital bed is funded by people who believe
+            children deserve better stories.
+          </p>
+        </div>
+        <div class="shrink-0 flex flex-col sm:flex-row gap-3">
+          <a href="/support" class="btn-primary text-center">Donate</a>
+          <a href="/programs" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
+            All Programs
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

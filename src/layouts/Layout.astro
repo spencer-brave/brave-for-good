@@ -32,6 +32,16 @@ const navLinks = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+
+    <!-- Google Ads — carried over from the Wix site so conversion tracking
+         survives the migration. Tag ID also documented in CLAUDE.md. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17961146034"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'AW-17961146034');
+    </script>
   </head>
 
   <body class="flex flex-col min-h-screen">
@@ -122,6 +132,8 @@ const navLinks = [
             <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Programs</h3>
             <ul class="space-y-2 text-sm text-gray-300">
               <li><a href="/seeyouatthelibrary" class="hover:text-white">See You at the Library</a></li>
+              <li><a href="/programs/iggy-and-mr-kirk" class="hover:text-white">Iggy and Mr. Kirk</a></li>
+              <li><a href="/programs/bible-of-the-revolution" class="hover:text-white">Bible Revival</a></li>
               <li><a href="/host" class="hover:text-white">Host a Story Hour</a></li>
             </ul>
           </div>

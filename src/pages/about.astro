@@ -20,18 +20,32 @@ import Layout from '../layouts/Layout.astro';
   <!-- Our story -->
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <h2 class="section-heading">Our Story</h2>
-        <div class="mt-6 space-y-4 text-gray-700 leading-relaxed text-lg">
-          <p>
-            Brave for Good was born from a simple conviction: families deserve community spaces where faith, imagination, and shared values can flourish. When public libraries began hosting programming that many parents found at odds with their values, a grassroots movement emerged.
-          </p>
-          <p>
-            What started as a series of library story hours organized around BRAVE Books — faith-centered children's books featuring timeless American and biblical values — quickly grew into a nationwide network. In 2024 alone, more than 300 story hours took place across 46 states, reaching over 10,000 families.
-          </p>
-          <p>
-            Today, Brave for Good operates as a 501(c)(3) nonprofit dedicated to sustaining and expanding that movement — providing resources to hosts, building partnerships with libraries, and creating memorable events that bring communities together.
-          </p>
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <h2 class="section-heading">Our Story</h2>
+          <div class="mt-6 space-y-4 text-gray-700 leading-relaxed text-lg">
+            <p>
+              BRAVE For Good was born out of the charitable efforts of BRAVE Books. BRAVE Books has led
+              efforts to push back on drag queen story hours in public libraries across America.
+            </p>
+            <p>
+              From having led on that stance, thousands of patriotic Americans began an outpouring of
+              support for our efforts.
+            </p>
+            <p>
+              BRAVE For Good also allows for a more formalized approach to create structural changes that
+              allow us to pursue our mission of inspiring children to walk in God's ways.
+            </p>
+          </div>
+        </div>
+        <!-- TODO: swap for the "GUM" photo once it is supplied. -->
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/story-hour-hendersonville.avif"
+            alt="Families gathered at a Brave story hour in a public library"
+            class="w-full block"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

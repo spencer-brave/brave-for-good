@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const hostFormUrl = 'https://form.feathery.io/to/PdY3VK';
+
+const groups = [
+  {
+    heading: 'The event',
+    items: [
+      {
+        q: 'What is See You at the Library?',
+        a: 'See You at the Library is a nationwide day of story hours held in local public libraries. Hundreds of parents, grandparents, community leaders, and pastors volunteer to host a story hour at their own library on the same day. Brave for Good organizes the effort and supplies hosts with books, activities, and resources.',
+      },
+      {
+        q: 'When is it?',
+        a: 'Saturday, October 3, 2026.',
+      },
+      {
+        q: 'How much does it cost to attend?',
+        a: 'Nothing. Story hours are free and open to the public.',
+      },
+      {
+        q: 'Who is it for?',
+        a: 'Families with children. Activities are generally geared toward ages 2 to 12, though younger and older siblings are welcome. Children should attend with a parent or guardian.',
+      },
+      {
+        q: 'How do I find a story hour near me?',
+        a: 'Event listings are published closer to the date. If you would like to be notified when the directory goes live, contact us and we will let you know.',
+      },
+    ],
+  },
+  {
+    heading: 'Hosting',
+    items: [
+      {
+        q: 'Who can host a story hour?',
+        a: 'Anyone willing to organize one. Most hosts are parents, grandparents, teachers, community leaders, or pastors. You do not need prior experience, and you do not need to be a public speaker.',
+      },
+      {
+        q: 'What do hosts receive?',
+        a: 'Registered hosts receive the books, activities, and resources needed to run the event, along with guidance on reserving a room at your library and inviting your community.',
+      },
+      {
+        q: 'How do I register?',
+        a: 'Fill out the host registration form. Once you are registered, we will follow up with your materials and next steps.',
+      },
+      {
+        q: 'Do I need my library to approve it first?',
+        a: 'Public libraries typically make meeting rooms available to community members on request, and that is how most story hours are booked. Register first, and we will walk you through how to reserve your room.',
+      },
+      {
+        q: 'What happens at a story hour?',
+        a: 'A host reads one or more BRAVE Books aloud, then leads a short activity or craft tied to the story. Most events run 45 to 60 minutes, followed by time for families to visit with one another.',
+      },
+    ],
+  },
+  {
+    heading: 'About the organization',
+    items: [
+      {
+        q: 'Who is Brave for Good?',
+        a: 'Brave for Good, Inc. is a 501(c)(3) public charity (EIN 39-2416029) that grew out of the charitable efforts of BRAVE Books. See You at the Library is our flagship program.',
+      },
+      {
+        q: 'Are the events religious?',
+        a: 'The books are faith-centered and the program is grounded in biblical values, which our Statement of Faith sets out in full. Events are free, held in public spaces, and welcoming to families of all backgrounds.',
+      },
+      {
+        q: 'How is this funded?',
+        a: 'Through donations. Gifts pay for the books, activity materials, and shipping that hosts receive at no cost. Brave for Good is a 501(c)(3), so contributions are tax-deductible.',
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="See You at the Library FAQ"
+  description="Common questions about See You at the Library: what it is, when it happens, who can host, and what hosts receive."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-4">
+        See You at the Library
+      </p>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Frequently Asked Questions</h1>
+      <p class="mt-5 text-gray-300 leading-relaxed max-w-2xl">
+        Everything you need to know about the October 3, 2026 event, and about hosting one yourself.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+      {groups.map(group => (
+        <div>
+          <h2 class="section-heading">{group.heading}</h2>
+          <dl class="mt-8 space-y-8">
+            {group.items.map(item => (
+              <div class="pb-8 border-b border-gray-200 last:border-0 last:pb-0">
+                <dt class="text-lg font-serif font-bold text-brand-navy">{item.q}</dt>
+                <dd class="mt-3 text-gray-700 leading-relaxed">{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-14 bg-brand-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="max-w-xl">
+          <h2 class="text-2xl font-serif font-bold">Still have a question?</h2>
+          <p class="mt-3 text-gray-300 leading-relaxed">
+            Get in touch and we will answer it, or register to host and we will send you everything.
+          </p>
+        </div>
+        <div class="shrink-0 flex flex-col sm:flex-row gap-3">
+          <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary text-center">
+            Register to Host
+          </a>
+          <a href="/contact" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

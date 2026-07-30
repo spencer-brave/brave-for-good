@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const recipients = [
+  {
+    num: '01',
+    title: 'Underprivileged youth',
+    body: 'Children who would not otherwise own a book of their own, in communities where a home library is a luxury.',
+  },
+  {
+    num: '02',
+    title: 'Families experiencing difficulty',
+    body: 'Households in the middle of hardship, where a story read together at the end of the day is worth more than it costs.',
+  },
+  {
+    num: '03',
+    title: "Children's hospitals",
+    body: 'Long treatment days and longer nights. A story is a way out of the room without leaving the bed.',
+  },
+  {
+    num: '04',
+    title: 'Military families',
+    body: 'Children navigating deployments, moves, and long absences, who deserve stories about courage that meet them where they are.',
+  },
+];
+---
+
+<Layout
+  title="Book Donations"
+  description="Brave for Good puts BRAVE Books into the hands of underprivileged youth, families experiencing difficulty, children's hospitals, and military families."
+>
+
+  <section class="bg-brand-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-4">Brave for Good Programs</p>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold">Book Donations</h1>
+      <p class="mt-4 text-lg text-gray-300 max-w-2xl">
+        Putting BRAVE Books into the hands of the children who need them most.
+      </p>
+      <div class="mt-8">
+        <a href="/support" class="btn-primary">Donate Books</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <h2 class="section-heading">Why We Give Books Away</h2>
+          <div class="mt-6 space-y-4 text-gray-700 leading-relaxed text-lg">
+            <p>
+              We believe literacy is important. We know how crucial stories can be in shaping worldview.
+            </p>
+            <p>
+              Jesus used parables to illustrate his teachings, and we do the same. For the same reason, we
+              want to make BRAVE Books available to underprivileged youth, families experiencing difficulty,
+              children's hospitals, and military families.
+            </p>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/books-ahg-fiona.webp"
+            alt="Three American Heritage Girls troop members holding their donated copies of Fiona's Fantastical Fort"
+            class="w-full block"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who receives them -->
+  <section class="py-16 md:py-20 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading mb-10">Who Receives Them</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {recipients.map(item => (
+          <div>
+            <div class="text-4xl font-serif font-bold text-gray-300 leading-none mb-3 select-none">{item.num}</div>
+            <h3 class="text-lg font-serif font-bold text-brand-navy">{item.title}</h3>
+            <p class="mt-2 text-sm text-gray-600 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Books in hands -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="section-heading">Books in Hands</h2>
+        <p class="section-subheading mt-3">
+          Recent distributions, including copies given to American Heritage Girls troop members at their
+          national gathering.
+        </p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/books-ahg-camilla.webp"
+            alt="American Heritage Girls troop members holding their donated copies of Camilla Can Vote"
+            class="w-full block"
+            loading="lazy"
+          />
+        </div>
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/books-ahg-event.webp"
+            alt="A full room of attendees at the American Heritage Girls gathering where books were distributed"
+            class="w-full block"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-14 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="max-w-xl">
+          <h2 class="text-2xl font-serif font-bold">Send a Book to a Child</h2>
+          <p class="mt-3 text-gray-300 leading-relaxed">
+            Every gift buys books and ships them to a hospital, a shelter, or a base. Your donation is
+            tax-deductible.
+          </p>
+        </div>
+        <div class="shrink-0 flex flex-col sm:flex-row gap-3">
+          <a href="/support" class="btn-primary text-center">Donate</a>
+          <a href="/contact" class="btn-secondary border-white text-white hover:bg-white hover:text-brand-navy text-center">
+            Request Books
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

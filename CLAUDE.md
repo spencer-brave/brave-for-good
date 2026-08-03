@@ -33,7 +33,23 @@ The site was rebuilt from Wix to a static Astro site in 2025. All edits happen v
 | Donations | Anedot (two embeds — see pages below) |
 | Host Registration | Feathery — `https://form.feathery.app/to/CttLVd` (external link, iframe blocked) |
 | Video | YouTube (unlisted) — embedded via iframe on click |
+| Analytics | Google tag (gtag.js) — GA4 `G-KEFP78X254` + Google Ads `AW-17961146034` |
 | Version Control | GitHub — `https://github.com/spencer-brave/brave-for-good` |
+
+---
+
+## Analytics
+
+Both Google destinations run off a **single** `gtag.js` load in `src/layouts/Layout.astro`, so every page gets them via the shared layout:
+
+| Destination | ID |
+|---|---|
+| GA4 property | `G-KEFP78X254` |
+| Google Ads (conversion tracking, carried over from Wix) | `AW-17961146034` |
+
+The library is requested once (`gtag/js?id=G-KEFP78X254`) and each destination gets its own `gtag('config', ...)` call. To add another destination, add a `config` line. Do **not** add a second `gtag/js` script tag: the loader is shared, and a duplicate load can double-count pageviews.
+
+There is no consent banner or IP-anonymization config. If either becomes a requirement, it belongs in this same inline script, before the `config` calls.
 
 ---
 

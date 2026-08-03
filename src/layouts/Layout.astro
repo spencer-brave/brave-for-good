@@ -41,13 +41,16 @@ const navLinks = [
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
 
-    <!-- Google Ads — carried over from the Wix site so conversion tracking
-         survives the migration. Tag ID also documented in CLAUDE.md. -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17961146034"></script>
+    <!-- Google tag (gtag.js) — one library load serving two destinations:
+         GA4 analytics and the Google Ads conversion tag carried over from the
+         Wix site. Both IDs are documented in CLAUDE.md. Do not add a second
+         gtag/js script tag for a new destination; add another config call. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KEFP78X254"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
+      gtag('config', 'G-KEFP78X254');
       gtag('config', 'AW-17961146034');
     </script>
   </head>

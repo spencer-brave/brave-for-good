@@ -161,7 +161,13 @@ Any nav item with a `children` array renders as a dropdown (CSS `group-hover` / 
 
 **Mobile drawer** (`#drawer-panel` in `src/layouts/Layout.astro`): a fixed off-canvas panel that slides in from the right over a dimmed backdrop. It lives *outside* `<header>` so opening it never displaces page content, and it animates `transform` only. The script handles Escape, backdrop click, focus trapping, focus restore to the trigger, `inert` while closed, page scroll lock, and auto-close when crossing into the `lg` breakpoint. Don't move it back inside the header or into normal document flow.
 
-**Programs carousel** (`#programs-carousel` in `src/pages/index.astro`): a slim navy band after the annual-results section, rotating one program at a time every 5s. Slides all sit in a single grid cell (`[grid-area:1/1]`) and crossfade, so the band height is fixed by the tallest slide and never reflows. Program data is the `carouselPrograms` array at the top of the file. Rotation pauses on hover (fine pointers only) and focus, stops permanently when a dot is clicked or the pause button is used, and never starts under `prefers-reduced-motion`.
+**Programs carousel** (`#programs-carousel` in `src/pages/index.astro`): a slim navy band after the annual-results section. A flex track slides on `transform`, showing one program per view below `lg` and two across at `lg`, advancing a page every 8s starting at page load. Program data is the `carouselPrograms` array at the top of the file.
+
+- Each item is `w-full lg:w-1/2`, so one page step is always `translateX(-100%)` of the container. The `lg:w-1/2` and the `(min-width: 1024px)` media query in the script must stay in sync.
+- Page count depends on the breakpoint (4 on mobile, 2 on desktop), so the dots are built in JS and rebuilt on breakpoint change. Their Tailwind classes live in the `dotClass` string; Tailwind picks them up because they are literal text in the file, so don't build those class names dynamically.
+- Adjacent steps slide; jumps of more than one page (the mobile wrap, a dot click across the track) snap with the transition suppressed.
+- Rotation pauses on hover (fine pointers only) and on focus, stops for good on a dot click or the pause button, and halts in background tabs. Under `prefers-reduced-motion` it still rotates but the slide is dropped via `motion-reduce:transition-none`; the pause button is what satisfies WCAG "pause, stop, hide".
+- Items scrolled out of view are set `inert` + `aria-hidden` so their links are not tabbable.
 
 **Footer columns:** Organization, Programs, Get Involved
 **Footer bottom bar:** © 2025 Brave for Good · 501(c)(3) nonprofit · EIN: 39-2416029 · Privacy Policy · Terms of Service

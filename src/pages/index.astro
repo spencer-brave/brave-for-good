@@ -102,8 +102,10 @@ const carouselPrograms = [
     </div>
   </section>
 
-  <!-- Programs carousel — one program at a time, crossfaded. Slides share a
-       single grid cell so the band never reflows as it rotates. -->
+  <!-- Programs carousel — a sliding track: one program per view below lg, two
+       across at lg. Each item is exactly one view wide (or half of one), so a
+       page step is always a translateX of one container width. Transform only;
+       flex keeps every item the height of the tallest, so nothing reflows. -->
   <section id="programs-carousel" class="bg-brand-navy text-white" aria-labelledby="programs-carousel-label">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
 
@@ -116,47 +118,36 @@ const carouselPrograms = [
         </a>
       </div>
 
-      <div class="mt-6 grid" data-slides>
-        {carouselPrograms.map((program, i) => (
-          <div
-            class="[grid-area:1/1] transition-opacity duration-500 ease-out data-[active=false]:opacity-0 data-[active=false]:pointer-events-none"
-            data-slide
-            data-active={i === 0 ? 'true' : 'false'}
-            aria-hidden={i === 0 ? 'false' : 'true'}
-          >
-            <div class="flex items-center gap-5 sm:gap-7">
-              <img
-                src={program.image}
-                alt={program.alt}
-                class="h-20 w-20 sm:h-24 sm:w-32 shrink-0 rounded-lg object-cover"
-                loading="lazy"
-              />
-              <div class="min-w-0">
-                <h2 class="font-serif text-xl sm:text-2xl font-bold leading-snug">
-                  <a href={program.href} class="hover:text-brand-gold transition-colors">
-                    {program.label}
-                  </a>
-                </h2>
-                <p class="mt-1.5 text-sm text-gray-300 leading-relaxed max-w-xl">{program.blurb}</p>
+      <div class="mt-6 overflow-hidden">
+        <ul
+          class="flex transition-transform duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
+          data-track
+        >
+          {carouselPrograms.map(program => (
+            <li class="w-full lg:w-1/2 shrink-0 lg:pr-10" data-item>
+              <div class="flex items-center gap-5 sm:gap-7">
+                <img
+                  src={program.image}
+                  alt={program.alt}
+                  class="h-20 w-20 sm:h-24 sm:w-32 shrink-0 rounded-lg object-cover"
+                  loading="lazy"
+                />
+                <div class="min-w-0">
+                  <h2 class="font-serif text-xl sm:text-2xl font-bold leading-snug">
+                    <a href={program.href} class="hover:text-brand-gold transition-colors">
+                      {program.label}
+                    </a>
+                  </h2>
+                  <p class="mt-1.5 text-sm text-gray-300 leading-relaxed">{program.blurb}</p>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div class="mt-6 flex items-center gap-4">
-        <div class="flex items-center gap-2" role="group" aria-label="Choose a program">
-          {carouselPrograms.map((program, i) => (
-            <button
-              type="button"
-              data-dot
-              data-index={i}
-              aria-current={i === 0 ? 'true' : 'false'}
-              aria-label={program.label}
-              class="h-1.5 w-5 rounded-full bg-white/25 transition-all duration-300 ease-out hover:bg-white/50 aria-[current=true]:w-9 aria-[current=true]:bg-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy"
-            ></button>
-          ))}
-        </div>
+        <div class="flex items-center gap-2" data-dots role="group" aria-label="Jump to programs"></div>
 
         <button
           type="button"
@@ -297,84 +288,139 @@ const carouselPrograms = [
   const region = document.getElementById('programs-carousel');
 
   if (region) {
-    const slides = Array.from(region.querySelectorAll<HTMLElement>('[data-slide]'));
-    const dots = Array.from(region.querySelectorAll<HTMLButtonElement>('[data-dot]'));
+    const track = region.querySelector<HTMLElement>('[data-track]');
+    const items = Array.from(region.querySelectorAll<HTMLElement>('[data-item]'));
+    const dotsBox = region.querySelector<HTMLElement>('[data-dots]');
     const toggle = region.querySelector<HTMLButtonElement>('[data-toggle]');
     const iconPause = region.querySelector<SVGElement>('[data-icon-pause]');
     const iconPlay = region.querySelector<SVGElement>('[data-icon-play]');
-    const INTERVAL = 5000;
 
-    // Honour the OS setting: no unattended movement for reduced-motion users.
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (track && dotsBox) {
+      const INTERVAL = 8000;
+      // Must match the lg:w-1/2 on the items.
+      const twoUp = window.matchMedia('(min-width: 1024px)');
+      // Rotation still runs for reduced-motion users; only the slide animation
+      // is dropped, via motion-reduce:transition-none on the track. The pause
+      // control is what satisfies "pause, stop, hide".
 
-    let index = 0;
-    let timer: number | undefined;
-    // Paused by the user via the toggle, as opposed to transiently by hover.
-    let stopped = reduceMotion.matches;
+      let page = 0;
+      let perPage = twoUp.matches ? 2 : 1;
+      let pageCount = Math.ceil(items.length / perPage);
+      let timer: number | undefined;
+      // Paused deliberately by the user, as opposed to transiently by hover.
+      let stopped = false;
 
-    const show = (next: number) => {
-      index = (next + slides.length) % slides.length;
-      slides.forEach((slide, i) => {
-        const active = i === index;
-        slide.dataset.active = String(active);
-        slide.setAttribute('aria-hidden', String(!active));
-        // Links in a faded-out slide must not be tabbable.
-        slide.inert = !active;
+      const dotClass =
+        'h-1.5 w-5 rounded-full bg-white/25 transition-all duration-300 ease-out ' +
+        'hover:bg-white/50 aria-[current=true]:w-9 aria-[current=true]:bg-brand-gold ' +
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold ' +
+        'focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy';
+
+      // Adjacent steps slide. Anything further (the wrap from the last page on
+      // mobile, or a dot click across the track) snaps, because rewinding three
+      // widths at speed reads as a glitch rather than as motion.
+      const goTo = (next: number) => {
+        if (Math.abs(next - page) > 1) {
+          track.style.transition = 'none';
+          page = next;
+          render();
+          void track.offsetWidth;
+          track.style.transition = '';
+          return;
+        }
+        page = next;
+        render();
+      };
+
+      const render = () => {
+        track.style.transform = `translateX(-${page * 100}%)`;
+        // Items scrolled out of view must not be reachable by tab or reader.
+        items.forEach((item, i) => {
+          const visible = Math.floor(i / perPage) === page;
+          item.inert = !visible;
+          item.setAttribute('aria-hidden', String(!visible));
+        });
+        Array.from(dotsBox.children).forEach((dot, i) =>
+          dot.setAttribute('aria-current', String(i === page))
+        );
+      };
+
+      const buildDots = () => {
+        dotsBox.replaceChildren();
+        for (let i = 0; i < pageCount; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = dotClass;
+          dot.setAttribute(
+            'aria-label',
+            items
+              .slice(i * perPage, i * perPage + perPage)
+              .map(item => item.querySelector('h2')?.textContent?.trim())
+              .filter(Boolean)
+              .join(', ')
+          );
+          dot.addEventListener('click', () => {
+            goTo(i);
+            // Choosing a program is deliberate; hold it there.
+            setStopped(true);
+          });
+          dotsBox.append(dot);
+        }
+      };
+
+      const start = () => {
+        if (stopped || timer) return;
+        timer = window.setInterval(() => goTo((page + 1) % pageCount), INTERVAL);
+      };
+
+      const stop = () => {
+        window.clearInterval(timer);
+        timer = undefined;
+      };
+
+      function setStopped(value: boolean) {
+        stopped = value;
+        stopped ? stop() : start();
+        iconPause?.classList.toggle('hidden', stopped);
+        iconPlay?.classList.toggle('hidden', !stopped);
+        toggle?.setAttribute(
+          'aria-label',
+          stopped ? 'Start program rotation' : 'Pause program rotation'
+        );
+      }
+
+      const layout = () => {
+        perPage = twoUp.matches ? 2 : 1;
+        pageCount = Math.ceil(items.length / perPage);
+        // Keep the leftmost visible program in view across a breakpoint change.
+        page = Math.min(page, pageCount - 1);
+        buildDots();
+        render();
+      };
+
+      layout();
+      // Rotating from load, no interaction required.
+      start();
+
+      toggle?.addEventListener('click', () => setStopped(!stopped));
+      twoUp.addEventListener('change', layout);
+
+      // Transient pauses: reading with the pointer, or tabbing through an item.
+      // Hover pausing is for real pointers only; on touch there is no leave
+      // event to match the enter, so a stray tap would stop rotation for good.
+      if (window.matchMedia('(hover: hover)').matches) {
+        region.addEventListener('pointerenter', stop);
+        region.addEventListener('pointerleave', start);
+      }
+      region.addEventListener('focusin', stop);
+      region.addEventListener('focusout', e => {
+        if (!region.contains(e.relatedTarget as Node)) start();
       });
-      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
-    };
 
-    const start = () => {
-      if (stopped || timer) return;
-      timer = window.setInterval(() => show(index + 1), INTERVAL);
-    };
-
-    const stop = () => {
-      window.clearInterval(timer);
-      timer = undefined;
-    };
-
-    const setStopped = (value: boolean) => {
-      stopped = value;
-      stopped ? stop() : start();
-      iconPause?.classList.toggle('hidden', stopped);
-      iconPlay?.classList.toggle('hidden', !stopped);
-      toggle?.setAttribute(
-        'aria-label',
-        stopped ? 'Start program rotation' : 'Pause program rotation'
+      // Don't rotate in a background tab.
+      document.addEventListener('visibilitychange', () =>
+        document.hidden ? stop() : start()
       );
-    };
-
-    show(0);
-    setStopped(stopped);
-
-    toggle?.addEventListener('click', () => setStopped(!stopped));
-
-    dots.forEach(dot =>
-      dot.addEventListener('click', () => {
-        show(Number(dot.dataset.index));
-        // Jumping to a program is a deliberate choice; hold it there.
-        setStopped(true);
-      })
-    );
-
-    // Transient pauses: reading with the pointer, or tabbing through a slide.
-    // Hover pausing is for real pointers only; on touch there is no leave event
-    // to match the enter, so a stray tap would stop rotation for good.
-    if (window.matchMedia('(hover: hover)').matches) {
-      region.addEventListener('pointerenter', stop);
-      region.addEventListener('pointerleave', start);
     }
-    region.addEventListener('focusin', stop);
-    region.addEventListener('focusout', e => {
-      if (!region.contains(e.relatedTarget as Node)) start();
-    });
-
-    // Don't animate in a background tab.
-    document.addEventListener('visibilitychange', () =>
-      document.hidden ? stop() : start()
-    );
-
-    reduceMotion.addEventListener('change', e => setStopped(e.matches));
   }
 </script>

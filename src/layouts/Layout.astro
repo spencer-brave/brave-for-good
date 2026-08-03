@@ -9,11 +9,19 @@ interface Props {
 const { title, description = 'Brave for Good equips families with stories and community experiences grounded in faith and timeless values.' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
+const programLinks = [
+  { href: '/programs',                          label: 'All Programs' },
+  { href: '/seeyouatthelibrary',                label: 'See You at the Library' },
+  { href: '/programs/iggy-and-mr-kirk',         label: 'Faith Forward Content Creation' },
+  { href: '/programs/bible-revival',            label: 'Bible Revival' },
+  { href: '/programs/book-donations',           label: 'Book Donations' },
+];
+
 const navLinks = [
-  { href: '/mission',             label: 'Our Mission' },
-  { href: '/programs',            label: 'Programs' },
-  { href: '/seeyouatthelibrary',  label: 'See You at the Library' },
-  { href: '/about',               label: 'About' },
+  { href: '/mission',            label: 'Our Mission' },
+  { href: '/programs',           label: 'Programs', children: programLinks },
+  { href: '/statement-of-faith', label: 'Statement of Faith' },
+  { href: '/about',              label: 'About' },
 ];
 ---
 
@@ -52,19 +60,43 @@ const navLinks = [
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <a href="/">
-            <img src="/images/logo.webp" alt="Brave for Good" class="h-10 w-auto" />
+            <img src="/images/logo-stacked.webp" alt="Brave for Good" class="h-12 w-auto" />
           </a>
 
           <!-- Right side: nav + CTA -->
           <div class="flex items-center gap-6">
             <nav class="hidden lg:flex items-center gap-6">
               {navLinks.map(link => (
-                <a
-                  href={link.href}
-                  class="text-sm font-medium text-gray-700 hover:text-brand-rust transition-colors"
-                >
-                  {link.label}
-                </a>
+                link.children ? (
+                  <div class="relative group">
+                    <a
+                      href={link.href}
+                      class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand-rust transition-colors py-5"
+                    >
+                      {link.label}
+                      <svg class="w-3 h-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                      </svg>
+                    </a>
+                    <div class="absolute left-0 top-full w-72 bg-white border border-gray-200 shadow-lg rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">
+                      {link.children.map(child => (
+                        <a
+                          href={child.href}
+                          class="block px-4 py-2 text-sm text-gray-700 hover:text-brand-rust hover:bg-brand-cream transition-colors"
+                        >
+                          {child.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <a
+                    href={link.href}
+                    class="text-sm font-medium text-gray-700 hover:text-brand-rust transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
             </nav>
 
@@ -89,9 +121,24 @@ const navLinks = [
       <!-- Mobile nav -->
       <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
         {navLinks.map(link => (
-          <a href={link.href} class="block text-base font-medium text-gray-700 hover:text-brand-rust py-1">
-            {link.label}
-          </a>
+          link.children ? (
+            <div>
+              <a href={link.href} class="block text-base font-medium text-gray-700 hover:text-brand-rust py-1">
+                {link.label}
+              </a>
+              <div class="mt-1 ml-4 space-y-1 border-l border-gray-200 pl-4">
+                {link.children.filter(child => child.href !== link.href).map(child => (
+                  <a href={child.href} class="block text-sm text-gray-600 hover:text-brand-rust py-1">
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a href={link.href} class="block text-base font-medium text-gray-700 hover:text-brand-rust py-1">
+              {link.label}
+            </a>
+          )
         ))}
         <div class="pt-3 border-t border-gray-200">
           <a href="/support" class="btn-primary text-center block">Donate</a>
@@ -110,9 +157,9 @@ const navLinks = [
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <!-- Brand column -->
           <div class="md:col-span-1">
-            <img src="/images/logo.webp" alt="Brave for Good" class="h-8 w-auto brightness-0 invert" />
+            <img src="/images/logo-stacked.webp" alt="Brave for Good" class="h-14 w-auto brightness-0 invert" />
             <p class="mt-3 text-sm text-gray-300 leading-relaxed">
-              Empowering families with stories and experiences that nurture imagination and strengthen timeless values.
+              Inspiring children to walk in God's ways through stories and experiences that nurture imagination and strengthen timeless values.
             </p>
             <div class="mt-5 flex items-center gap-3">
               <a
@@ -167,8 +214,8 @@ const navLinks = [
             <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Programs</h3>
             <ul class="space-y-2 text-sm text-gray-300">
               <li><a href="/seeyouatthelibrary" class="hover:text-white">See You at the Library</a></li>
-              <li><a href="/programs/iggy-and-mr-kirk" class="hover:text-white">Iggy and Mr. Kirk</a></li>
-              <li><a href="/programs/bible-of-the-revolution" class="hover:text-white">Bible Revival</a></li>
+              <li><a href="/programs/iggy-and-mr-kirk" class="hover:text-white">Faith Forward Content Creation</a></li>
+              <li><a href="/programs/bible-revival" class="hover:text-white">Bible Revival</a></li>
               <li><a href="/programs/book-donations" class="hover:text-white">Book Donations</a></li>
               <li><a href="/host" class="hover:text-white">Host a Story Hour</a></li>
             </ul>

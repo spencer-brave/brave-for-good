@@ -3,8 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Iggy and Mr. Kirk"
-  description="Iggy and Mr. Kirk is a children's show starring Kirk Cameron, a modern-day Mr. Rogers' Neighborhood built on godly, character-building storytelling."
+  title="Faith Forward Content Creation"
+  description="Brave for Good produces godly, character-building content for children. Our first piece is Iggy and Mr. Kirk, a modern-day Mr. Rogers' Neighborhood starring Kirk Cameron."
 >
 
   <!-- Hero -->
@@ -12,28 +12,28 @@ import Layout from '../../layouts/Layout.astro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div>
-          <p class="text-brand-gold text-sm font-semibold uppercase tracking-[0.2em]">Our First Show</p>
+          <p class="text-brand-gold text-sm font-semibold uppercase tracking-[0.2em]">Brave for Good Programs</p>
           <h1 class="mt-4 text-3xl md:text-4xl font-serif font-bold leading-tight">
-            Iggy and Mr. Kirk
+            Faith Forward Content Creation
           </h1>
           <div class="mt-5 w-14 h-0.5 bg-brand-gold"></div>
           <p class="mt-6 text-lg text-gray-300 leading-relaxed">
             At BRAVE For Good, we recognize the power of stories. We want to see a world where children
-            can be enveloped by godly, character-building content.
+            can be enveloped by godly, character-building content, so we make it ourselves.
           </p>
           <p class="mt-4 text-gray-300 leading-relaxed">
-            Our first show is <em>Iggy and Mr. Kirk</em>, a modern-day Mr. Rogers' Neighborhood starring
+            Our first piece is <em>Iggy and Mr. Kirk</em>, a modern-day Mr. Rogers' Neighborhood starring
             Kirk Cameron. Now distributed on many different platforms, <em>Iggy and Mr. Kirk</em> has
             quickly become a household favorite among children today, and it is making an impact.
           </p>
           <div class="mt-8">
-            <a href="/support" class="btn-primary">Support the Show</a>
+            <a href="/support" class="btn-primary">Support the Work</a>
           </div>
         </div>
         <div class="rounded-xl overflow-hidden">
           <img
-            src="/images/iggy-kirk-puppets.webp"
-            alt="Kirk Cameron and the Iggy and Mr. Kirk cast with their puppet characters on the treehouse set"
+            src="/images/iggy-wish-group.webp"
+            alt="The Brave for Good team with Kirk Cameron, the Make-A-Wish family, and Make-A-Wish staff on the treehouse set"
             class="w-full block"
             loading="eager"
           />
@@ -62,32 +62,31 @@ import Layout from '../../layouts/Layout.astro';
         </div>
       </div>
 
-      <div class="mt-12 grid md:grid-cols-2 gap-6 items-start">
+      <!-- All three photos are portrait, so a level 3-up reads better than a stacked pair. -->
+      <div class="mt-12 grid sm:grid-cols-3 gap-6">
         <div class="rounded-xl overflow-hidden">
           <img
             src="/images/iggy-wish-arrival.webp"
             alt="A young Make-A-Wish recipient arriving at the Iggy and Mr. Kirk treehouse to a red carpet and confetti with his family"
-            class="w-full block"
+            class="w-full aspect-[4/5] object-cover block"
             loading="lazy"
           />
         </div>
-        <div class="space-y-6">
-          <div class="rounded-xl overflow-hidden">
-            <img
-              src="/images/iggy-wish-group.webp"
-              alt="The Make-A-Wish family with Kirk Cameron and the Brave for Good team on the treehouse set"
-              class="w-full block"
-              loading="lazy"
-            />
-          </div>
-          <div class="rounded-xl overflow-hidden">
-            <img
-              src="/images/iggy-wish-hospital.webp"
-              alt="The Make-A-Wish recipient resting with his Iggy plush during treatment"
-              class="w-full block"
-              loading="lazy"
-            />
-          </div>
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/iggy-kirk-puppets.webp"
+            alt="Kirk Cameron and the Iggy and Mr. Kirk cast with their puppet characters on the treehouse set"
+            class="w-full aspect-[4/5] object-cover block"
+            loading="lazy"
+          />
+        </div>
+        <div class="rounded-xl overflow-hidden">
+          <img
+            src="/images/iggy-wish-hospital.webp"
+            alt="The Make-A-Wish recipient resting with his Iggy plush during treatment"
+            class="w-full aspect-[4/5] object-cover block"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

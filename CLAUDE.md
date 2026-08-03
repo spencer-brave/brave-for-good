@@ -95,16 +95,19 @@ Classic Americana / WPA poster. Dignified, grounded, faith-inflected. Not modern
 | `/` | `src/pages/index.astro` | Hero CTAs: Donate → `/support`, See Our Impact → `#impact` anchor |
 | `/mission` | `src/pages/mission.astro` | Mission, vision, values |
 | `/programs` | `src/pages/programs/index.astro` | Programs overview |
-| `/programs/bible-of-the-revolution` | `src/pages/programs/bible-of-the-revolution.astro` | Bible Revival program page; YouTube embed on click |
-| `/programs/bible-revival/donate` | `src/pages/programs/bible-revival/donate.astro` | BOTR donation page; Anedot embed |
-| `/programs/library` | `src/pages/programs/library/index.astro` | See You at the Library evergreen page |
-| `/programs/library/2025` | `src/pages/programs/library/2025.astro` | 2025 event page |
+| `/programs/bible-revival` | `src/pages/programs/bible-revival/index.astro` | Bible Revival program page; YouTube embed on click. BOTR is a section within it, not its own program. Old `/programs/bible-of-the-revolution` URL redirects here. |
+| `/programs/bible-revival/donate` | `src/pages/programs/bible-revival/donate.astro` | BOTR "Get Your Copy" donation page; Anedot embed. **Currently unlinked** — the offer is paused; nothing on the site points here. Flip `offerBibleOfTheRevolution` in `bible-revival/index.astro` to re-expose it. |
+| `/programs/iggy-and-mr-kirk` | `src/pages/programs/iggy-and-mr-kirk.astro` | Faith Forward Content Creation program page (IAMK is one piece of it). URL kept for inbound links. |
+| `/programs/book-donations` | `src/pages/programs/book-donations.astro` | Book Donations program page |
+| `/seeyouatthelibrary` | `src/pages/seeyouatthelibrary.astro` | See You at the Library evergreen page |
+| `/seeyouatthelibrary/faq` | `src/pages/seeyouatthelibrary/faq.astro` | SYATL FAQ |
+| `/statement-of-faith` | `src/pages/statement-of-faith.astro` | Fourteen articles |
 | `/about` | `src/pages/about.astro` | Leadership team (no board section, no photos currently) |
 | `/impact` | `src/pages/impact.astro` | Annual impact stats |
 | `/grants` | `src/pages/grants.astro` | For institutional funders; Formspree contact form |
 | `/host` | `src/pages/host.astro` | Host a story hour; links out to Feathery form |
 | `/support` | `src/pages/support.astro` | Donate page; Anedot embed (general giving) |
-| `/contact` | `src/pages/contact.astro` | Contact form (Formspree) + info@braveforgood.org only |
+| `/contact` | `src/pages/contact.astro` | Contact form (Formspree) + Quick Links. No email address shown — the form is the only contact path. |
 | `/news` | `src/pages/news.astro` | News/blog (placeholder posts) |
 | `/partners` | `src/pages/partners.astro` | Partners page |
 | `/privacy` | `src/pages/privacy.astro` | Privacy policy |
@@ -133,18 +136,25 @@ https://secure.anedot.com/brave-for-good/fc2adfa2-2bc3-4da5-9577-ff980de9bf45?em
 
 ### YouTube — Bible of the Revolution video
 Embed URL: `https://www.youtube.com/embed/LJZrKP-aZ1w?autoplay=1`
-Used on `/programs/bible-of-the-revolution` — thumbnail shown first, iframe swapped in on click.
+Used on `/programs/bible-revival` — thumbnail shown first, iframe swapped in on click.
 
 ---
 
 ## Layout & Navigation
 
-**Nav links** (defined in `src/layouts/Layout.astro`):
+**Nav links** (defined in the `navLinks` array in `src/layouts/Layout.astro`):
 - Our Mission → `/mission`
-- Programs → `/programs`
+- Programs → `/programs` (hover dropdown, sourced from the `programLinks` array)
+  - All Programs → `/programs`
+  - See You at the Library → `/seeyouatthelibrary`
+  - Faith Forward Content Creation → `/programs/iggy-and-mr-kirk`
+  - Bible Revival → `/programs/bible-revival`
+  - Book Donations → `/programs/book-donations`
+- Statement of Faith → `/statement-of-faith`
 - About → `/about`
-- Host an Event → `/host`
 - Donate button → `/support`
+
+Any nav item with a `children` array renders as a dropdown (CSS `group-hover` / `group-focus-within`, no JS). On mobile the children render as an indented sub-list, with the duplicate parent link filtered out.
 
 **Footer columns:** Organization, Programs, Get Involved
 **Footer bottom bar:** © 2025 Brave for Good · 501(c)(3) nonprofit · EIN: 39-2416029 · Privacy Policy · Terms of Service
@@ -157,12 +167,19 @@ All production images live in `public/images/`. Source/original assets are in `a
 
 | File | Used On |
 |---|---|
-| `logo.webp` | Nav (full color) + footer (brightness-0 invert for dark bg) |
+| `logo-stacked.webp` | Nav (full color) + footer (brightness-0 invert for dark bg). The stacked BRAVE / for good wordmark, ~2.4:1. |
+| `logo.webp` | Legacy single-line wordmark (~5:1). No longer used in the layout; kept for wide placements. |
 | `kirk-scarsdale-reading.avif` | Homepage hero |
 | `trent-talbot.avif` | Homepage event CTA section |
+| `bible-revival-assembly.webp` | Programs page (Bible Revival card) |
 | `bible-of-the-revolution.webp` | Bible Revival page + BOTR donate page |
 | `bible-video-thumbnail.webp` | Bible Revival page (video placeholder) |
 | `kirk-headshot.webp` | BOTR donate page |
+| `iggy-wish-group.webp` | Faith Forward Content Creation hero (team photo) |
+| `iggy-kirk-puppets.webp` | Programs page card + Make-A-Wish section on the FFCC page |
+| `iggy-wish-arrival.webp`, `iggy-wish-hospital.webp` | Make-A-Wish section on the FFCC page |
+| `books-ahg-fiona.webp` | Programs page card + Book Donations "Why" section |
+| `books-ahg-camilla.webp`, `tackle-tomorrow.webp` | Book Donations "Books in Hands" |
 | `kirk-coach-kennedy.avif` | Homepage photo strip |
 | `story-hour-hendersonville.avif` | Homepage photo strip |
 | `story-hour-springfield.avif` | Homepage photo strip |

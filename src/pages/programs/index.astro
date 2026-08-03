@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   title="Programs"
-  description="Explore Brave for Good's community programs, including See You at the Library and Bible of the Revolution."
+  description="Explore Brave for Good's community programs: See You at the Library, Bible Revival, Faith Forward Content Creation, and Book Donations."
 >
 
   <section class="bg-brand-navy text-white py-16">
@@ -21,16 +21,15 @@ import Layout from '../../layouts/Layout.astro';
 
       <!-- See You at the Library -->
       <div class="bg-brand-cream rounded-2xl overflow-hidden md:flex">
-        <div class="md:w-1/3 overflow-hidden">
+        <div class="md:w-1/3 relative min-h-56 overflow-hidden">
           <img
             src="/images/event-1.avif"
             alt="Families gathered at a Brave Story Hour event"
-            class="w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
         </div>
         <div class="p-8 md:p-10 flex-1">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust mb-3">Flagship Program</p>
           <h2 class="text-2xl font-serif font-bold text-brand-navy">See You at the Library</h2>
           <p class="mt-4 text-gray-700 leading-relaxed">
             A nationwide movement of faith-centered story hours held simultaneously in public libraries. Families gather to hear character-building stories from BRAVE Books, connect with neighbors, and celebrate a shared love of reading and enduring values.
@@ -56,44 +55,42 @@ import Layout from '../../layouts/Layout.astro';
 
       <!-- Bible Revival -->
       <div class="bg-brand-cream rounded-2xl overflow-hidden md:flex">
-        <div class="md:w-1/3 overflow-hidden">
+        <div class="md:w-1/3 relative min-h-56 overflow-hidden">
           <img
-            src="/images/bible-of-the-revolution.webp"
-            alt="Bible of the Revolution — the Aitken Bible"
-            class="w-full h-full object-cover"
+            src="/images/bible-revival-assembly.webp"
+            alt="Kirk Cameron speaking at a Bible Revival assembly at Camp Pendleton"
+            class="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
         </div>
         <div class="p-8 md:p-10 flex-1">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust mb-3">New Program</p>
           <h2 class="text-2xl font-serif font-bold text-brand-navy">Bible Revival</h2>
           <p class="mt-4 text-gray-700 leading-relaxed">
             Inspired by America's 250th anniversary, Brave for Good and Kirk Cameron are working to get Bibles and biblical education back into our schools, through free assemblies for schools and groups and free literature for families.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="/programs/bible-of-the-revolution" class="btn-primary">Learn More</a>
-            <a href="/programs/bible-revival/donate" class="btn-secondary">Get Your Copy →</a>
+            <a href="/programs/bible-revival" class="btn-primary">Learn More</a>
           </div>
         </div>
       </div>
 
-      <!-- Iggy and Mr. Kirk -->
+      <!-- Faith Forward Content Creation -->
       <div class="bg-brand-cream rounded-2xl overflow-hidden md:flex">
-        <div class="md:w-1/3 overflow-hidden">
+        <div class="md:w-1/3 relative min-h-56 overflow-hidden">
           <img
             src="/images/iggy-kirk-puppets.webp"
             alt="Kirk Cameron with the Iggy and Mr. Kirk puppet characters"
-            class="w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
         </div>
         <div class="p-8 md:p-10 flex-1">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust mb-3">Original Programming</p>
-          <h2 class="text-2xl font-serif font-bold text-brand-navy">Iggy and Mr. Kirk</h2>
+          <h2 class="text-2xl font-serif font-bold text-brand-navy">Faith Forward Content Creation</h2>
           <p class="mt-4 text-gray-700 leading-relaxed">
-            A modern-day Mr. Rogers' Neighborhood starring Kirk Cameron. Now distributed across many
-            platforms, the show has become a household favorite by giving children godly,
-            character-building content instead of what the culture hands them.
+            We produce shows and stories that give children godly, character-building content instead of
+            what the culture hands them. Our first piece is <em>Iggy and Mr. Kirk</em>, a modern-day
+            Mr. Rogers' Neighborhood starring Kirk Cameron, now distributed across many platforms and
+            already a household favorite.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row gap-3">
             <a href="/programs/iggy-and-mr-kirk" class="btn-primary">Learn More</a>
@@ -103,21 +100,20 @@ import Layout from '../../layouts/Layout.astro';
 
       <!-- Book Donations -->
       <div class="bg-brand-cream rounded-2xl overflow-hidden md:flex">
-        <div class="md:w-1/3 overflow-hidden">
+        <div class="md:w-1/3 relative min-h-56 overflow-hidden">
           <img
             src="/images/books-ahg-fiona.webp"
             alt="Children holding their donated BRAVE Books"
-            class="w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
         </div>
         <div class="p-8 md:p-10 flex-1">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust mb-3">Giving Program</p>
           <h2 class="text-2xl font-serif font-bold text-brand-navy">Book Donations</h2>
           <p class="mt-4 text-gray-700 leading-relaxed">
             Stories shape worldview, so we put BRAVE Books into the hands of the children least likely to
-            own one: underprivileged youth, families experiencing difficulty, children's hospitals, and
-            military families.
+            own one: underprivileged youth and families in hardship, children's hospitals, military
+            families, and Little Free Libraries.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row gap-3">
             <a href="/programs/book-donations" class="btn-primary">Learn More</a>

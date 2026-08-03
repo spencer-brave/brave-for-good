@@ -4,30 +4,30 @@ import Layout from '../../layouts/Layout.astro';
 const recipients = [
   {
     num: '01',
-    title: 'Underprivileged youth',
-    body: 'Children who would not otherwise own a book of their own, in communities where a home library is a luxury.',
+    title: 'Underprivileged youth and families in hardship',
+    body: 'Children who would not otherwise own a book of their own, in communities where a home library is a luxury, and households in the middle of hardship, where a story read together at the end of the day is worth more than it costs.',
   },
   {
     num: '02',
-    title: 'Families experiencing difficulty',
-    body: 'Households in the middle of hardship, where a story read together at the end of the day is worth more than it costs.',
-  },
-  {
-    num: '03',
     title: "Children's hospitals",
     body: 'Long treatment days and longer nights. A story is a way out of the room without leaving the bed.',
   },
   {
-    num: '04',
+    num: '03',
     title: 'Military families',
     body: 'Children navigating deployments, moves, and long absences, who deserve stories about courage that meet them where they are.',
+  },
+  {
+    num: '04',
+    title: 'Little Free Library',
+    body: 'Neighborhood book exchanges where a title left on a shelf finds the next reader on its own. We stock them so a good story is waiting on the walk home.',
   },
 ];
 ---
 
 <Layout
   title="Book Donations"
-  description="Brave for Good puts BRAVE Books into the hands of underprivileged youth, families experiencing difficulty, children's hospitals, and military families."
+  description="Brave for Good puts BRAVE Books into the hands of underprivileged youth and families in hardship, children's hospitals, military families, and Little Free Libraries."
 >
 
   <section class="bg-brand-navy text-white py-16">
@@ -55,8 +55,8 @@ const recipients = [
             </p>
             <p>
               Jesus used parables to illustrate his teachings, and we do the same. For the same reason, we
-              want to make BRAVE Books available to underprivileged youth, families experiencing difficulty,
-              children's hospitals, and military families.
+              want to make BRAVE Books available to underprivileged youth and families in hardship,
+              children's hospitals, military families, and Little Free Libraries.
             </p>
           </div>
         </div>
@@ -95,7 +95,7 @@ const recipients = [
         <h2 class="section-heading">Books in Hands</h2>
         <p class="section-subheading mt-3">
           Recent distributions, including copies given to American Heritage Girls troop members at their
-          national gathering.
+          national gathering and non-profits supporting inner city literacy programs.
         </p>
       </div>
       <div class="mt-10 grid md:grid-cols-2 gap-6">
@@ -103,15 +103,15 @@ const recipients = [
           <img
             src="/images/books-ahg-camilla.webp"
             alt="American Heritage Girls troop members holding their donated copies of Camilla Can Vote"
-            class="w-full block"
+            class="w-full h-full aspect-[4/3] object-cover block"
             loading="lazy"
           />
         </div>
         <div class="rounded-xl overflow-hidden">
           <img
-            src="/images/books-ahg-event.webp"
-            alt="A full room of attendees at the American Heritage Girls gathering where books were distributed"
-            class="w-full block"
+            src="/images/tackle-tomorrow.webp"
+            alt="Students holding their donated BRAVE Books at a Tackle Tomorrow inner city literacy program"
+            class="w-full h-full aspect-[4/3] object-cover block"
             loading="lazy"
           />
         </div>

@@ -1,5 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
+
+// The Bible of the Revolution offer (donate $100 / $17.76 a month to receive a
+// copy) is paused. Flip this to true to bring the "Get Your Copy" buttons and
+// the donate-page links back.
+const offerBibleOfTheRevolution = false;
 ---
 
 <Layout
@@ -123,15 +128,19 @@ import Layout from '../../layouts/Layout.astro';
             In 1782, Robert Aitken printed the first complete Bible on American soil, and the Continental Congress passed a resolution endorsing it. Small enough to fit in a Continental soldier's coat pocket, it was printed five years before the Constitution.
           </p>
           <p class="mt-4 text-gray-300 leading-relaxed">
-            Brave for Good is making this historic Bible available again, with a preface written by Kirk Cameron. Donate $100 or give $17.76 a month to receive your copy, and your gift funds the free assemblies and literature.
+            Brave for Good is making this historic Bible available again, with a preface written by Kirk Cameron, and telling its story in the assemblies we bring to schools and groups.
           </p>
-          <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href="/programs/bible-revival/donate" class="btn-primary">Get Your Copy</a>
-            <a href="/programs/bible-revival/donate" class="inline-block border border-white/40 text-white font-semibold px-7 py-3 rounded-lg hover:border-white hover:bg-white/10 transition-colors text-center">
-              Learn More →
-            </a>
-          </div>
-          <p class="mt-4 text-xs text-gray-500">Books begin shipping late September 2026.</p>
+          {offerBibleOfTheRevolution && (
+            <>
+              <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                <a href="/programs/bible-revival/donate" class="btn-primary">Get Your Copy</a>
+                <a href="/programs/bible-revival/donate" class="inline-block border border-white/40 text-white font-semibold px-7 py-3 rounded-lg hover:border-white hover:bg-white/10 transition-colors text-center">
+                  Learn More →
+                </a>
+              </div>
+              <p class="mt-4 text-xs text-gray-500">Books begin shipping late September 2026.</p>
+            </>
+          )}
         </div>
         <div>
           <img

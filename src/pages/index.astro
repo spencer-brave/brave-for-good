@@ -1,5 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const carouselPrograms = [
+  {
+    href: '/seeyouatthelibrary',
+    label: 'See You at the Library',
+    blurb: 'A nationwide day of story hours held simultaneously in public libraries.',
+    image: '/images/event-1.avif',
+    alt: 'Families seated together at a Brave Story Hour in a library',
+  },
+  {
+    href: '/programs/bible-revival',
+    label: 'Bible Revival',
+    blurb: "Free assemblies and family literature, in time for America's 250th.",
+    image: '/images/bible-revival-assembly.webp',
+    alt: 'Kirk Cameron speaking to a seated audience at a Bible Revival assembly',
+  },
+  {
+    href: '/programs/iggy-and-mr-kirk',
+    label: 'Faith Forward Content Creation',
+    blurb: 'Shows that hand children godly stories, starting with Iggy and Mr. Kirk.',
+    image: '/images/iggy-kirk-puppets.webp',
+    alt: 'Kirk Cameron and the Iggy and Mr. Kirk cast holding their puppet characters',
+  },
+  {
+    href: '/programs/book-donations',
+    label: 'Book Donations',
+    blurb: 'BRAVE Books in the hands of the children least likely to own one.',
+    image: '/images/books-ahg-fiona.webp',
+    alt: 'Three girls holding their donated copies of a BRAVE Books title',
+  },
+];
 ---
 
 <Layout
@@ -15,7 +46,9 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] mb-6">
             501(c)(3) Nonprofit &nbsp;·&nbsp; Established 2025
           </p>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.05] tracking-tight text-white">
+          <!-- Size/leading shorthand on every step: a bare leading-* loses to
+               the line-height that each responsive text-* utility resets. -->
+          <h1 class="max-w-[600px] text-4xl/[1.14] md:text-5xl/[1.14] lg:text-6xl/[1.14] font-serif font-bold tracking-tight text-white">
             Inspiring Children to Walk in <em class="not-italic text-brand-gold">God's Ways</em>.
           </h1>
           <div class="mt-8 w-16 h-0.5 bg-brand-gold"></div>
@@ -66,6 +99,80 @@ import Layout from '../layouts/Layout.astro';
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Programs carousel — one program at a time, crossfaded. Slides share a
+       single grid cell so the band never reflows as it rotates. -->
+  <section id="programs-carousel" class="bg-brand-navy text-white" aria-labelledby="programs-carousel-label">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+
+      <div class="flex items-baseline justify-between gap-4">
+        <p id="programs-carousel-label" class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold">
+          Our Programs
+        </p>
+        <a href="/programs" class="text-sm font-semibold text-white/70 hover:text-white transition-colors whitespace-nowrap">
+          See all →
+        </a>
+      </div>
+
+      <div class="mt-6 grid" data-slides>
+        {carouselPrograms.map((program, i) => (
+          <div
+            class="[grid-area:1/1] transition-opacity duration-500 ease-out data-[active=false]:opacity-0 data-[active=false]:pointer-events-none"
+            data-slide
+            data-active={i === 0 ? 'true' : 'false'}
+            aria-hidden={i === 0 ? 'false' : 'true'}
+          >
+            <div class="flex items-center gap-5 sm:gap-7">
+              <img
+                src={program.image}
+                alt={program.alt}
+                class="h-20 w-20 sm:h-24 sm:w-32 shrink-0 rounded-lg object-cover"
+                loading="lazy"
+              />
+              <div class="min-w-0">
+                <h2 class="font-serif text-xl sm:text-2xl font-bold leading-snug">
+                  <a href={program.href} class="hover:text-brand-gold transition-colors">
+                    {program.label}
+                  </a>
+                </h2>
+                <p class="mt-1.5 text-sm text-gray-300 leading-relaxed max-w-xl">{program.blurb}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-6 flex items-center gap-4">
+        <div class="flex items-center gap-2" role="group" aria-label="Choose a program">
+          {carouselPrograms.map((program, i) => (
+            <button
+              type="button"
+              data-dot
+              data-index={i}
+              aria-current={i === 0 ? 'true' : 'false'}
+              aria-label={program.label}
+              class="h-1.5 w-5 rounded-full bg-white/25 transition-all duration-300 ease-out hover:bg-white/50 aria-[current=true]:w-9 aria-[current=true]:bg-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy"
+            ></button>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          data-toggle
+          class="ml-auto p-1.5 rounded text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy"
+          aria-label="Pause program rotation"
+        >
+          <svg data-icon-pause class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5h3v14H8zM13 5h3v14h-3z"/>
+          </svg>
+          <svg data-icon-play class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -185,3 +292,89 @@ import Layout from '../layouts/Layout.astro';
 
 
 </Layout>
+
+<script>
+  const region = document.getElementById('programs-carousel');
+
+  if (region) {
+    const slides = Array.from(region.querySelectorAll<HTMLElement>('[data-slide]'));
+    const dots = Array.from(region.querySelectorAll<HTMLButtonElement>('[data-dot]'));
+    const toggle = region.querySelector<HTMLButtonElement>('[data-toggle]');
+    const iconPause = region.querySelector<SVGElement>('[data-icon-pause]');
+    const iconPlay = region.querySelector<SVGElement>('[data-icon-play]');
+    const INTERVAL = 5000;
+
+    // Honour the OS setting: no unattended movement for reduced-motion users.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let index = 0;
+    let timer: number | undefined;
+    // Paused by the user via the toggle, as opposed to transiently by hover.
+    let stopped = reduceMotion.matches;
+
+    const show = (next: number) => {
+      index = (next + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === index;
+        slide.dataset.active = String(active);
+        slide.setAttribute('aria-hidden', String(!active));
+        // Links in a faded-out slide must not be tabbable.
+        slide.inert = !active;
+      });
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
+    };
+
+    const start = () => {
+      if (stopped || timer) return;
+      timer = window.setInterval(() => show(index + 1), INTERVAL);
+    };
+
+    const stop = () => {
+      window.clearInterval(timer);
+      timer = undefined;
+    };
+
+    const setStopped = (value: boolean) => {
+      stopped = value;
+      stopped ? stop() : start();
+      iconPause?.classList.toggle('hidden', stopped);
+      iconPlay?.classList.toggle('hidden', !stopped);
+      toggle?.setAttribute(
+        'aria-label',
+        stopped ? 'Start program rotation' : 'Pause program rotation'
+      );
+    };
+
+    show(0);
+    setStopped(stopped);
+
+    toggle?.addEventListener('click', () => setStopped(!stopped));
+
+    dots.forEach(dot =>
+      dot.addEventListener('click', () => {
+        show(Number(dot.dataset.index));
+        // Jumping to a program is a deliberate choice; hold it there.
+        setStopped(true);
+      })
+    );
+
+    // Transient pauses: reading with the pointer, or tabbing through a slide.
+    // Hover pausing is for real pointers only; on touch there is no leave event
+    // to match the enter, so a stray tap would stop rotation for good.
+    if (window.matchMedia('(hover: hover)').matches) {
+      region.addEventListener('pointerenter', stop);
+      region.addEventListener('pointerleave', start);
+    }
+    region.addEventListener('focusin', stop);
+    region.addEventListener('focusout', e => {
+      if (!region.contains(e.relatedTarget as Node)) start();
+    });
+
+    // Don't animate in a background tab.
+    document.addEventListener('visibilitychange', () =>
+      document.hidden ? stop() : start()
+    );
+
+    reduceMotion.addEventListener('change', e => setStopped(e.matches));
+  }
+</script>

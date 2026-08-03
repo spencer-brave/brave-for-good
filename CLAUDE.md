@@ -62,12 +62,15 @@ Classic Americana / WPA poster. Dignified, grounded, faith-inflected. Not modern
 | `brand-sand` | `oklch(92% 0.018 85)` | Slightly warmer light backgrounds |
 | `brand-light` | `oklch(95% 0.03 250)` | Cool light tint |
 
+Each is declared in `tailwind.config.mjs` as `oklch(... / <alpha-value>)`. That placeholder is **required** for the slash opacity modifier to work (`bg-brand-navy/50`). Drop it and Tailwind cannot inject an alpha channel into the raw `oklch()` string, so it silently emits an invalid color and the element paints fully transparent. Keep it on any brand color added later.
+
 ### Typography
 
 - **Serif (Bitter):** headings, pull quotes, editorial numbers — `font-serif`
 - **Sans (Source Sans 3):** body copy, UI labels, navigation — `font-sans`
 - Heading sizes: `text-2xl md:text-3xl` for section headings (use `.section-heading` class)
 - Body line length: capped around 65ch (`max-w-2xl` or `max-w-xl`)
+- Setting a line-height on a responsive heading needs the size/leading shorthand at every step (`text-4xl/[1.14] md:text-5xl/[1.14]`). A bare `leading-*` loses to the line-height each `text-*` utility resets inside its own media query.
 
 ### Component Classes (defined in `src/styles/global.css`)
 
@@ -154,7 +157,11 @@ Used on `/programs/bible-revival` — thumbnail shown first, iframe swapped in o
 - About → `/about`
 - Donate button → `/support`
 
-Any nav item with a `children` array renders as a dropdown (CSS `group-hover` / `group-focus-within`, no JS). On mobile the children render as an indented sub-list, with the duplicate parent link filtered out.
+Any nav item with a `children` array renders as a dropdown (CSS `group-hover` / `group-focus-within`, no JS). The same array also drives the mobile drawer, with the duplicate parent link filtered out.
+
+**Mobile drawer** (`#drawer-panel` in `src/layouts/Layout.astro`): a fixed off-canvas panel that slides in from the right over a dimmed backdrop. It lives *outside* `<header>` so opening it never displaces page content, and it animates `transform` only. The script handles Escape, backdrop click, focus trapping, focus restore to the trigger, `inert` while closed, page scroll lock, and auto-close when crossing into the `lg` breakpoint. Don't move it back inside the header or into normal document flow.
+
+**Programs carousel** (`#programs-carousel` in `src/pages/index.astro`): a slim navy band after the annual-results section, rotating one program at a time every 5s. Slides all sit in a single grid cell (`[grid-area:1/1]`) and crossfade, so the band height is fixed by the tallest slide and never reflows. Program data is the `carouselPrograms` array at the top of the file. Rotation pauses on hover (fine pointers only) and focus, stops permanently when a dot is clicked or the pause button is used, and never starts under `prefers-reduced-motion`.
 
 **Footer columns:** Organization, Programs, Get Involved
 **Footer bottom bar:** © 2025 Brave for Good · 501(c)(3) nonprofit · EIN: 39-2416029 · Privacy Policy · Terms of Service

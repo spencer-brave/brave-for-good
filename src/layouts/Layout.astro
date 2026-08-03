@@ -104,13 +104,16 @@ const navLinks = [
               Donate
             </a>
 
-            <!-- Mobile menu button -->
+            <!-- Drawer trigger -->
             <button
-              id="mobile-menu-btn"
-              class="lg:hidden p-2 rounded-md text-gray-600 hover:text-brand-navy"
+              id="drawer-open"
+              type="button"
+              class="lg:hidden -mr-2 p-2 rounded-md text-gray-600 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust"
               aria-label="Open menu"
+              aria-controls="drawer-panel"
+              aria-expanded="false"
             >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
             </button>
@@ -118,33 +121,78 @@ const navLinks = [
         </div>
       </div>
 
-      <!-- Mobile nav -->
-      <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
-        {navLinks.map(link => (
-          link.children ? (
-            <div>
-              <a href={link.href} class="block text-base font-medium text-gray-700 hover:text-brand-rust py-1">
-                {link.label}
-              </a>
-              <div class="mt-1 ml-4 space-y-1 border-l border-gray-200 pl-4">
-                {link.children.filter(child => child.href !== link.href).map(child => (
-                  <a href={child.href} class="block text-sm text-gray-600 hover:text-brand-rust py-1">
-                    {child.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <a href={link.href} class="block text-base font-medium text-gray-700 hover:text-brand-rust py-1">
-              {link.label}
-            </a>
-          )
-        ))}
-        <div class="pt-3 border-t border-gray-200">
-          <a href="/support" class="btn-primary text-center block">Donate</a>
-        </div>
-      </div>
     </header>
+
+    <!-- Mobile drawer. Fixed and overlaid, so opening it never displaces page
+         content. Panel slides on transform only; nothing here animates layout. -->
+    <div class="lg:hidden">
+      <div
+        id="drawer-backdrop"
+        class="fixed inset-0 z-[55] bg-brand-navy/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+      ></div>
+
+      <aside
+        id="drawer-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        class="fixed inset-y-0 right-0 z-[60] flex w-[86%] max-w-sm translate-x-full flex-col bg-white shadow-2xl transition-transform duration-[400ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
+      >
+        <div class="flex items-center justify-between border-b border-gray-200 px-5 h-16 shrink-0">
+          <img src="/images/logo-stacked.webp" alt="Brave for Good" class="h-10 w-auto" />
+          <button
+            id="drawer-close"
+            type="button"
+            class="-mr-2 p-2 rounded-md text-gray-500 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust"
+            aria-label="Close menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto overscroll-contain px-5 py-6" aria-label="Site">
+          <ul class="space-y-1">
+            {navLinks.map(link => (
+              <li>
+                <a
+                  href={link.href}
+                  class="block py-2 font-serif text-lg font-bold text-brand-navy hover:text-brand-rust transition-colors"
+                >
+                  {link.label}
+                </a>
+                {link.children && (
+                  <ul class="mb-2 ml-1 space-y-0.5">
+                    {link.children.filter(child => child.href !== link.href).map(child => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class="flex items-baseline gap-2.5 py-1.5 text-sm text-gray-600 hover:text-brand-rust transition-colors"
+                        >
+                          <span class="text-brand-gold" aria-hidden="true">·</span>
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div class="border-t border-gray-200 px-5 py-5 shrink-0">
+          <a href="/support" class="btn-primary block text-center">Donate</a>
+          <a
+            href="/contact"
+            class="mt-3 block text-center text-sm text-gray-500 hover:text-brand-rust transition-colors"
+          >
+            Contact us
+          </a>
+        </div>
+      </aside>
+    </div>
 
     <!-- Main content -->
     <main class="flex-1">
@@ -250,11 +298,86 @@ const navLinks = [
       </div>
     </footer>
 
-    <!-- Mobile menu toggle script -->
+    <!-- Mobile drawer -->
     <script>
-      const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+      const openBtn = document.getElementById('drawer-open');
+      const closeBtn = document.getElementById('drawer-close');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+
+      if (openBtn && closeBtn && panel && backdrop) {
+        let isOpen = false;
+
+        // Closed panel stays in the DOM for the slide-out transition, so it has
+        // to be made unreachable to tab order and screen readers explicitly.
+        const setInert = (inert: boolean) => {
+          panel.inert = inert;
+          panel.setAttribute('aria-hidden', String(inert));
+        };
+        setInert(true);
+
+        const focusables = () =>
+          Array.from(
+            panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+          ).filter(el => el.offsetParent !== null);
+
+        const open = () => {
+          if (isOpen) return;
+          isOpen = true;
+          setInert(false);
+          panel.classList.remove('translate-x-full');
+          backdrop.classList.remove('opacity-0', 'pointer-events-none');
+          openBtn.setAttribute('aria-expanded', 'true');
+          // Lock the page behind the drawer without shifting it: the scrollbar
+          // is an overlay on the touch viewports this drawer serves.
+          document.documentElement.style.overflow = 'hidden';
+          closeBtn.focus();
+        };
+
+        const close = ({ restoreFocus = true } = {}) => {
+          if (!isOpen) return;
+          isOpen = false;
+          panel.classList.add('translate-x-full');
+          backdrop.classList.add('opacity-0', 'pointer-events-none');
+          openBtn.setAttribute('aria-expanded', 'false');
+          document.documentElement.style.overflow = '';
+          setInert(true);
+          if (restoreFocus) openBtn.focus();
+        };
+
+        openBtn.addEventListener('click', open);
+        closeBtn.addEventListener('click', () => close());
+        backdrop.addEventListener('click', () => close());
+
+        document.addEventListener('keydown', e => {
+          if (!isOpen) return;
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            close();
+            return;
+          }
+          if (e.key !== 'Tab') return;
+          // Keep focus inside the drawer while it owns the screen.
+          const items = focusables();
+          if (!items.length) return;
+          const first = items[0];
+          const last = items[items.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        });
+
+        // Crossing into the desktop breakpoint hides the drawer via CSS, which
+        // would otherwise leave the page scroll locked.
+        const desktop = window.matchMedia('(min-width: 1024px)');
+        desktop.addEventListener('change', e => {
+          if (e.matches) close({ restoreFocus: false });
+        });
+      }
     </script>
   </body>
 </html>

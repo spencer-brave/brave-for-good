@@ -117,8 +117,8 @@ Each is declared in `tailwind.config.mjs` as `oklch(... / <alpha-value>)`. That 
 | `/programs/bible-revival` | `src/pages/programs/bible-revival/index.astro` | Bible Revival program page; YouTube embed on click. BOTR is a section within it, not its own program. Old `/programs/bible-of-the-revolution` URL redirects here. |
 | `/programs/bible-revival/donate` | `src/pages/programs/bible-revival/donate.astro` | BOTR "Get Your Copy" donation page; Anedot embed. **Currently unlinked** — the offer is paused; nothing on the site points here. Flip `offerBibleOfTheRevolution` in `bible-revival/index.astro` to re-expose it. |
 | `/programs/iggy-and-mr-kirk` | `src/pages/programs/iggy-and-mr-kirk.astro` | Faith Forward Content Creation program page (IAMK is one piece of it). URL kept for inbound links. |
-| `/programs/book-donations` | `src/pages/programs/book-donations.astro` | Book Donations program page |
-| `/seeyouatthelibrary` | `src/pages/seeyouatthelibrary.astro` | See You at the Library evergreen page |
+| `/programs/book-donations` | `src/pages/programs/book-donations.astro` | Book Donations program page. Request Books form at `#request-books` (Formspree); both the hero and footer CTA buttons anchor to it. |
+| `/seeyouatthelibrary` | `src/pages/seeyouatthelibrary.astro` | See You at the Library evergreen page. Hero is **cream, not navy** — it carries the `syatl-250-logo.webp` badge and the "Presented by" Patriot Mobile lockup, and both logos have navy elements that vanish on a dark background. Keep it light. |
 | `/seeyouatthelibrary/faq` | `src/pages/seeyouatthelibrary/faq.astro` | SYATL FAQ |
 | `/statement-of-faith` | `src/pages/statement-of-faith.astro` | Fourteen articles |
 | `/about` | `src/pages/about.astro` | Leadership team (no board section, no photos currently) |
@@ -141,7 +141,7 @@ All forms post to `https://formspree.io/f/xbdvpgqw`. Use a hidden `_subject` fie
 ```html
 <input type="hidden" name="_subject" value="Contact Form Submission — Brave for Good" />
 ```
-Forms on: `/contact`, `/grants`, `/news` (newsletter)
+Forms on: `/contact`, `/grants`, `/news` (newsletter), `/programs/book-donations` (Request Books, `#request-books`)
 
 ### Anedot — General Giving (`/support`)
 ```
@@ -198,6 +198,8 @@ All production images live in `public/images/`. Source/original assets are in `a
 |---|---|
 | `logo-stacked.webp` | Nav (full color) + footer (brightness-0 invert for dark bg). The stacked BRAVE / for good wordmark, ~2.4:1. |
 | `logo.webp` | Legacy single-line wordmark (~5:1). No longer used in the layout; kept for wide placements. |
+| `syatl-250-logo.webp` | See You at the Library "America's 250th" event badge. SYATL hero. Transparent, 900x715, lossy (the star field and drop shadows make lossless ~4x larger). |
+| `patriot-mobile.webp` | Patriot Mobile logo, presenting sponsor. SYATL hero + sponsor band. Transparent, 900x175, lossless (smaller than lossy for flat art). Navy wordmark, so it needs a light background. |
 | `kirk-scarsdale-reading.avif` | Homepage hero |
 | `trent-talbot.avif` | Homepage event CTA section |
 | `bible-revival-assembly.webp` | Programs page (Bible Revival card) |
@@ -214,6 +216,7 @@ All production images live in `public/images/`. Source/original assets are in `a
 | `story-hour-springfield.avif` | Homepage photo strip |
 | `story-hour-taylor-tx.avif` | Homepage photo strip |
 | `event-1.avif`, `event-2.avif` | Event gallery |
+| `sponsor-hsp.webp`, `sponsor-freedom-center.webp` | **Currently unused.** Were in the SYATL sponsor band before Patriot Mobile became the sole presenting sponsor. Kept in case those sponsors return. |
 
 ---
 

@@ -19,50 +19,57 @@ const impact = [
   <!-- Hero -->
   <section class="bg-brand-cream">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-      <div class="max-w-3xl">
+      <!-- Text left, event logo right on desktop. Logos lead on mobile, so they
+           come first in the DOM and swap sides with order utilities at lg. -->
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
         <!-- Event logo + presenting sponsor -->
-        <img
-          src="/images/syatl-250-logo.webp"
-          alt="See You at the Library, America's 250th"
-          width="900"
-          height="715"
-          class="w-56 sm:w-72 md:w-80 h-auto"
-        />
-        <div class="mt-7">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">Presented by</p>
-          <a href={patriotMobileUrl} target="_blank" rel="noopener" class="mt-3 inline-block">
-            <img
-              src="/images/patriot-mobile.webp"
-              alt="Patriot Mobile"
-              width="900"
-              height="175"
-              class="h-8 sm:h-10 w-auto"
-            />
-          </a>
+        <div class="lg:order-2">
+          <img
+            src="/images/syatl-250-logo.webp"
+            alt="See You at the Library, America's 250th"
+            width="900"
+            height="715"
+            class="w-56 sm:w-72 lg:w-full lg:max-w-md h-auto lg:ml-auto"
+          />
+          <div class="mt-6 lg:text-right">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">Presented by</p>
+            <a href={patriotMobileUrl} target="_blank" rel="noopener" class="mt-3 inline-block">
+              <img
+                src="/images/patriot-mobile.webp"
+                alt="Patriot Mobile"
+                width="900"
+                height="175"
+                class="h-8 sm:h-9 w-auto"
+              />
+            </a>
+          </div>
         </div>
 
-        <p class="mt-12 text-brand-rust text-sm font-semibold uppercase tracking-[0.2em]">October 3, 2026</p>
-        <h1 class="mt-4 text-4xl/[1.14] md:text-5xl/[1.14] font-serif font-bold text-brand-navy">
-          See You at the Library
-        </h1>
-        <p class="mt-6 text-lg text-gray-700 leading-relaxed">
-          Families from coast to coast will gather in hundreds of libraries across the nation for a
-          celebration of imagination, inspiration, and timeless values. See You at the Library is a
-          nationwide story hour event designed to awaken hearts, ignite wonder, and plant seeds of
-          faith through stories that matter.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary text-center">
-            Host a Story Hour
-          </a>
-          <a href="/support" class="btn-secondary text-center">
-            Donate
-          </a>
+        <div class="lg:order-1 max-w-2xl">
+          <p class="text-brand-rust text-sm font-semibold uppercase tracking-[0.2em]">October 3, 2026</p>
+          <h1 class="mt-4 text-4xl/[1.14] md:text-5xl/[1.14] font-serif font-bold text-brand-navy">
+            See You at the Library
+          </h1>
+          <p class="mt-6 text-lg text-gray-700 leading-relaxed">
+            Families from coast to coast will gather in hundreds of libraries across the nation for a
+            celebration of imagination, inspiration, and timeless values. See You at the Library is a
+            nationwide story hour event designed to awaken hearts, ignite wonder, and plant seeds of
+            faith through stories that matter.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href={hostFormUrl} target="_blank" rel="noopener" class="btn-primary text-center">
+              Host a Story Hour
+            </a>
+            <a href="/support" class="btn-secondary text-center">
+              Donate
+            </a>
+          </div>
+          <p class="mt-5 text-sm text-gray-600">
+            New to this? Read the <a href="/seeyouatthelibrary/faq" class="text-brand-rust hover:underline">frequently asked questions</a>.
+          </p>
         </div>
-        <p class="mt-5 text-sm text-gray-600">
-          New to this? Read the <a href="/seeyouatthelibrary/faq" class="text-brand-rust hover:underline">frequently asked questions</a>.
-        </p>
+
       </div>
     </div>
 

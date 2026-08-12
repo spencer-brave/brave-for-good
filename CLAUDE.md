@@ -203,11 +203,13 @@ All production images live in `public/images/`. Source/original assets are in `a
 | `kirk-scarsdale-reading.avif` | Homepage hero |
 | `trent-talbot.avif` | Homepage event CTA section |
 | `bible-revival-assembly.webp` | Programs page (Bible Revival card) |
+| `bible-revival-altar-call.webp` | Bible Revival page lead photo (full-width band under the hero) |
 | `bible-of-the-revolution.webp` | Bible Revival page + BOTR donate page |
 | `bible-video-thumbnail.webp` | Bible Revival page (video placeholder) |
 | `kirk-headshot.webp` | BOTR donate page |
 | `iggy-wish-group.webp` | Faith Forward Content Creation hero (team photo) |
-| `iggy-kirk-puppets.webp` | Programs page card + Make-A-Wish section on the FFCC page |
+| `iggy-kirk-puppets.webp` | Homepage carousel + Make-A-Wish section on the FFCC page. Portrait (1400x1750), so it survives the 4/5 crop in that 3-up grid. |
+| `iggy-kirk-puppets-wide.webp` | Programs page (Faith Forward Content Creation card). Landscape crop of the same photo. |
 | `iggy-wish-arrival.webp`, `iggy-wish-hospital.webp` | Make-A-Wish section on the FFCC page |
 | `books-ahg-fiona.webp` | Programs page card + Book Donations "Why" section |
 | `books-ahg-camilla.webp`, `tackle-tomorrow.webp` | Book Donations "Books in Hands" |

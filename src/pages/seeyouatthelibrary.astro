@@ -24,23 +24,25 @@ const impact = [
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
         <!-- Event logo + presenting sponsor -->
-        <div class="lg:order-2">
+        <!-- Logo and the presenting-sponsor lockup share one column-width box so
+             "Presented by" stays centered under the badge, not under the column. -->
+        <div class="lg:order-2 w-56 sm:w-72 lg:w-full lg:max-w-md mx-auto lg:mr-0">
           <img
             src="/images/syatl-250-logo.webp"
             alt="See You at the Library, America's 250th"
             width="900"
             height="715"
-            class="w-56 sm:w-72 lg:w-full lg:max-w-md h-auto mx-auto lg:mr-0"
+            class="w-full h-auto"
           />
-          <div class="mt-6 text-center lg:text-right">
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">Presented by</p>
+          <div class="mt-6 text-center">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Presented by</p>
             <a href={patriotMobileUrl} target="_blank" rel="noopener" class="mt-3 inline-block">
               <img
                 src="/images/patriot-mobile.webp"
                 alt="Patriot Mobile"
                 width="900"
                 height="175"
-                class="h-8 sm:h-9 w-auto"
+                class="h-10 sm:h-11 w-auto"
               />
             </a>
           </div>

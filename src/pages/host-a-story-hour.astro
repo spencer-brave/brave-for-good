@@ -1,0 +1,444 @@
+---
+/**
+ * Paid-traffic landing page for Meta host-recruitment ads.
+ *
+ * Single conversion goal: the low-commitment lead form in #signup (name, email,
+ * phone). Hosting is a big ask, so nothing on this page asks for it directly.
+ * Every CTA anchors to #signup and the copy keeps framing that step as
+ * information-only. The room-booking instructions go out by email afterward,
+ * which is why the concerns below answer briefly instead of instructing fully.
+ *
+ * Copy rule for this page: short sentences, no metaphors, no build-ups. Say the
+ * thing and stop.
+ *
+ * Uses LandingLayout (no nav, no drawer, minimal footer) so an ad click has
+ * essentially one place to go.
+ */
+import LandingLayout from '../layouts/LandingLayout.astro';
+
+/**
+ * Klaviyo public API key, also called the company ID or site ID. Six
+ * characters, found in Klaviyo under Settings > Account > API Keys.
+ *
+ * This is a public, client-side key by design (it ships in the page source), so
+ * it is safe to commit. It is not the private API key, which must never appear
+ * here.
+ *
+ * The klaviyo-form-UXvBZp div below stays empty until this is set, because the
+ * loader script is what turns it into a form.
+ */
+const klaviyoPublicKey = 'Yx2XwF';
+
+const patriotMobileUrl = 'https://patriotmobile.com';
+
+const impact = [
+  { stat: '10,000+', label: 'People attended' },
+  { stat: '200',     label: 'Story hours held' },
+  { stat: '46',      label: 'States participated' },
+];
+
+const steps = [
+  {
+    n: '1',
+    title: 'Tell us where to send the details',
+    body: 'Name, email, phone. You are not committing to anything yet.',
+  },
+  {
+    n: '2',
+    title: 'We email you the booking guide',
+    body: 'A short walkthrough of how to reserve a room at your library, including what to say when you call.',
+  },
+  {
+    n: '3',
+    title: 'You call your library',
+    body: 'Usually a five minute call. If you run into trouble, email us and a real person helps.',
+  },
+  {
+    n: '4',
+    title: 'We ship your host kit, free',
+    body: 'Books and activities at no cost to you. On October 3, you read a few stories to a room of kids.',
+  },
+];
+
+const objections = [
+  {
+    q: 'I have never hosted anything. Am I qualified?',
+    a: 'Yes. Most of our hosts had never run an event before. You are reading picture books to children, not giving a speech.',
+  },
+  {
+    q: 'How do I book a library space?',
+    a: 'Call your library and say you would like to reserve a space to host a story hour for the community. They will take it from there. Expect questions about your date, time, and how many people you expect. Our email covers all of it.',
+  },
+  {
+    q: 'What if my library has no room to reserve?',
+    a: 'Ask the children’s department if you can read to a few families in the children’s area. A handful of kids on a rug is a real story hour.',
+  },
+  {
+    q: 'What if October 3 is already booked?',
+    a: 'Check other libraries nearby, or ask about a thirty minute window between events. Thirty to sixty minutes of reading is all this takes.',
+  },
+  {
+    q: 'My library says no because BRAVE Books is a for-profit company.',
+    a: 'This is not a company event. You are hosting as a patron of your own library, and you are not selling anything. We ask hosts to read any book of virtue, including ones already on the library shelves.',
+  },
+  {
+    q: 'My library says it is political or religious.',
+    a: 'Story hours carry no political content. Prayer and worship songs are optional, and skipping them changes nothing. You can tell your library you will not be leading religious practices, and offer to send them the books ahead of time.',
+  },
+  {
+    q: 'My library requires me to belong to a local organization.',
+    a: 'Common policy, easy fix. Partner with a local church, homeschool group, or nonprofit. Email us if you cannot find one and we will help.',
+  },
+  {
+    q: 'My library charges for the room.',
+    a: 'We cannot cover the fee, but hosts handle it every year. Ask a local business to sponsor the hour, or set out a jar with a QR code and let the room cover it.',
+  },
+];
+---
+
+<LandingLayout
+  title="Host a Story Hour"
+  description="See You at the Library returns October 3, 2026. Host a free story hour at your local public library. Tell us where to send the details and we will walk you through it."
+  ctaLabel="Get the details"
+>
+
+  <!-- Hero. Cream keeps it consistent with the main SYATL page. If it ever goes
+       navy, note that the Patriot Mobile wordmark further down the page has navy
+       elements and needs to stay on a light ground. -->
+  <section class="bg-brand-cream">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-14 md:pt-16 md:pb-20">
+      <p class="text-brand-rust text-sm font-semibold uppercase tracking-[0.2em]">
+        Saturday, October 3, 2026<span id="countdown"></span>
+      </p>
+      <h1 class="mt-4 text-4xl/[1.12] md:text-5xl/[1.12] font-serif font-bold text-brand-navy">
+        Host a story hour at your library
+      </h1>
+      <p class="mt-6 text-lg text-gray-700 leading-relaxed">
+        See You at the Library is a nationwide day of free story hours in public libraries.
+        Hundreds of parents and grandparents host one in their own town. We send you the books and
+        walk you through reserving the room.
+      </p>
+
+      <div class="mt-8">
+        <a href="#signup" class="btn-primary text-center w-full sm:w-auto">
+          Get the Details
+        </a>
+        <p class="mt-3 text-sm text-gray-600">
+          Takes thirty seconds. You are not signing up to host yet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof. Sits second, immediately after the hero, so the first thing an ad
+       click sees after the pitch is that ordinary people already did this. -->
+  <section class="relative py-14 md:py-20 text-white overflow-hidden">
+    <img
+      src="/images/syatl-boy-flag.webp"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-brand-navy/80"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-center">
+        Last year, hosts like you pulled this off
+      </h2>
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+        {impact.map(item => (
+          <div>
+            <div class="text-4xl md:text-5xl font-serif font-bold text-brand-gold">{item.stat}</div>
+            <div class="mt-2 text-sm uppercase tracking-widest text-gray-200">{item.label}</div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-10 text-center text-gray-200">
+        Most of them had never hosted an event before.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why it matters -->
+  <section class="py-14 md:py-20 bg-brand-navy text-white">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Why this matters</p>
+      <h2 class="mt-4 text-3xl md:text-4xl font-serif font-bold">
+        The library belongs to your family too.
+      </h2>
+      <div class="mt-6 space-y-4 text-gray-300 leading-relaxed text-lg">
+        <p>
+          In 2023, more than fifty public libraries turned down Kirk Cameron's request to read a
+          children's book about the fruit of the Spirit. He pushed back, and the libraries reversed
+          course.
+        </p>
+        <p>
+          See You at the Library grew out of that. It is not a protest. It is families reading good
+          books to their kids in a public building their taxes pay for. It only happens in towns
+          where someone local books the room.
+        </p>
+      </div>
+      <div class="mt-8">
+        <a href="#signup" class="btn-primary">Get the Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-14 md:py-20 bg-brand-cream">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">How it works</h2>
+      <p class="section-subheading">
+        Step one is the only thing we are asking you to do today.
+      </p>
+
+      <ol class="mt-10 space-y-8">
+        {steps.map(step => (
+          <li class="flex gap-5 sm:gap-7">
+            <span
+              class="shrink-0 w-11 h-11 rounded-full bg-brand-navy text-brand-gold font-serif font-bold text-lg flex items-center justify-center"
+              aria-hidden="true"
+            >
+              {step.n}
+            </span>
+            <div>
+              <h3 class="text-lg md:text-xl font-serif font-bold text-brand-navy">{step.title}</h3>
+              <p class="mt-2 text-gray-700 leading-relaxed">{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Common concerns -->
+  <section class="py-14 md:py-20">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Common concerns</h2>
+
+      <div class="mt-8 divide-y divide-gray-200 border-y border-gray-200">
+        {objections.map((item, i) => (
+          <details class="group" open={i === 0}>
+            <summary
+              class="flex items-start justify-between gap-4 cursor-pointer list-none py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust rounded"
+            >
+              <span class="text-base md:text-lg font-serif font-bold text-brand-navy">{item.q}</span>
+              <svg
+                class="shrink-0 w-5 h-5 mt-1 text-brand-rust transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <p class="pb-5 pr-9 text-gray-700 leading-relaxed">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup. The one conversion point on the page. -->
+  <section id="signup" class="py-14 md:py-20 bg-brand-navy text-white scroll-mt-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Step one</p>
+          <h2 class="mt-4 text-3xl md:text-4xl font-serif font-bold">
+            Tell us where to send the details
+          </h2>
+          <ul class="mt-7 space-y-3 text-gray-300">
+            <li class="flex gap-3">
+              <span class="text-brand-gold font-bold shrink-0" aria-hidden="true">✓</span>
+              <span>How to reserve your library space</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-brand-gold font-bold shrink-0" aria-hidden="true">✓</span>
+              <span>Someone to email if your library pushes back</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-brand-gold font-bold shrink-0" aria-hidden="true">✓</span>
+              <span>Free books and materials once your room is booked</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-brand-gold font-bold shrink-0" aria-hidden="true">✓</span>
+              <span>No cost and no obligation</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Klaviyo hosted form. The div is only a mount point: klaviyo.js
+             (loaded at the bottom of this file) finds it by class name and
+             injects the form built in the Klaviyo editor. Fields and styling
+             are configured there, not here. -->
+        <div class="bg-white rounded-xl p-6 sm:p-8 text-brand-navy">
+          <div id="host-form">
+            <div class="klaviyo-form-UXvBZp"></div>
+            {!klaviyoPublicKey && (
+              <p class="text-sm text-brand-rust">
+                Klaviyo form will render here once <code>klaviyoPublicKey</code> is set at the top of
+                this file.
+              </p>
+            )}
+          </div>
+          <p class="mt-6 text-xs text-gray-500 leading-relaxed">
+            We use your email and phone number only to help you host. We do not sell or share your
+            information. See our <a href="/privacy" class="text-brand-rust hover:underline">privacy policy</a>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we are -->
+  <section class="py-14 bg-brand-sand">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
+        <div class="max-w-2xl">
+          <h2 class="text-xl md:text-2xl font-serif font-bold text-brand-navy">Who is asking</h2>
+          <p class="mt-3 text-gray-700 leading-relaxed">
+            Brave for Good, Inc. is a 501(c)(3) public charity (EIN 39-2416029). See You at the Library
+            is our flagship program, funded by donors so hosts never pay for books or materials.
+          </p>
+        </div>
+        <div class="md:text-right">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-rust">Presenting sponsor</p>
+          <a
+            href={patriotMobileUrl}
+            target="_blank"
+            rel="noopener"
+            class="mt-4 inline-flex bg-white rounded-xl px-8 py-6 items-center justify-center"
+          >
+            <img
+              src="/images/patriot-mobile.webp"
+              alt="Patriot Mobile"
+              width="900"
+              height="175"
+              class="h-9 md:h-10 w-auto object-contain"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closer -->
+  <section class="py-16 md:py-20 bg-brand-cream">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-navy">
+        Want to know more?
+      </h2>
+      <p class="mt-4 text-lg text-gray-700 leading-relaxed">
+        Get the details and decide from there.
+      </p>
+      <div class="mt-8">
+        <a href="#signup" class="btn-primary w-full sm:w-auto">Get the Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Klaviyo loader. Renders only once the key is set, so an unconfigured
+       build does not ship a 404ing script tag. -->
+  {klaviyoPublicKey && (
+    <script
+      is:inline
+      async
+      src={`https://static.klaviyo.com/onsite/js/${klaviyoPublicKey}/klaviyo.js`}
+    ></script>
+  )}
+
+</LandingLayout>
+
+<style>
+  /* Tailwind's list-none does not remove Safari's disclosure triangle. */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<script>
+  // Days-until label in the hero eyebrow. Computed client side because the site
+  // is statically built and the number would otherwise freeze at build time.
+  const countdown = document.getElementById('countdown');
+  if (countdown) {
+    const event = new Date(2026, 9, 3); // October 3, 2026, local time
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const days = Math.round((event.getTime() - today.getTime()) / 86400000);
+    // The padding characters are non-breaking spaces: plain spaces would
+    // collapse to one, and the dot should not start a wrapped line.
+    const sep = '  ·  ';
+    if (days > 1) {
+      countdown.textContent = `${sep}${days} days away`;
+    } else if (days === 1) {
+      countdown.textContent = `${sep}Tomorrow`;
+    } else if (days === 0) {
+      countdown.textContent = `${sep}Today`;
+    }
+  }
+
+  // Klaviyo owns the submit, so its own event is the only hook for handing the
+  // conversion to GA4 and Google Ads. Fires nothing if gtag has not loaded.
+  window.addEventListener('klaviyoForms', event => {
+    const detail = (event as CustomEvent).detail;
+    if (!detail || detail.type !== 'submit') return;
+
+    const gtag = (window as any).gtag;
+    if (typeof gtag !== 'function') return;
+
+    gtag('event', 'generate_lead', {
+      event_category: 'host_signup',
+      event_label: 'SYATL host interest',
+      klaviyo_form_id: detail.formId,
+    });
+
+    // Meta Pixel Lead event goes here once the pixel is installed:
+    // if (typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
+  });
+
+  // Temporary: load the page with ?debug=1 to trace the Klaviyo submit in the
+  // console. Inert without the query param. Delete once the form is working.
+  if (new URLSearchParams(window.location.search).has('debug')) {
+    window.addEventListener('klaviyoForms', event => {
+      const detail = (event as CustomEvent).detail;
+      console.log('[klaviyo event]', detail?.type, detail);
+    });
+
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = async (...args: Parameters<typeof fetch>) => {
+      const url = String(args[0] instanceof Request ? args[0].url : args[0]);
+      if (!url.includes('klaviyo.com')) return originalFetch(...args);
+
+      console.log('[klaviyo request]', url);
+      try {
+        const response = await originalFetch(...args);
+        const body = await response.clone().text();
+        console.log('[klaviyo response]', response.status, url, body.slice(0, 600));
+        return response;
+      } catch (err) {
+        console.error('[klaviyo request FAILED]', url, err);
+        throw err;
+      }
+    };
+
+    // Klaviyo may submit over XHR rather than fetch, so trace both.
+    const originalOpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function (method: string, url: string | URL, ...rest: any[]) {
+      const href = String(url);
+      if (href.includes('klaviyo.com')) {
+        console.log('[klaviyo xhr]', method, href);
+        this.addEventListener('load', () => {
+          console.log('[klaviyo xhr response]', this.status, href, String(this.responseText).slice(0, 600));
+        });
+        this.addEventListener('error', () => console.error('[klaviyo xhr FAILED]', href));
+        this.addEventListener('timeout', () => console.error('[klaviyo xhr TIMEOUT]', href));
+      }
+      return (originalOpen as any).call(this, method, url, ...rest);
+    };
+  }
+</script>

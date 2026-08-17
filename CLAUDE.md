@@ -125,6 +125,7 @@ Each is declared in `tailwind.config.mjs` as `oklch(... / <alpha-value>)`. That 
 | `/impact` | `src/pages/impact.astro` | Annual impact stats |
 | `/grants` | `src/pages/grants.astro` | For institutional funders; Formspree contact form |
 | `/host` | `src/pages/host.astro` | Host a story hour; links out to Feathery form |
+| `/host-a-story-hour` | `src/pages/host-a-story-hour.astro` | **Meta ads landing page** for host recruitment. Uses `LandingLayout`, not `Layout`: no nav, no drawer, minimal footer, so an ad click has one destination. Single conversion point is the Klaviyo form at `#signup`; every CTA anchors there. Copy rule for this page: short sentences, no metaphors. Carries a temporary `?debug=1` Klaviyo request tracer. |
 | `/support` | `src/pages/support.astro` | Donate page; Anedot embed (general giving) |
 | `/contact` | `src/pages/contact.astro` | Contact form (Formspree) + Quick Links. No email address shown — the form is the only contact path. |
 | `/news` | `src/pages/news.astro` | News/blog (placeholder posts) |
@@ -152,6 +153,17 @@ https://secure.anedot.com/brave-for-good/78cb99ce-118a-4fa1-bdeb-d78453f0ae13?em
 ```
 https://secure.anedot.com/brave-for-good/fc2adfa2-2bc3-4da5-9577-ff980de9bf45?embed=true
 ```
+
+### Klaviyo — host lead capture (`/host-a-story-hour`)
+Hosted embedded form. The `<div class="klaviyo-form-UXvBZp">` is only a mount point; `klaviyo.js` finds it by class name and injects the form built in the Klaviyo editor, so fields and styling are configured there, not in the repo.
+
+The loader needs the public API key (company ID), set as `klaviyoPublicKey` in the page frontmatter:
+```
+https://static.klaviyo.com/onsite/js/Yx2XwF/klaviyo.js
+```
+That key is public by design and safe to commit. The private API key must never appear in this repo. The script tag renders only when the key is set, so a blank key does not ship a 404ing script.
+
+Klaviyo owns the submit, so its `klaviyoForms` event is the only hook for conversion tracking. The page listens for `detail.type === 'submit'` and fires `gtag('event', 'generate_lead', ...)`, which reaches both GA4 and Google Ads. A commented `fbq('track', 'Lead')` line sits next to it for when the Meta Pixel is installed.
 
 ### YouTube — Bible of the Revolution video
 Embed URL: `https://www.youtube.com/embed/LJZrKP-aZ1w?autoplay=1`

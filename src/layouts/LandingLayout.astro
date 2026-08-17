@@ -1,0 +1,106 @@
+---
+/**
+ * Stripped-down layout for paid-traffic landing pages.
+ *
+ * Differs from Layout.astro on purpose: no nav links, no dropdown, no mobile
+ * drawer, and a footer trimmed to the legal minimum. The only outbound links
+ * are the logo and the required legal pages, so an ad click has essentially one
+ * place to go, which is the page's own form.
+ *
+ * The gtag block is a copy of the one in Layout.astro (same single library
+ * load, same two destinations). If those IDs change, change them in both files.
+ */
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Anchor for the header's single text CTA. */
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+
+const {
+  title,
+  description = 'Brave for Good equips families with stories and community experiences grounded in faith and timeless values.',
+  ctaHref = '#signup',
+  ctaLabel = 'Get the details',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | Brave for Good</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Brave for Good`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+
+    <!-- Google tag (gtag.js) — one library load serving two destinations:
+         GA4 analytics and the Google Ads conversion tag. Both IDs are
+         documented in CLAUDE.md. Do not add a second gtag/js script tag for a
+         new destination; add another config call. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KEFP78X254"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-KEFP78X254');
+      gtag('config', 'AW-17961146034');
+    </script>
+
+    <!-- Meta Pixel goes here when the ads account is ready. Nothing on this
+         page depends on it, so it can be pasted in without other changes. -->
+  </head>
+
+  <body class="flex flex-col min-h-screen">
+
+    <header class="bg-white border-b border-gray-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 gap-4">
+          <a href="/" aria-label="Brave for Good home">
+            <img src="/images/logo-stacked.webp" alt="Brave for Good" class="h-11 w-auto" />
+          </a>
+          <a
+            href={ctaHref}
+            class="text-sm font-semibold text-brand-rust hover:underline shrink-0"
+          >
+            {ctaLabel}
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="bg-brand-navy text-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-gray-400">
+          <div>
+            <span>© 2025 Brave for Good, Inc. All rights reserved.</span>
+            <span class="mx-2" aria-hidden="true">·</span>
+            <span>501(c)(3) nonprofit · EIN: <span class="font-mono">39-2416029</span></span>
+          </div>
+          <div class="flex gap-4">
+            <a href="/privacy" class="hover:text-white">Privacy Policy</a>
+            <a href="/terms" class="hover:text-white">Terms of Service</a>
+            <a href="/contact" class="hover:text-white">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

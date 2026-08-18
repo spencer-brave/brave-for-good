@@ -33,7 +33,7 @@ The site was rebuilt from Wix to a static Astro site in 2025. All edits happen v
 | Donations | Anedot (two embeds — see pages below) |
 | Host Registration | Feathery — `https://form.feathery.app/to/CttLVd` (external link, iframe blocked) |
 | Video | YouTube (unlisted) — embedded via iframe on click |
-| Analytics | Google tag (gtag.js) — GA4 `G-KEFP78X254` + Google Ads `AW-17961146034` |
+| Analytics | Google tag (gtag.js) — GA4 `G-KEFP78X254` + Google Ads `AW-17961146034`; Meta Pixel `1077091228332772` |
 | Version Control | GitHub — `https://github.com/spencer-brave/brave-for-good` |
 
 ---
@@ -50,6 +50,12 @@ Both Google destinations run off a **single** `gtag.js` load in `src/layouts/Lay
 The library is requested once (`gtag/js?id=G-KEFP78X254`) and each destination gets its own `gtag('config', ...)` call. To add another destination, add a `config` line. Do **not** add a second `gtag/js` script tag: the loader is shared, and a duplicate load can double-count pageviews.
 
 There is no consent banner or IP-anonymization config. If either becomes a requirement, it belongs in this same inline script, before the `config` calls.
+
+### Meta Pixel
+
+Pixel ID `1077091228332772`, for the Meta ad campaigns. The base code (`fbevents.js` loader, `fbq('init', ...)`, `fbq('track', 'PageView')`) plus the `<noscript>` fallback image sits in the `<head>` of **both** `src/layouts/Layout.astro` and `src/layouts/LandingLayout.astro`, so every page fires PageView and the retargeting audience covers the whole site, not just the ad landing pages. The ID is duplicated across the two layouts (same tradeoff as the gtag IDs): change it in both or neither.
+
+Only the base code lives in the layouts. Conversion events are fired by the page that owns the conversion, so there is one `fbq('track', 'Lead')` and it is on `/host-a-story-hour` (see the Klaviyo section below).
 
 ---
 
@@ -125,7 +131,7 @@ Each is declared in `tailwind.config.mjs` as `oklch(... / <alpha-value>)`. That 
 | `/impact` | `src/pages/impact.astro` | Annual impact stats |
 | `/grants` | `src/pages/grants.astro` | For institutional funders; Formspree contact form |
 | `/host` | `src/pages/host.astro` | Host a story hour; links out to Feathery form |
-| `/host-a-story-hour` | `src/pages/host-a-story-hour.astro` | **Meta ads landing page** for host recruitment. Uses `LandingLayout`, not `Layout`: no nav, no drawer, minimal footer, so an ad click has one destination. Single conversion point is the Klaviyo form at `#signup`; every CTA anchors there. Copy rule for this page: short sentences, no metaphors. Carries a temporary `?debug=1` Klaviyo request tracer. |
+| `/host-a-story-hour` | `src/pages/host-a-story-hour.astro` | **Meta ads landing page** for host recruitment. Uses `LandingLayout`, not `Layout`: no nav, no drawer, minimal footer, so an ad click has one destination. Single conversion point is the Klaviyo form at `#signup`; every CTA anchors there. Fires the Meta `Lead` event and GA4 `generate_lead` off the Klaviyo submit. Copy rule for this page: short sentences, no metaphors. |
 | `/support` | `src/pages/support.astro` | Donate page; Anedot embed (general giving) |
 | `/contact` | `src/pages/contact.astro` | Contact form (Formspree) + Quick Links. No email address shown — the form is the only contact path. |
 | `/news` | `src/pages/news.astro` | News/blog (placeholder posts) |
@@ -163,7 +169,7 @@ https://static.klaviyo.com/onsite/js/Yx2XwF/klaviyo.js
 ```
 That key is public by design and safe to commit. The private API key must never appear in this repo. The script tag renders only when the key is set, so a blank key does not ship a 404ing script.
 
-Klaviyo owns the submit, so its `klaviyoForms` event is the only hook for conversion tracking. The page listens for `detail.type === 'submit'` and fires `gtag('event', 'generate_lead', ...)`, which reaches both GA4 and Google Ads. A commented `fbq('track', 'Lead')` line sits next to it for when the Meta Pixel is installed.
+Klaviyo owns the submit, so its `klaviyoForms` event is the only hook for conversion tracking. The page listens for `detail.type === 'submit'` and fires two conversions off it: `gtag('event', 'generate_lead', ...)`, which reaches both GA4 and Google Ads, and `fbq('track', 'Lead', ...)` for Meta. Each is guarded by its own `typeof` check, so an ad blocker that kills one destination does not suppress the other. Keep them independent: don't put them behind a shared early `return`.
 
 ### YouTube — Bible of the Revolution video
 Embed URL: `https://www.youtube.com/embed/LJZrKP-aZ1w?autoplay=1`

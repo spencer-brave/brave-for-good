@@ -284,10 +284,6 @@ const objections = [
               </p>
             )}
           </div>
-          <p class="mt-6 text-xs text-gray-500 leading-relaxed">
-            We use your email and phone number only to help you host. We do not sell or share your
-            information. See our <a href="/privacy" class="text-brand-rust hover:underline">privacy policy</a>.
-          </p>
         </div>
 
       </div>
@@ -383,62 +379,27 @@ const objections = [
   }
 
   // Klaviyo owns the submit, so its own event is the only hook for handing the
-  // conversion to GA4 and Google Ads. Fires nothing if gtag has not loaded.
+  // conversion to GA4, Google Ads, and Meta. Each destination is checked on its
+  // own: an ad blocker that kills one must not suppress the others.
   window.addEventListener('klaviyoForms', event => {
     const detail = (event as CustomEvent).detail;
     if (!detail || detail.type !== 'submit') return;
 
     const gtag = (window as any).gtag;
-    if (typeof gtag !== 'function') return;
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        event_category: 'host_signup',
+        event_label: 'SYATL host interest',
+        klaviyo_form_id: detail.formId,
+      });
+    }
 
-    gtag('event', 'generate_lead', {
-      event_category: 'host_signup',
-      event_label: 'SYATL host interest',
-      klaviyo_form_id: detail.formId,
-    });
-
-    // Meta Pixel Lead event goes here once the pixel is installed:
-    // if (typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead');
+    // Meta's standard Lead event. The pixel base code lives in
+    // LandingLayout.astro, so this only fires the conversion.
+    const fbq = (window as any).fbq;
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', { content_name: 'SYATL host interest' });
+    }
   });
 
-  // Temporary: load the page with ?debug=1 to trace the Klaviyo submit in the
-  // console. Inert without the query param. Delete once the form is working.
-  if (new URLSearchParams(window.location.search).has('debug')) {
-    window.addEventListener('klaviyoForms', event => {
-      const detail = (event as CustomEvent).detail;
-      console.log('[klaviyo event]', detail?.type, detail);
-    });
-
-    const originalFetch = window.fetch.bind(window);
-    window.fetch = async (...args: Parameters<typeof fetch>) => {
-      const url = String(args[0] instanceof Request ? args[0].url : args[0]);
-      if (!url.includes('klaviyo.com')) return originalFetch(...args);
-
-      console.log('[klaviyo request]', url);
-      try {
-        const response = await originalFetch(...args);
-        const body = await response.clone().text();
-        console.log('[klaviyo response]', response.status, url, body.slice(0, 600));
-        return response;
-      } catch (err) {
-        console.error('[klaviyo request FAILED]', url, err);
-        throw err;
-      }
-    };
-
-    // Klaviyo may submit over XHR rather than fetch, so trace both.
-    const originalOpen = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function (method: string, url: string | URL, ...rest: any[]) {
-      const href = String(url);
-      if (href.includes('klaviyo.com')) {
-        console.log('[klaviyo xhr]', method, href);
-        this.addEventListener('load', () => {
-          console.log('[klaviyo xhr response]', this.status, href, String(this.responseText).slice(0, 600));
-        });
-        this.addEventListener('error', () => console.error('[klaviyo xhr FAILED]', href));
-        this.addEventListener('timeout', () => console.error('[klaviyo xhr TIMEOUT]', href));
-      }
-      return (originalOpen as any).call(this, method, url, ...rest);
-    };
-  }
 </script>

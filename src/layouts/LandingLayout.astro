@@ -7,8 +7,9 @@
  * are the logo and the required legal pages, so an ad click has essentially one
  * place to go, which is the page's own form.
  *
- * The gtag block is a copy of the one in Layout.astro (same single library
- * load, same two destinations). If those IDs change, change them in both files.
+ * The gtag and Meta Pixel blocks are copies of the ones in Layout.astro (same
+ * single gtag library load, same two destinations, same pixel ID). If any of
+ * those IDs change, change them in both files.
  */
 import '../styles/global.css';
 
@@ -59,8 +60,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       gtag('config', 'AW-17961146034');
     </script>
 
-    <!-- Meta Pixel goes here when the ads account is ready. Nothing on this
-         page depends on it, so it can be pasted in without other changes. -->
+    <!-- Meta Pixel — base code for the Meta ad campaigns. Loaded on every page
+         so PageView and retargeting audiences cover the whole site; the Lead
+         event is fired by the landing page itself off the Klaviyo submit, not
+         here. The same pixel ID is in Layout.astro: change both together. -->
+    <script is:inline>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1077091228332772');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=1077091228332772&amp;ev=PageView&amp;noscript=1" /></noscript>
   </head>
 
   <body class="flex flex-col min-h-screen">

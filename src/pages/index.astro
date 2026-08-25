@@ -31,6 +31,19 @@ const carouselPrograms = [
     alt: 'Three girls holding their donated copies of a BRAVE Books title',
   },
 ];
+
+// Partner logos shown under the hero CTAs. The hero is navy, so each mark has
+// to read on a dark background: the DoE seal carries its own gold ring, a
+// wordmark has to be the white-on-transparent version.
+const partnerLogos = [
+  {
+    src: '/images/dept-of-education-seal.webp',
+    alt: 'Seal of the United States Department of Education',
+    class: 'h-14 w-14 sm:h-16 sm:w-16',
+    width: 256,
+    height: 256,
+  },
+];
 ---
 
 <Layout
@@ -62,6 +75,27 @@ const carouselPrograms = [
             <a href="#impact" class="inline-block border border-white/40 text-white font-semibold px-7 py-3 rounded-lg hover:border-white hover:bg-white/10 transition-colors text-center text-base">
               See Our Impact
             </a>
+          </div>
+
+          <!-- Partner organizations. Logos live in the partnerLogos array at the
+               top of the file; a white-on-transparent mark is required here,
+               the hero is navy. -->
+          <div class="mt-10 pt-8 border-t border-white/15 max-w-md">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50">
+              Partner Organizations
+            </p>
+            <div class="mt-4 flex flex-wrap items-center gap-x-8 gap-y-4">
+              {partnerLogos.map(logo => (
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  class={logo.class}
+                  width={logo.width}
+                  height={logo.height}
+                  loading="lazy"
+                />
+              ))}
+            </div>
           </div>
         </div>
         <div class="mt-12 min-[800px]:mt-0">

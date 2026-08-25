@@ -132,7 +132,7 @@ Each is declared in `tailwind.config.mjs` as `oklch(... / <alpha-value>)`. That 
 | `/grants` | `src/pages/grants.astro` | For institutional funders; Formspree contact form |
 | `/host` | `src/pages/host.astro` | Host a story hour; links out to Feathery form |
 | `/host-a-story-hour` | `src/pages/host-a-story-hour.astro` | **Meta ads landing page** for host recruitment. Uses `LandingLayout`, not `Layout`: no nav, no drawer, minimal footer, so an ad click has one destination. Single conversion point is the Klaviyo form at `#signup`; every CTA anchors there. Fires the Meta `Lead` event and GA4 `generate_lead` off the Klaviyo submit. Copy rule for this page: short sentences, no metaphors. |
-| `/support` | `src/pages/support.astro` | Donate page; Anedot embed (general giving) |
+| `/support` | `src/pages/support.astro` | Donate page. Photo band, then the one-line mission statement, then the Anedot embed (general giving). No navy hero: the page opens on the photo so the form is as close to the top as possible. |
 | `/contact` | `src/pages/contact.astro` | Contact form (Formspree) + Quick Links. No email address shown — the form is the only contact path. |
 | `/news` | `src/pages/news.astro` | News/blog (placeholder posts) |
 | `/partners` | `src/pages/partners.astro` | Partners page |
@@ -152,7 +152,7 @@ Forms on: `/contact`, `/grants`, `/news` (newsletter), `/programs/book-donations
 
 ### Anedot — General Giving (`/support`)
 ```
-https://secure.anedot.com/brave-for-good/78cb99ce-118a-4fa1-bdeb-d78453f0ae13?embed=true
+https://secure.anedot.com/brave-for-good/435a98d6-f370-4f8d-8789-0551c447df7e?embed=true
 ```
 
 ### Anedot — Bible of the Revolution (`/programs/bible-revival/donate`)
@@ -195,6 +195,8 @@ Any nav item with a `children` array renders as a dropdown (CSS `group-hover` / 
 
 **Mobile drawer** (`#drawer-panel` in `src/layouts/Layout.astro`): a fixed off-canvas panel that slides in from the right over a dimmed backdrop. It lives *outside* `<header>` so opening it never displaces page content, and it animates `transform` only. The script handles Escape, backdrop click, focus trapping, focus restore to the trigger, `inert` while closed, page scroll lock, and auto-close when crossing into the `lg` breakpoint. Don't move it back inside the header or into normal document flow.
 
+**Partner logos** (`partnerLogos` array in `src/pages/index.astro`): a small strip under the hero CTAs. The hero is navy, so every mark added here has to read on a dark background: the Department of Education seal carries its own gold ring, and any wordmark must be the white-on-transparent version, not a flattened one.
+
 **Programs carousel** (`#programs-carousel` in `src/pages/index.astro`): a slim navy band after the annual-results section. A flex track slides on `transform`, showing one program per view below `lg` and two across at `lg`, advancing a page every 8s starting at page load. Program data is the `carouselPrograms` array at the top of the file.
 
 - Each item is `w-full lg:w-1/2`, so one page step is always `translateX(-100%)` of the container. The `lg:w-1/2` and the `(min-width: 1024px)` media query in the script must stay in sync.
@@ -219,6 +221,8 @@ All production images live in `public/images/`. Source/original assets are in `a
 | `syatl-250-logo.webp` | See You at the Library "America's 250th" event badge. SYATL hero. Transparent, 900x715, lossy (the star field and drop shadows make lossless ~4x larger). |
 | `patriot-mobile.webp` | Patriot Mobile logo, presenting sponsor. SYATL hero + sponsor band. Transparent, 900x175, lossless (smaller than lossy for flat art). Navy wordmark, so it needs a light background. |
 | `kirk-scarsdale-reading.avif` | Homepage hero |
+| `kirk-story-hour-group.webp` | `/support` lead photo, above the donation form |
+| `dept-of-education-seal.webp` | Homepage hero "Partner Organizations" strip. Full color, transparent, 256x256. |
 | `trent-talbot.avif` | Homepage event CTA section |
 | `bible-revival-assembly.webp` | Programs page (Bible Revival card) |
 | `bible-revival-altar-call.webp` | Bible Revival page lead photo (full-width band under the hero) |

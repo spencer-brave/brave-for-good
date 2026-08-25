@@ -195,7 +195,7 @@ Any nav item with a `children` array renders as a dropdown (CSS `group-hover` / 
 
 **Mobile drawer** (`#drawer-panel` in `src/layouts/Layout.astro`): a fixed off-canvas panel that slides in from the right over a dimmed backdrop. It lives *outside* `<header>` so opening it never displaces page content, and it animates `transform` only. The script handles Escape, backdrop click, focus trapping, focus restore to the trigger, `inert` while closed, page scroll lock, and auto-close when crossing into the `lg` breakpoint. Don't move it back inside the header or into normal document flow.
 
-**Partner logos** (`partnerLogos` array in `src/pages/index.astro`): a small strip under the hero CTAs. The hero is navy, so every mark added here has to read on a dark background: the Department of Education seal carries its own gold ring, and any wordmark must be the white-on-transparent version, not a flattened one.
+**Partner logos** (`partnerLogos` array in `src/pages/index.astro`): a small strip under the hero CTAs. The hero is navy, so every mark added here has to read on a dark background: the Department of Education seal carries its own gold ring, and the Make-A-Wish wordmark is a white SVG. A wordmark exported as a flattened raster (white art baked onto a transparency checkerboard) is unusable here: it paints as a white smear.
 
 **Programs carousel** (`#programs-carousel` in `src/pages/index.astro`): a slim navy band after the annual-results section. A flex track slides on `transform`, showing one program per view below `lg` and two across at `lg`, advancing a page every 8s starting at page load. Program data is the `carouselPrograms` array at the top of the file.
 
@@ -223,6 +223,7 @@ All production images live in `public/images/`. Source/original assets are in `a
 | `kirk-scarsdale-reading.avif` | Homepage hero |
 | `kirk-story-hour-group.webp` | `/support` lead photo, above the donation form |
 | `dept-of-education-seal.webp` | Homepage hero "Partner Organizations" strip. Full color, transparent, 256x256. |
+| `make-a-wish-white.svg` | Homepage hero "Partner Organizations" strip. Single white path, `viewBox="0 0 440 96"`. Vector, so it stays crisp at any size; recolor by editing the one `fill`. |
 | `trent-talbot.avif` | Homepage event CTA section |
 | `bible-revival-assembly.webp` | Programs page (Bible Revival card) |
 | `bible-revival-altar-call.webp` | Bible Revival page lead photo (full-width band under the hero) |

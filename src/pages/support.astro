@@ -7,9 +7,10 @@ import Layout from '../layouts/Layout.astro';
   description="Donate to Brave for Good and help fund faith-centered story hours in public libraries across America."
 >
 
-  <!-- Lead photo -->
-  <section class="pt-10 md:pt-14">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Lead photo. Capped narrower than the form below it: at full width the
+       photo pushes the Anedot embed off the first screen. -->
+  <section class="pt-6 md:pt-8">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <img
         src="/images/kirk-story-hour-group.webp"
         alt="Kirk Cameron and a room full of families holding American flags at a Brave Story Hour"
@@ -22,18 +23,18 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Donation form -->
-  <section class="pt-8 pb-16 md:pt-10">
+  <section class="pt-6 pb-14">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-lg md:text-xl font-serif text-brand-navy leading-relaxed">
+      <p class="max-w-xl mx-auto text-center text-base md:text-lg font-serif text-brand-navy leading-relaxed">
         Every gift directly funds BRAVE For Good's mission, inspiring children to walk in God's ways.
       </p>
-      <div class="mt-8 w-16 h-0.5 bg-brand-gold mx-auto"></div>
+      <div class="mt-5 w-16 h-0.5 bg-brand-gold mx-auto"></div>
       <iframe
         src="https://secure.anedot.com/brave-for-good/435a98d6-f370-4f8d-8789-0551c447df7e?embed=true"
         width="100%"
         style="border: none; min-height: 700px;"
         title="Donate to Brave for Good"
-        class="mt-10"
+        class="mt-6"
       ></iframe>
     </div>
   </section>

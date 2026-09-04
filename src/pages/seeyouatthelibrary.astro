@@ -70,29 +70,45 @@ const impact = [
             <a href="/support" class="btn-secondary text-center">
               Donate
             </a>
+            <a href="/seeyouatthelibrary/faq" class="btn-secondary text-center">
+              Read the FAQs
+            </a>
           </div>
-          <p class="mt-5 text-sm text-gray-600">
-            New to this? Read the <a href="/seeyouatthelibrary/faq" class="text-brand-rust hover:underline">frequently asked questions</a>.
-          </p>
         </div>
 
       </div>
     </div>
+  </section>
 
-    <!-- Paired hero images -->
-    <div class="grid grid-cols-1 sm:grid-cols-2">
-      <img
-        src="/images/syatl-kirk-stage.webp"
-        alt="Kirk Cameron reading to a packed auditorium of families in front of an American flag backdrop"
-        class="w-full h-64 md:h-80 object-cover"
-        loading="lazy"
-      />
-      <img
-        src="/images/syatl-kids-hands.webp"
-        alt="Children seated on the floor raising their hands during a story hour reading"
-        class="w-full h-64 md:h-80 object-cover"
-        loading="lazy"
-      />
+  <!-- Story hour location map -->
+  <!-- Sits in its own cream section directly under the cream hero, so it takes
+       no top padding: the hero's bottom padding is already the gap. -->
+  <section class="pb-16 md:pb-20 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading">Find a Story Hour Near You</h2>
+      <p class="section-subheading">
+        Registered story hours across the country. Zoom in on your area to find the closest one,
+        and check back as new locations are added.
+      </p>
+      <div class="mt-8 rounded-xl overflow-hidden border border-brand-sand bg-white">
+        <iframe
+          src={`https://www.google.com/maps/d/embed?mid=${storyHourMapId}&ehbc=2E312F&noprof=1`}
+          title="Map of See You at the Library story hour locations"
+          class="w-full h-[440px] md:h-[560px] block border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="mt-4 text-sm text-gray-600">
+        Trouble with the map?
+        <a
+          href={`https://www.google.com/maps/d/viewer?mid=${storyHourMapId}`}
+          target="_blank"
+          rel="noopener"
+          class="text-brand-rust hover:underline"
+        >Open it in Google Maps</a>.
+      </p>
     </div>
   </section>
 
@@ -155,35 +171,21 @@ const impact = [
     </div>
   </section>
 
-  <!-- Story hour location map -->
-  <section class="py-16 md:py-20 bg-brand-cream">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="section-heading">Find a Story Hour Near You</h2>
-      <p class="section-subheading">
-        Registered story hours across the country. Zoom in on your area to find the closest one,
-        and check back as new locations are added.
-      </p>
-      <div class="mt-8 rounded-xl overflow-hidden border border-brand-sand bg-white">
-        <iframe
-          src={`https://www.google.com/maps/d/embed?mid=${storyHourMapId}&ehbc=2E312F&noprof=1`}
-          title="Map of See You at the Library story hour locations"
-          class="w-full h-[440px] md:h-[560px] block border-0"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <p class="mt-4 text-sm text-gray-600">
-        Trouble with the map?
-        <a
-          href={`https://www.google.com/maps/d/viewer?mid=${storyHourMapId}`}
-          target="_blank"
-          rel="noopener"
-          class="text-brand-rust hover:underline"
-        >Open it in Google Maps</a>.
-      </p>
-    </div>
-  </section>
+  <!-- Paired photos -->
+  <div class="grid grid-cols-1 sm:grid-cols-2">
+    <img
+      src="/images/syatl-kirk-stage.webp"
+      alt="Kirk Cameron reading to a packed auditorium of families in front of an American flag backdrop"
+      class="w-full h-64 md:h-80 object-cover"
+      loading="lazy"
+    />
+    <img
+      src="/images/syatl-kids-hands.webp"
+      alt="Children seated on the floor raising their hands during a story hour reading"
+      class="w-full h-64 md:h-80 object-cover"
+      loading="lazy"
+    />
+  </div>
 
   <!-- How can you make a difference -->
   <section class="py-16 md:py-20">

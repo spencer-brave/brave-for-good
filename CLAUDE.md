@@ -219,7 +219,8 @@ All production images live in `public/images/`. Source/original assets are in `a
 | `logo-stacked.webp` | Nav (full color) + footer (brightness-0 invert for dark bg). The stacked BRAVE / for good wordmark, ~2.4:1. |
 | `logo.webp` | Legacy single-line wordmark (~5:1). No longer used in the layout; kept for wide placements. |
 | `syatl-250-logo.webp` | See You at the Library "America's 250th" event badge. SYATL hero. Transparent, 900x715, lossy (the star field and drop shadows make lossless ~4x larger). |
-| `patriot-mobile.webp` | Patriot Mobile logo, presenting sponsor. SYATL hero + sponsor band. Transparent, 900x175, lossless (smaller than lossy for flat art). Navy wordmark, so it needs a light background. |
+| `patriot-mobile-tagline.webp` | Patriot Mobile logo with the "America's Only Christian Conservative Wireless Provider" tagline, presenting sponsor. SYATL hero + sponsor band. Transparent, 297x90, lossless. Sized by width (`w-56` and up), not height: at 3.3:1 with a tagline line, height-based sizing shrinks the tagline past legibility. 297px is the largest export available, so don't display it wider than that. Navy wordmark, so it needs a light background. |
+| `patriot-mobile.webp` | Older Patriot Mobile logo, no tagline. Host lander (`/host-a-story-hour`) sponsor band only. Transparent, 900x175, lossless (smaller than lossy for flat art). Navy wordmark, so it needs a light background. |
 | `kirk-scarsdale-reading.avif` | Homepage hero |
 | `kirk-story-hour-group.webp` | `/support` lead photo, above the donation form |
 | `dept-of-education-seal.webp` | Homepage hero "Partner Organizations" strip. Full color, transparent, 256x256. |

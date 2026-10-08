@@ -25,5 +25,6 @@ export default defineConfig({
     '/blank-7':                     '/terms',
     '/donate':                      '/support',
     '/event-list':                  '/seeyouatthelibrary',
+    '/event':                       'https://secure.anedot.com/brave-for-good/90049538-0b7f-4bef-8b5f-4de4da87978c',
   },
 });
